@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nakshatra Calculator API — Interactive Docs</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; color: #333; }
+  .header { background: linear-gradient(135deg, #ff9800, #f57c00); color: #fff; padding: 20px 32px; }
+  .header h1 { font-size: 22px; font-weight: 600; }
+  .header p { font-size: 13px; opacity: .85; margin-top: 4px; }
+  .container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+  .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.08); margin-bottom: 20px; overflow: hidden; }
+  .card-head { padding: 14px 20px; cursor: pointer; display: flex; align-items: center; gap: 10px; user-select: none; }
+  .card-head:hover { background: #fafafa; }
+  .method { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 4px; color: #fff; }
+  .method.post { background: #49cc90; }
+  .method.get  { background: #61affe; }
+  .card-head .path { font-family: monospace; font-size: 14px; font-weight: 600; }
+  .card-head .desc { font-size: 13px; color: #666; margin-left: auto; }
+  .card-head .arrow { transition: transform .2s; font-size: 18px; color: #999; }
+  .card-head.open .arrow { transform: rotate(90deg); }
+  .card-body { display: none; padding: 20px; border-top: 1px solid #eee; }
+  .card-body.open { display: block; }
+  .form-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .form-group { display: flex; flex-direction: column; flex: 1; min-width: 140px; }
+  .form-group.full { flex: 1 1 100%; }
+  label { font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px; }
+  input, select { padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; }
+  input:focus, select:focus { border-color: #f57c00; box-shadow: 0 0 0 2px rgba(245,124,0,.15); }
+  /* Place autocomplete */
+  .place-wrap { position: relative; }
+  .place-wrap input { width: 100%; }
+  .place-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ddd;
+    border-top: none; border-radius: 0 0 6px 6px; max-height: 220px; overflow-y: auto; z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12); display: none; }
+  .place-dropdown.show { display: block; }
+  .place-item { padding: 9px 12px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #f0f0f0; }
+  .place-item:hover, .place-item.active { background: #fff3e0; }
+  .place-item .sub { font-size: 11px; color: #999; }
+  .place-spinner { padding: 10px; text-align: center; color: #999; font-size: 12px; }
+  /* Buttons */
+  .btn { padding: 10px 24px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: background .15s; }
+  .btn-primary { background: #f57c00; color: #fff; }
+  .btn-primary:hover { background: #e65100; }
+  .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+  /* Response */
+  .response-area { margin-top: 16px; }
+  .response-area pre { background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px;
+    font-size: 13px; overflow-x: auto; max-height: 500px; overflow-y: auto; white-space: pre-wrap; }
+  .status-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px;
+    font-weight: 600; margin-bottom: 8px; }
+  .status-badge.ok { background: #e8f5e9; color: #2e7d32; }
+  .status-badge.err { background: #ffebee; color: #c62828; }
+  .hidden-geo { display: none; }
+  .geo-info { font-size: 11px; color: #888; margin-top: 2px; }
+  .footer { text-align: center; padding: 20px; font-size: 12px; color: #aaa; }
+  .footer a { color: #f57c00; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔯 Nakshatra Calculator API</h1>
+  <p>Vedic astrology — Nakshatra, Horoscope, Panchang &nbsp;|&nbsp; v2.0 &nbsp;|&nbsp;
+     <a href="/swagger" style="color:#fff;text-decoration:underline">Raw Swagger UI</a></p>
+</div>
+
+<div class="container">
+
+<!-- ── /api/nakshatra ──────────────────────────────────────────── -->
+<div class="card" id="card-nakshatra">
+  <div class="card-head" onclick="toggle('nakshatra')">
+    <span class="method post">POST</span>
+    <span class="path">/api/nakshatra</span>
+    <span class="desc">Calculate Nakshatra from birth details</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="card-body" id="body-nakshatra">
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input id="nk-name" value="Shiva Kumar"></div>
+      <div class="form-group"><label>Gender</label>
+        <select id="nk-gender"><option>Male</option><option>Female</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Date (YYYY-MM-DD)</label><input id="nk-date" type="date" value="1999-11-08"></div>
+      <div class="form-group"><label>Hour</label><input id="nk-hour" type="number" min="1" max="12" value="7"></div>
+      <div class="form-group"><label>Minute</label><input id="nk-min" type="number" min="0" max="59" value="15"></div>
+      <div class="form-group"><label>AM/PM</label>
+        <select id="nk-ampm"><option>AM</option><option selected>PM</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <label>Place of Birth (type to search — finds every village)</label>
+        <div class="place-wrap">
+          <input id="nk-place" placeholder="Type a place name..." autocomplete="off">
+          <div class="place-dropdown" id="nk-dropdown"></div>
+        </div>
+        <div class="geo-info" id="nk-geo-info"></div>
+        <input type="hidden" id="nk-lat">
+        <input type="hidden" id="nk-lon">
+        <input type="hidden" id="nk-tz">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="submitNakshatra()">Calculate Nakshatra</button>
+    <div class="response-area" id="nk-response"></div>
+  </div>
+</div>
+
+<!-- ── /api/nakshatra/bygemini ────────────────────────────────── -->
+<div class="card" id="card-gemini">
+  <div class="card-head" onclick="toggle('gemini')">
+    <span class="method post">POST</span>
+    <span class="path">/api/nakshatra/bygemini</span>
+    <span class="desc">🤖 AI-Powered Nakshatra (Gemini 2.5 Flash)</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="card-body" id="body-gemini">
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input id="gm-name" value="Shiva Kumar"></div>
+      <div class="form-group"><label>Gender</label>
+        <select id="gm-gender"><option>Male</option><option>Female</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Date (YYYY-MM-DD)</label><input id="gm-date" type="date" value="1999-11-08"></div>
+      <div class="form-group"><label>Hour</label><input id="gm-hour" type="number" min="1" max="12" value="7"></div>
+      <div class="form-group"><label>Minute</label><input id="gm-min" type="number" min="0" max="59" value="15"></div>
+      <div class="form-group"><label>AM/PM</label>
+        <select id="gm-ampm"><option>AM</option><option selected>PM</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <label>Place of Birth (type to search — finds every village)</label>
+        <div class="place-wrap">
+          <input id="gm-place" placeholder="Type a place name..." autocomplete="off">
+          <div class="place-dropdown" id="gm-dropdown"></div>
+        </div>
+        <div class="geo-info" id="gm-geo-info"></div>
+        <input type="hidden" id="gm-lat">
+        <input type="hidden" id="gm-lon">
+        <input type="hidden" id="gm-tz">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="submitGemini()">Calculate with AI</button>
+    <div class="response-area" id="gm-response"></div>
+  </div>
+</div>
+
+<!-- ── /api/horoscope ─────────────────────────────────────────── -->
+<div class="card" id="card-horoscope">
+  <div class="card-head" onclick="toggle('horoscope')">
+    <span class="method post">POST</span>
+    <span class="path">/api/horoscope</span>
+    <span class="desc">Full horoscope with predictions</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="card-body" id="body-horoscope">
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input id="hr-name" value="Shiva Kumar"></div>
+      <div class="form-group"><label>Gender</label>
+        <select id="hr-gender"><option>Male</option><option>Female</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Date (YYYY-MM-DD)</label><input id="hr-date" type="date" value="1999-11-08"></div>
+      <div class="form-group"><label>Hour</label><input id="hr-hour" type="number" min="1" max="12" value="7"></div>
+      <div class="form-group"><label>Minute</label><input id="hr-min" type="number" min="0" max="59" value="15"></div>
+      <div class="form-group"><label>AM/PM</label>
+        <select id="hr-ampm"><option>AM</option><option selected>PM</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <label>Place of Birth (type to search — finds every village)</label>
+        <div class="place-wrap">
+          <input id="hr-place" placeholder="Type a place name..." autocomplete="off">
+          <div class="place-dropdown" id="hr-dropdown"></div>
+        </div>
+        <div class="geo-info" id="hr-geo-info"></div>
+        <input type="hidden" id="hr-lat">
+        <input type="hidden" id="hr-lon">
+        <input type="hidden" id="hr-tz">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="submitHoroscope()">Get Horoscope</button>
+    <div class="response-area" id="hr-response"></div>
+  </div>
+</div>
+
+<!-- ── /api/horoscope/bygemini ────────────────────────────────── -->
+<div class="card" id="card-horoscope-gemini">
+  <div class="card-head" onclick="toggle('horoscope-gemini')">
+    <span class="method post">POST</span>
+    <span class="path">/api/horoscope/bygemini</span>
+    <span class="desc">🤖 AI-Powered Full Horoscope (Gemini 2.5 Flash)</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="card-body" id="body-horoscope-gemini">
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input id="hg-name" value="Shiva Kumar"></div>
+      <div class="form-group"><label>Gender</label>
+        <select id="hg-gender"><option>Male</option><option>Female</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Date (YYYY-MM-DD)</label><input id="hg-date" type="date" value="1999-11-08"></div>
+      <div class="form-group"><label>Hour</label><input id="hg-hour" type="number" min="1" max="12" value="7"></div>
+      <div class="form-group"><label>Minute</label><input id="hg-min" type="number" min="0" max="59" value="15"></div>
+      <div class="form-group"><label>AM/PM</label>
+        <select id="hg-ampm"><option>AM</option><option selected>PM</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <label>Place of Birth (type to search — finds every village)</label>
+        <div class="place-wrap">
+          <input id="hg-place" placeholder="Type a place name..." autocomplete="off">
+          <div class="place-dropdown" id="hg-dropdown"></div>
+        </div>
+        <div class="geo-info" id="hg-geo-info"></div>
+        <input type="hidden" id="hg-lat">
+        <input type="hidden" id="hg-lon">
+        <input type="hidden" id="hg-tz">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="submitHoroscopeGemini()">Get AI Horoscope</button>
+    <div class="response-area" id="hg-response"></div>
+  </div>
+</div>
+
+<!-- ── /api/gochara/bygemini ──────────────────────────────────── -->
+<div class="card" id="card-gochara">
+  <div class="card-head" onclick="toggle('gochara')">
+    <span class="method post">POST</span>
+    <span class="path">/api/gochara/bygemini</span>
+    <span class="desc">🤖 AI-Powered Gochara (Transit) Chart</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="card-body" id="body-gochara">
+    <div class="form-row">
+      <div class="form-group"><label>Name</label><input id="gc-name" value="Shiva Kumar"></div>
+      <div class="form-group"><label>Gender</label>
+        <select id="gc-gender"><option>Male</option><option>Female</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Date (YYYY-MM-DD)</label><input id="gc-date" type="date" value="1999-11-08"></div>
+      <div class="form-group"><label>Hour</label><input id="gc-hour" type="number" min="1" max="12" value="7"></div>
+      <div class="form-group"><label>Minute</label><input id="gc-min" type="number" min="0" max="59" value="15"></div>
+      <div class="form-group"><label>AM/PM</label>
+        <select id="gc-ampm"><option>AM</option><option selected>PM</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <label>Place of Birth (type to search — finds every village)</label>
+        <div class="place-wrap">
+          <input id="gc-place" placeholder="Type a place name..." autocomplete="off">
+          <div class="place-dropdown" id="gc-dropdown"></div>
+        </div>
+        <div class="geo-info" id="gc-geo-info"></div>
+        <input type="hidden" id="gc-lat">
+        <input type="hidden" id="gc-lon">
+        <input type="hidden" id="gc-tz">
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="submitGochara()">Get Transit Chart</button>
+    <div class="response-area" id="gc-response"></div>
+  </div>
+</div>
+
+<!-- ── /api/places ────────────────────────────────────────────── -->
+<div class="card">
+  <div class="card-head" onclick="toggle('places')">
+    <span class="method get">GET</span>
+    <span class="path">/api/places</span>
+    <span class="desc">Search places (autocomplete)</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="card-body" id="body-places">
+    <div class="form-row">
+      <div class="form-group full"><label>Search Query</label><input id="pl-q" value="Yergatla"></div>
+    </div>
+    <button class="btn btn-primary" onclick="submitPlaces()">Search</button>
+    <div class="response-area" id="pl-response"></div>
+  </div>
+</div>
+
+<!-- ── /api/nakshatra-by-name ─────────────────────────────────── -->
+<div class="card">
+  <div class="card-head" onclick="toggle('byname')">
+    <span class="method post">POST</span>
+    <span class="path">/api/nakshatra-by-name</span>
+    <span class="desc">Nakshatra from name syllable</span>
+    <span class="arrow">▶</span>
+  </div>
+  <div class="card-body" id="body-byname">
+    <div class="form-row">
+      <div class="form-group full"><label>Name (Telugu or English)</label><input id="bn-name" value="Shiva"></div>
+    </div>
+    <button class="btn btn-primary" onclick="submitByName()">Lookup</button>
+    <div class="response-area" id="bn-response"></div>
+  </div>
+</div>
+
+</div><!-- container -->
+
+<div class="footer">
+  Nakshatra Calculator API v2.0 &nbsp;|&nbsp; <a href="/swagger">Swagger UI</a> &nbsp;|&nbsp; <a href="/redoc">ReDoc</a>
+</div>
+
+<script>
+
+/* ── Toggle cards ─────────────────────────────────────────── */
+function toggle(id) {
+  const head = document.querySelector(`#card-${id} .card-head`);
+  const body = document.getElementById(`body-${id}`);
+  head.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+/* ── Place autocomplete ───────────────────────────────────── */
+let debounceTimer = {};
+
+function setupPlaceSearch(inputId, dropdownId, geoInfoId, latId, lonId, tzId) {
+  const input = document.getElementById(inputId);
+  const dropdown = document.getElementById(dropdownId);
+  const geoInfo = document.getElementById(geoInfoId);
+  let activeIdx = -1;
+
+  input.addEventListener('input', function() {
+    const q = this.value.trim();
+    // Clear previous geo when user types new text
+    document.getElementById(latId).value = '';
+    document.getElementById(lonId).value = '';
+    document.getElementById(tzId).value = '';
+    geoInfo.textContent = '';
+
+    clearTimeout(debounceTimer[inputId]);
+    if (q.length < 2) { dropdown.classList.remove('show'); return; }
+
+    debounceTimer[inputId] = setTimeout(async () => {
+      dropdown.innerHTML = '<div class="place-spinner">Searching...</div>';
+      dropdown.classList.add('show');
+      activeIdx = -1;
+      try {
+        const resp = await fetch(`/api/places?q=${encodeURIComponent(q)}&max_rows=8`);
+        const data = await resp.json();
+        if (!data.results || data.results.length === 0) {
+          dropdown.innerHTML = '<div class="place-spinner">No places found</div>';
+          return;
+        }
+        dropdown.innerHTML = '';
+        data.results.forEach((p, i) => {
+          const div = document.createElement('div');
+          div.className = 'place-item';
+          div.innerHTML = `${p.display} <div class="sub">lat: ${p.lat.toFixed(4)}, lon: ${p.lon.toFixed(4)}, tz: ${p.timezone}</div>`;
+          div.addEventListener('click', () => selectPlace(p, inputId, dropdownId, geoInfoId, latId, lonId, tzId));
+          dropdown.appendChild(div);
+        });
+      } catch(e) {
+        dropdown.innerHTML = `<div class="place-spinner">Error: ${e.message}</div>`;
+      }
+    }, 300);
+  });
+
+  // Keyboard navigation
+  input.addEventListener('keydown', function(e) {
+    const items = dropdown.querySelectorAll('.place-item');
+    if (!items.length) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, items.length - 1); highlightItem(items, activeIdx); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); highlightItem(items, activeIdx); }
+    else if (e.key === 'Enter' && activeIdx >= 0) { e.preventDefault(); items[activeIdx].click(); }
+    else if (e.key === 'Escape') { dropdown.classList.remove('show'); }
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('show');
+    }
+  });
+}
+
+function highlightItem(items, idx) {
+  items.forEach((el, i) => el.classList.toggle('active', i === idx));
+}
+
+function selectPlace(place, inputId, dropdownId, geoInfoId, latId, lonId, tzId) {
+  document.getElementById(inputId).value = place.display;
+  document.getElementById(latId).value = place.lat;
+  document.getElementById(lonId).value = place.lon;
+  document.getElementById(tzId).value = place.timezone;
+  document.getElementById(geoInfoId).textContent =
+    `✓ ${place.display}  |  lat: ${place.lat.toFixed(4)}, lon: ${place.lon.toFixed(4)}, tz: ${place.timezone}`;
+  document.getElementById(dropdownId).classList.remove('show');
+}
+
+// Wire up both forms
+setupPlaceSearch('nk-place', 'nk-dropdown', 'nk-geo-info', 'nk-lat', 'nk-lon', 'nk-tz');
+setupPlaceSearch('hr-place', 'hr-dropdown', 'hr-geo-info', 'hr-lat', 'hr-lon', 'hr-tz');
+setupPlaceSearch('gm-place', 'gm-dropdown', 'gm-geo-info', 'gm-lat', 'gm-lon', 'gm-tz');
+setupPlaceSearch('hg-place', 'hg-dropdown', 'hg-geo-info', 'hg-lat', 'hg-lon', 'hg-tz');
+setupPlaceSearch('gc-place', 'gc-dropdown', 'gc-geo-info', 'gc-lat', 'gc-lon', 'gc-tz');
+
+/* ── Build request body ───────────────────────────────────── */
+function buildBody(prefix) {
+  const body = {
+    name:   document.getElementById(prefix + '-name').value,
+    gender: document.getElementById(prefix + '-gender').value,
+    date:   document.getElementById(prefix + '-date').value,
+    hour:   parseInt(document.getElementById(prefix + '-hour').value),
+    minute: parseInt(document.getElementById(prefix + '-min').value),
+    ampm:   document.getElementById(prefix + '-ampm').value,
+    place:  document.getElementById(prefix + '-place').value,
+  };
+  const lat = document.getElementById(prefix + '-lat').value;
+  const lon = document.getElementById(prefix + '-lon').value;
+  const tz  = document.getElementById(prefix + '-tz').value;
+  if (lat && lon && tz) {
+    body.latitude  = parseFloat(lat);
+    body.longitude = parseFloat(lon);
+    body.timezone  = tz;
+  }
+  return body;
+}
+
+function showResponse(containerId, status, data) {
+  const el = document.getElementById(containerId);
+  const isOk = status >= 200 && status < 300;
+  el.innerHTML = `<span class="status-badge ${isOk ? 'ok' : 'err'}">${status} ${isOk ? 'OK' : 'Error'}</span>
+    <pre>${JSON.stringify(data, null, 2)}</pre>`;
+}
+
+/* ── Submit handlers ──────────────────────────────────────── */
+async function submitNakshatra() {
+  const body = buildBody('nk');
+  try {
+    const r = await fetch('/api/nakshatra', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) });
+    showResponse('nk-response', r.status, await r.json());
+  } catch(e) { showResponse('nk-response', 0, {error: e.message}); }
+}
+
+async function submitGemini() {
+  const body = buildBody('gm');
+  try {
+    const r = await fetch('/api/nakshatra/bygemini', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) });
+    showResponse('gm-response', r.status, await r.json());
+  } catch(e) { showResponse('gm-response', 0, {error: e.message}); }
+}
+
+async function submitHoroscope() {
+  const body = buildBody('hr');
+  try {
+    const r = await fetch('/api/horoscope', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) });
+    showResponse('hr-response', r.status, await r.json());
+  } catch(e) { showResponse('hr-response', 0, {error: e.message}); }
+}
+
+async function submitHoroscopeGemini() {
+  const body = buildBody('hg');
+  try {
+    const r = await fetch('/api/horoscope/bygemini', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) });
+    showResponse('hg-response', r.status, await r.json());
+  } catch(e) { showResponse('hg-response', 0, {error: e.message}); }
+}
+
+async function submitGochara() {
+  const body = buildBody('gc');
+  try {
+    const r = await fetch('/api/gochara/bygemini', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body) });
+    showResponse('gc-response', r.status, await r.json());
+  } catch(e) { showResponse('gc-response', 0, {error: e.message}); }
+}
+
+async function submitPlaces() {
+  const q = document.getElementById('pl-q').value;
+  try {
+    const r = await fetch(`/api/places?q=${encodeURIComponent(q)}`);
+    showResponse('pl-response', r.status, await r.json());
+  } catch(e) { showResponse('pl-response', 0, {error: e.message}); }
+}
+
+async function submitByName() {
+  const name = document.getElementById('bn-name').value;
+  try {
+    const r = await fetch('/api/nakshatra-by-name', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({name}) });
+    showResponse('bn-response', r.status, await r.json());
+  } catch(e) { showResponse('bn-response', 0, {error: e.message}); }
+}
+
+// Auto-open nakshatra card
+toggle('nakshatra');
+</script>
+</body>
+</html>
