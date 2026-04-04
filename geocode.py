@@ -13,10 +13,25 @@ If not set, Photon is used automatically.
 import os
 import httpx
 from timezonefinder import TimezoneFinder
+from functools import lru_cache
 
 GEONAMES_USERNAME = os.getenv("GEONAMES_USERNAME", "")
 _tf = TimezoneFinder()
 _HEADERS = {"User-Agent": "Mozilla/5.0 (NakshatraApp/2.0)"}
+
+# Persistent HTTP client for connection pooling (much faster)
+_http_client = None
+
+def get_http_client():
+    """Get or create persistent HTTP client for connection reuse."""
+    global _http_client
+    if _http_client is None:
+        _http_client = httpx.AsyncClient(
+            timeout=5.0,  # Reduced from 10s to 5s
+            headers=_HEADERS,
+            limits=httpx.Limits(max_keepalive_connections=20, max_connections=50)
+        )
+    return _http_client
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -131,13 +146,13 @@ async def _search_geonames(query: str, max_rows: int) -> list[dict]:
         "featureClass": "P",
         "orderby": "relevance",
         "username": GEONAMES_USERNAME,
-        "style": "MEDIUM",
+        "style": "SHORT",  # Changed from MEDIUM to SHORT for faster response
     }
 
-    async with httpx.AsyncClient(timeout=10) as client:
-        resp = await client.get(url, params=params)
-        resp.raise_for_status()
-        data = resp.json()
+    client = get_http_client()
+    resp = await client.get(url, params=params)
+    resp.raise_for_status()
+    data = resp.json()
 
     if "status" in data:
         raise RuntimeError(data["status"].get("message", "GeoNames error"))
@@ -168,10 +183,10 @@ async def _search_photon(query: str, max_rows: int) -> list[dict]:
     url = "https://photon.komoot.io/api/"
     params = {"q": query.strip(), "limit": max_rows, "lang": "en"}
 
-    async with httpx.AsyncClient(timeout=10, headers=_HEADERS) as client:
-        resp = await client.get(url, params=params)
-        resp.raise_for_status()
-        data = resp.json()
+    client = get_http_client()
+    resp = await client.get(url, params=params)
+    resp.raise_for_status()
+    data = resp.json()
 
     results = []
     for feat in data.get("features", []):

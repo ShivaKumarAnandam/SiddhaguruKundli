@@ -38,3 +38,12 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Frontend / Mobile (not needed in this repo)
+SiddhaguruKundliUI/
+FlutterApp/
+astrology-api-demo/
+drik-panchanga/
+
+# Test output
+test_output.json

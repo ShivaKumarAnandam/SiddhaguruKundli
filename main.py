@@ -790,3 +790,489 @@ def root():
 @app.get("/api/health")
 def health():
     return {"status": "ok"}
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# DRIK GOCHARA (RASHI CHART) ENDPOINTS
+# ══════════════════════════════════════════════════════════════════════════════
+
+from drik_gochara import generate_drik_gochara_chart
+from drik_location_search import search_cities as drik_search_cities, get_timezone_offset as drik_get_tz_offset
+
+class GocharaChartRequest(BaseModel):
+    """Request model for Drik Gochara chart generation."""
+    date: str = Field(..., description="Date in DD/MM/YYYY format", example="19/03/2026")
+    time: str = Field(..., description="Local time in HH:MM:SS format", example="17:56:47")
+    place: str = Field(..., description="Place name", example="Bhongir")
+    latitude: Optional[float] = Field(None, description="Latitude (optional, will search if not provided)")
+    longitude: Optional[float] = Field(None, description="Longitude (optional, will search if not provided)")
+    timezone_offset: Optional[float] = Field(None, description="UTC offset in hours (optional, will calculate if not provided)")
+    ayanamsha: str = Field("lahiri", description="Ayanamsha system: lahiri, raman, kp, tropical")
+    rahu_type: str = Field("mean", description="Rahu calculation: mean or true")
+
+
+@app.get("/api/gochara/search", tags=["Gochara Chart"])
+async def gochara_search_cities(
+    q: str = Query(..., description="Search query (city name)", min_length=2, example="Bhongir"),
+    max_results: int = Query(10, ge=1, le=50, description="Maximum number of results")
+):
+    """
+    Search for cities in the drik-panchanga database (~3000 cities worldwide).
+    
+    Returns list of matching cities with coordinates and timezone.
+    No external API needed - uses local database.
+    
+    **Example:**
+    - `/api/gochara/search?q=Bhongir`
+    - `/api/gochara/search?q=Mumbai&max_results=5`
+    """
+    try:
+        results = drik_search_cities(q, max_results=max_results)
+        return {"query": q, "count": len(results), "results": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/gochara/chart", tags=["Gochara Chart"])
+async def generate_gochara_chart_post(request: GocharaChartRequest):
+    """
+    Generate Drik Gochara (Rashi) chart - POST method.
+    
+    **Features:**
+    - Uses Whole Sign House System (Rashi Chart) - exact DrikPanchang replication
+    - Planets sorted in standard order within houses (Sur, Cha, Man, Bud, Gur, Shu, Sha, Rahu, Ketu)
+    - Sidereal zodiac with Lahiri ayanamsha (default)
+    - Local cities database (no external API)
+    
+    **Example Request:**
+    ```json
+    {
+      "date": "19/03/2026",
+      "time": "17:56:47",
+      "place": "Bhongir",
+      "ayanamsha": "lahiri",
+      "rahu_type": "mean"
+    }
+    ```
+    
+    **Returns:**
+    - `chart`: 12-house chart with planet placements (whole sign system)
+    - `planets_table`: Complete planetary data with nakshatras
+    - `metadata`: Input parameters and calculation details
+    """
+    try:
+        # If coordinates not provided, search for the place
+        if request.latitude is None or request.longitude is None or request.timezone_offset is None:
+            cities = drik_search_cities(request.place, max_results=1)
+            if not cities:
+                raise HTTPException(status_code=404, detail=f"City '{request.place}' not found in database. Try searching with /api/gochara/search first.")
+            
+            city = cities[0]
+            latitude = city["latitude"]
+            longitude = city["longitude"]
+            timezone_offset = drik_get_tz_offset(city["timezone"])
+        else:
+            latitude = request.latitude
+            longitude = request.longitude
+            timezone_offset = request.timezone_offset
+        
+        # Generate chart
+        chart_data = generate_drik_gochara_chart(
+            date_str=request.date,
+            time_str=request.time,
+            place_name=request.place,
+            latitude=latitude,
+            longitude=longitude,
+            timezone_offset=timezone_offset,
+            ayanamsha=request.ayanamsha,
+            rahu_type=request.rahu_type,
+        )
+        
+        return chart_data
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/gochara/chart", tags=["Gochara Chart"])
+async def generate_gochara_chart_get(
+    date: str = Query(..., description="Date in DD/MM/YYYY format", example="19/03/2026"),
+    time: str = Query(..., description="Local time in HH:MM:SS format", example="17:56:47"),
+    place: str = Query(..., description="Place name", example="Bhongir"),
+    latitude: Optional[float] = Query(None, description="Latitude (optional)"),
+    longitude: Optional[float] = Query(None, description="Longitude (optional)"),
+    timezone_offset: Optional[float] = Query(None, description="UTC offset in hours (optional)"),
+    ayanamsha: str = Query("lahiri", description="Ayanamsha system: lahiri, raman, kp, tropical"),
+    rahu_type: str = Query("mean", description="Rahu calculation: mean or true"),
+):
+    """
+    Generate Drik Gochara (Rashi) chart - GET method.
+    
+    Accepts query parameters for date, time, place, and optional coordinates.
+    
+    **Example:**
+    - `/api/gochara/chart?date=19/03/2026&time=17:56:47&place=Bhongir`
+    - `/api/gochara/chart?date=21/03/2026&time=17:36:56&place=Bhongir&ayanamsha=lahiri`
+    """
+    try:
+        # If coordinates not provided, search for the place
+        if latitude is None or longitude is None or timezone_offset is None:
+            cities = drik_search_cities(place, max_results=1)
+            if not cities:
+                raise HTTPException(status_code=404, detail=f"City '{place}' not found in database")
+            
+            city = cities[0]
+            latitude = city["latitude"]
+            longitude = city["longitude"]
+            timezone_offset = drik_get_tz_offset(city["timezone"])
+        
+        # Generate chart
+        chart_data = generate_drik_gochara_chart(
+            date_str=date,
+            time_str=time,
+            place_name=place,
+            latitude=latitude,
+            longitude=longitude,
+            timezone_offset=timezone_offset,
+            ayanamsha=ayanamsha,
+            rahu_type=rahu_type,
+        )
+        
+        return chart_data
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# PROKERALA-STYLE LOCATION SEARCH ENDPOINTS
+# ══════════════════════════════════════════════════════════════════════════════
+
+import httpx
+import zoneinfo as zi
+
+class ProkeralaLocationResult(BaseModel):
+    """Location search result matching ProKerala format."""
+    id: str
+    name: str
+    full_name: str
+    latitude: float
+    longitude: float
+    timezone: str
+    country_code: str
+    country_name: str
+    state: Optional[str] = None
+
+
+async def search_geonames_prokerala(query: str, max_rows: int = 10) -> list:
+    """Search GeoNames database - same as ProKerala uses."""
+    GEONAMES_USERNAME = os.getenv("GEONAMES_USERNAME", "AnandamShivaKumar")
+    url = "https://secure.geonames.org/searchJSON"
+    
+    params = {
+        "name_startsWith": query,
+        "featureClass": "P",
+        "maxRows": max_rows,
+        "style": "MEDIUM",
+        "orderby": "population",
+        "username": GEONAMES_USERNAME,
+    }
+    
+    async with httpx.AsyncClient() as client:
+        try:
+            response = await client.get(url, params=params, timeout=10.0)
+            response.raise_for_status()
+            data = response.json()
+            
+            if "status" in data:
+                raise HTTPException(
+                    status_code=502,
+                    detail=f"GeoNames error: {data['status'].get('message', 'Unknown error')}"
+                )
+            
+            return data.get("geonames", [])
+            
+        except httpx.TimeoutException:
+            raise HTTPException(status_code=504, detail="Location search timed out")
+        except httpx.HTTPError as e:
+            raise HTTPException(status_code=502, detail=f"Location search failed: {str(e)}")
+
+
+def get_tz_offset_prokerala(timezone_name: str) -> float:
+    """Get current UTC offset for a timezone (handles DST)."""
+    try:
+        tz = zi.ZoneInfo(timezone_name)
+        now = datetime.now(tz)
+        return now.utcoffset().total_seconds() / 3600
+    except Exception:
+        return 0.0
+
+
+@app.get("/api/location/search", tags=["ProKerala Location"])
+async def prokerala_location_search(
+    q: str = Query(..., min_length=2, description="Search query (minimum 2 characters)", example="Bhongir"),
+    max_results: int = Query(10, ge=1, le=50, description="Maximum number of results")
+):
+    """
+    ProKerala-style location search endpoint.
+    
+    **Features:**
+    - Autocomplete search for cities, towns, villages worldwide
+    - Returns coordinates and timezone for each location
+    - Fast response using GeoNames database (11M+ places)
+    - Compatible with ProKerala widget format
+    
+    **Example:**
+    ```
+    GET /api/location/search?q=Bhongir
+    GET /api/location/search?q=Mumbai&max_results=5
+    ```
+    
+    **Response Format:**
+    ```json
+    {
+      "status": "success",
+      "results": [
+        {
+          "id": "1269843",
+          "name": "Bhongir",
+          "full_name": "Bhongir, Telangana, India",
+          "latitude": 17.51083,
+          "longitude": 78.88889,
+          "timezone": "Asia/Kolkata",
+          "country_code": "IN",
+          "country_name": "India",
+          "state": "Telangana"
+        }
+      ],
+      "count": 1
+    }
+    ```
+    """
+    try:
+        geonames_results = await search_geonames_prokerala(q, max_results)
+        
+        results = []
+        for place in geonames_results:
+            # Build full name like ProKerala does
+            name_parts = []
+            if place.get("name"):
+                name_parts.append(place["name"])
+            if place.get("adminName1"):  # State/Province
+                name_parts.append(place["adminName1"])
+            if place.get("countryName"):
+                name_parts.append(place["countryName"])
+            
+            full_name = ", ".join(name_parts)
+            
+            # Get timezone info
+            tz_info = place.get("timezone", {})
+            timezone = tz_info.get("timeZoneId", "") if isinstance(tz_info, dict) else ""
+            
+            results.append({
+                "id": str(place.get("geonameId", "")),
+                "name": place.get("name", ""),
+                "full_name": full_name,
+                "latitude": float(place.get("lat", 0)),
+                "longitude": float(place.get("lng", 0)),
+                "timezone": timezone,
+                "country_code": place.get("countryCode", ""),
+                "country_name": place.get("countryName", ""),
+                "state": place.get("adminName1"),
+            })
+        
+        return {
+            "status": "success",
+            "results": results,
+            "count": len(results)
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Search failed: {str(e)}")
+
+
+@app.get("/api/location/{location_id}", tags=["ProKerala Location"])
+async def get_prokerala_location_details(location_id: str):
+    """
+    Get detailed information for a specific location by ID.
+    
+    **Example:**
+    ```
+    GET /api/location/1269843
+    ```
+    """
+    GEONAMES_USERNAME = os.getenv("GEONAMES_USERNAME", "AnandamShivaKumar")
+    url = f"https://secure.geonames.org/getJSON"
+    
+    params = {
+        "geonameId": location_id,
+        "username": GEONAMES_USERNAME,
+    }
+    
+    async with httpx.AsyncClient() as client:
+        try:
+            response = await client.get(url, params=params, timeout=10.0)
+            response.raise_for_status()
+            data = response.json()
+            
+            if "status" in data:
+                raise HTTPException(
+                    status_code=404,
+                    detail=f"Location not found: {data['status'].get('message', 'Unknown error')}"
+                )
+            
+            # Get timezone info
+            tz_info = data.get("timezone", {})
+            timezone = tz_info.get("timeZoneId", "") if isinstance(tz_info, dict) else ""
+            
+            # Build full name
+            name_parts = []
+            if data.get("name"):
+                name_parts.append(data["name"])
+            if data.get("adminName1"):
+                name_parts.append(data["adminName1"])
+            if data.get("countryName"):
+                name_parts.append(data["countryName"])
+            
+            return {
+                "status": "success",
+                "location": {
+                    "id": str(data.get("geonameId", "")),
+                    "name": data.get("name", ""),
+                    "full_name": ", ".join(name_parts),
+                    "latitude": float(data.get("lat", 0)),
+                    "longitude": float(data.get("lng", 0)),
+                    "timezone": timezone,
+                    "timezone_offset": get_tz_offset_prokerala(timezone),
+                    "country_code": data.get("countryCode", ""),
+                    "country_name": data.get("countryName", ""),
+                    "state": data.get("adminName1"),
+                    "population": data.get("population", 0),
+                }
+            }
+            
+        except httpx.HTTPError as e:
+            raise HTTPException(status_code=502, detail=f"Failed to fetch location: {str(e)}")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# GOCHARA SOUTH INDIAN CHART (Using Existing Calculation Logic)
+# ══════════════════════════════════════════════════════════════════════════════
+
+from gochara_south_indian import calculate_gochara_chart
+
+class GocharaSouthIndianRequest(BaseModel):
+    """Request model for Gochara South Indian chart."""
+    date: str = Field(..., description="Date in YYYY-MM-DD format", example="2026-03-21")
+    time: str = Field(..., description="Time in HH:MM:SS format", example="11:21:10")
+    place: str = Field(..., description="Place name", example="Bhongir, India")
+    latitude: Optional[float] = Field(None, description="Latitude (optional, will search if not provided)")
+    longitude: Optional[float] = Field(None, description="Longitude (optional, will search if not provided)")
+    timezone: Optional[str] = Field(None, description="Timezone (optional, will calculate if not provided)")
+
+
+@app.post("/api/gochara/south-indian", tags=["Gochara Chart"])
+async def generate_gochara_south_indian(request: GocharaSouthIndianRequest):
+    """
+    Generate Gochara (Transit) Chart - South Indian Style.
+    
+    **Uses the same calculation logic as /api/nakshatra and /api/horoscope endpoints.**
+    
+    **Features:**
+    - South Indian Rashi chart (Whole Sign Houses)
+    - Current planetary positions for any date/time
+    - Planets sorted in standard order within houses
+    - Uses existing ephemeris.py calculation infrastructure
+    
+    **Example Request:**
+    ```json
+    {
+      "date": "2026-03-21",
+      "time": "11:21:10",
+      "place": "Bhongir, India",
+      "latitude": 17.51083,
+      "longitude": 78.88889,
+      "timezone": "Asia/Kolkata"
+    }
+    ```
+    
+    **Returns:**
+    - `chart`: 12-house South Indian chart with planet placements
+    - `planets_table`: Detailed planetary data with signs, nakshatras, houses
+    - `metadata`: Input parameters and calculation details
+    """
+    try:
+        # If coordinates not provided, geocode the place
+        if request.latitude is None or request.longitude is None or request.timezone is None:
+            geo = geocode_place(request.place)
+            latitude = geo["lat"]
+            longitude = geo["lon"]
+            timezone = geo["timezone"]
+        else:
+            latitude = request.latitude
+            longitude = request.longitude
+            timezone = request.timezone
+        
+        # Calculate Gochara chart
+        chart_data = calculate_gochara_chart(
+            date=request.date,
+            time=request.time,
+            place=request.place,
+            latitude=latitude,
+            longitude=longitude,
+            timezone=timezone,
+        )
+        
+        return chart_data
+        
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
+
+
+@app.get("/api/gochara/south-indian", tags=["Gochara Chart"])
+async def generate_gochara_south_indian_get(
+    date: str = Query(..., description="Date in YYYY-MM-DD format", example="2026-03-21"),
+    time: str = Query(..., description="Time in HH:MM:SS format", example="11:21:10"),
+    place: str = Query(..., description="Place name", example="Bhongir, India"),
+    latitude: Optional[float] = Query(None, description="Latitude (optional)"),
+    longitude: Optional[float] = Query(None, description="Longitude (optional)"),
+    timezone: Optional[str] = Query(None, description="Timezone (optional)"),
+):
+    """
+    Generate Gochara (Transit) Chart - South Indian Style (GET method).
+    
+    **Example:**
+    ```
+    /api/gochara/south-indian?date=2026-03-21&time=11:21:10&place=Bhongir,%20India
+    ```
+    """
+    try:
+        # If coordinates not provided, geocode the place
+        if latitude is None or longitude is None or timezone is None:
+            geo = geocode_place(place)
+            latitude = geo["lat"]
+            longitude = geo["lon"]
+            timezone = geo["timezone"]
+        
+        # Calculate Gochara chart
+        chart_data = calculate_gochara_chart(
+            date=date,
+            time=time,
+            place=place,
+            latitude=latitude,
+            longitude=longitude,
+            timezone=timezone,
+        )
+        
+        return chart_data
+        
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
