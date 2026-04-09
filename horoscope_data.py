@@ -221,3 +221,20 @@ YOGA_PREDICTIONS = {
     "Indra": "Individuals born under Indra Yoga are powerful, authoritative, and successful. They possess leadership qualities and achieve high status. They are prosperous and respected.",
     "Vaidhriti": "Those born under Vaidhriti Yoga may face obstacles and separations. However, they develop independence and the ability to stand alone. They are resilient and determined."
 }
+
+# Moon Transit (Gochara) Predictions - House positions from Janma Rasi
+MOON_TRANSIT_PREDICTIONS = {
+    1: "The Moon transiting your own sign brings physical comfort, good health, and mental peace. You feel confident and attractive. Success in your efforts and gain of wealth are likely.",
+    2: "The Moon in the 2nd house may cause some financial fluctuations or family tension. Watch your speech and avoid arguments. Minor eye or facial discomfort is possible.",
+    3: "The Moon in the 3rd house is highly favorable. It brings courage, victory over obstacles, and gain of wealth. Good news from siblings or short travels will be pleasant.",
+    4: "The Moon in the 4th house can cause domestic discomfort or mental worry. You may feel a lack of peace at home. Avoid disputes with relatives and take care of your health.",
+    5: "The Moon in the 5th house might lead to mental anxiety or concerns about children. Avoid gambling or risky investments. You may feel a bit restless or indecisive.",
+    6: "The Moon in the 6th house brings victory over enemies and recovery from illness. You will find relief from debts or long-standing problems. Success in work is indicated.",
+    7: "The Moon in the 7th house brings happiness in relationships and partnerships. You will enjoy good food, comfort, and social respect. A pleasant time with your spouse or partner.",
+    8: "The Moon in the 8th house requires caution. You may face obstacles, sudden expenses, or health issues. Avoid risky activities and stay calm through mental stress.",
+    9: "The Moon in the 9th house may cause some delays in fortune or fatigue from travel. You might feel a bit spiritually inclined but face minor hurdles in planned activities.",
+    10: "The Moon in the 10th house is very good for career and social status. You will receive honor, respect, and success in your professional life. Your efforts are recognized.",
+    11: "The Moon in the 11th house brings gains of wealth, fulfillment of desires, and happiness from friends. New opportunities and financial prosperity are highly likely.",
+    12: "The Moon in the 12th house indicates high expenditure or mental fatigue. You may need extra rest. Avoid impulsive spending and keep a low profile to maintain peace."
+}
+

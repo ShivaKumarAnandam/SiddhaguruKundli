@@ -125,6 +125,9 @@ def _geocode_geonames_sync(place_name: str) -> dict:
 #  ASYNC search — used by GET /api/places (autocomplete dropdown)
 # ═══════════════════════════════════════════════════════════════════════════
 
+_search_cache = {}
+_MAX_CACHE_SIZE = 10000
+
 async def search_places(query: str, max_rows: int = 10) -> list[dict]:
     """
     Search for populated places. Uses GeoNames if configured, else Photon.
@@ -132,10 +135,21 @@ async def search_places(query: str, max_rows: int = 10) -> list[dict]:
     """
     if not query or len(query.strip()) < 2:
         return []
+        
+    cache_key = f"{query.strip().lower()}_{max_rows}"
+    if cache_key in _search_cache:
+        return _search_cache[cache_key]
 
     if GEONAMES_USERNAME:
-        return await _search_geonames(query, max_rows)
-    return await _search_photon(query, max_rows)
+        result = await _search_geonames(query, max_rows)
+    else:
+        result = await _search_photon(query, max_rows)
+        
+    if len(_search_cache) >= _MAX_CACHE_SIZE:
+        _search_cache.pop(next(iter(_search_cache)))
+    _search_cache[cache_key] = result
+    
+    return result
 
 
 async def _search_geonames(query: str, max_rows: int) -> list[dict]:
@@ -161,7 +175,8 @@ async def _search_geonames(query: str, max_rows: int) -> list[dict]:
     for g in data.get("geonames", []):
         lat = float(g["lat"])
         lon = float(g["lng"])
-        tz = _tz_from_geonames(g, lat, lon)
+        # Optimize: skip timezone lookups during search autocomplete to save CPU
+        tz = "" 
 
         name = g.get("name", "")
         admin1 = g.get("adminName1", "")
@@ -193,7 +208,8 @@ async def _search_photon(query: str, max_rows: int) -> list[dict]:
         props = feat.get("properties", {})
         coords = feat.get("geometry", {}).get("coordinates", [0, 0])
         lon, lat = coords[0], coords[1]
-        tz = _tf.timezone_at(lat=lat, lng=lon) or "UTC"
+        # Optimize: skip timezone lookups during search autocomplete to save CPU
+        tz = "" 
 
         name = props.get("name", "")
         admin1 = props.get("state", "")

@@ -127,14 +127,19 @@ def parse_to_24h(hour: int, minute: int, ampm: str):
 
 def resolve_geo(details: BirthDetails) -> dict:
     """
-    If frontend already sent lat/lon/timezone (from /api/places dropdown),
-    use them directly.  Otherwise fall back to Nominatim geocoding.
+    If frontend already sent lat/lon (from /api/places dropdown),
+    use them directly. Compute timezone if missing. Otherwise fall back to geocoding.
     """
-    if details.latitude is not None and details.longitude is not None and details.timezone:
+    if details.latitude is not None and details.longitude is not None:
+        tz = details.timezone
+        if not tz:
+            from geocode import _tf
+            tz = _tf.timezone_at(lat=details.latitude, lng=details.longitude) or "UTC"
+            
         return {
             "lat": details.latitude,
             "lon": details.longitude,
-            "timezone": details.timezone,
+            "timezone": tz,
             "display_name": details.place,
         }
     return geocode_place(details.place)
@@ -430,7 +435,9 @@ def get_weekly_horoscope(details: WeeklyHoroscopeRequest):
         today = dt_date.today().isoformat()  # YYYY-MM-DD
         return calculate_weekly_horoscope(
             name=details.name, gender=details.gender,
-            date=today, hour=details.hour,
+            birth_date=details.date, # Birth date
+            start_date=today,         # Start from today
+            hour=details.hour,
             minute=details.minute, ampm=details.ampm,
             place=details.place,
             lat=geo["lat"], lon=geo["lon"], timezone=geo["timezone"],
@@ -1276,3 +1283,7 @@ async def generate_gochara_south_indian_get(
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProKerala-style Location Search Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .location-input-wrapper {
+            position: relative;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .suggestions.show {
+            display: block;
+        }
+        
+        .suggestion-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+        }
+        
+        .suggestion-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestion-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .suggestion-details {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .loading {
+            padding: 12px 16px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .selected-location {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .selected-location.show {
+            display: block;
+        }
+        
+        .selected-location h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .location-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .location-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .detail-value {
+            color: #333;
+            text-align: right;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #667eea;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Location Search</h1>
+        <p class="subtitle">ProKerala-style autocomplete location search</p>
+        
+        <div class="form-group">
+            <label for="location">Place of Birth:</label>
+            <div class="location-input-wrapper">
+                <input 
+                    type="text" 
+                    id="location" 
+                    placeholder="Start typing a city name..." 
+                    autocomplete="off"
+                >
+                <div class="suggestions" id="suggestions"></div>
+            </div>
+            <div class="error" id="error"></div>
+        </div>
+        
+        <div class="selected-location" id="selectedLocation">
+            <h3>Selected Location</h3>
+            <div class="location-detail">
+                <span class="detail-label">Name:</span>
+                <span class="detail-value" id="locName"></span>
+            </div>
+            <div class="location-detail">
+                <span class="detail-label">Full Name:</span>
+                <span class="detail-value" id="locFullName"></span>
+            </div>
+            <div class="location-detail">
+                <span class="detail-label">Coordinates:</span>
+                <span class="detail-value" id="locCoords"></span>
+            </div>
+            <div class="location-detail">
+                <span class="detail-label">Timezone:</span>
+                <span class="detail-value" id="locTimezone"></span>
+            </div>
+            <div class="location-detail">
+                <span class="detail-label">Country:</span>
+                <span class="detail-value" id="locCountry"></span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const locationInput = document.getElementById('location');
+        const suggestionsDiv = document.getElementById('suggestions');
+        const selectedLocationDiv = document.getElementById('selectedLocation');
+        const errorDiv = document.getElementById('error');
+        
+        let debounceTimer;
+        let selectedLocation = null;
+        
+        // API endpoint - change this to your server URL
+        const API_BASE = 'http://localhost:8000';
+        
+        locationInput.addEventListener('input', function(e) {
+            const query = e.target.value.trim();
+            
+            // Clear error
+            errorDiv.textContent = '';
+            
+            // Hide suggestions if query is too short
+            if (query.length < 2) {
+                suggestionsDiv.classList.remove('show');
+                return;
+            }
+            
+            // Debounce the search
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                searchLocations(query);
+            }, 300);
+        });
+        
+        async function searchLocations(query) {
+            try {
+                // Show loading
+                suggestionsDiv.innerHTML = '<div class="loading">Searching...</div>';
+                suggestionsDiv.classList.add('show');
+                
+                // Call API
+                const response = await fetch(`${API_BASE}/api/location/search?q=${encodeURIComponent(query)}&max_results=10`);
+                
+                if (!response.ok) {
+                    throw new Error('Search failed');
+                }
+                
+                const data = await response.json();
+                
+                // Display results
+                if (data.results && data.results.length > 0) {
+                    displaySuggestions(data.results);
+                } else {
+                    suggestionsDiv.innerHTML = '<div class="loading">No results found</div>';
+                }
+                
+            } catch (error) {
+                console.error('Search error:', error);
+                errorDiv.textContent = 'Search failed. Please try again.';
+                suggestionsDiv.classList.remove('show');
+            }
+        }
+        
+        function displaySuggestions(results) {
+            suggestionsDiv.innerHTML = '';
+            
+            results.forEach(location => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                
+                item.innerHTML = `
+                    <div class="suggestion-name">${location.name}</div>
+                    <div class="suggestion-details">
+                        ${location.state ? location.state + ', ' : ''}${location.country_name}
+                        <span class="badge">${location.timezone}</span>
+                    </div>
+                `;
+                
+                item.addEventListener('click', () => {
+                    selectLocation(location);
+                });
+                
+                suggestionsDiv.appendChild(item);
+            });
+            
+            suggestionsDiv.classList.add('show');
+        }
+        
+        function selectLocation(location) {
+            selectedLocation = location;
+            
+            // Update input
+            locationInput.value = location.full_name;
+            
+            // Hide suggestions
+            suggestionsDiv.classList.remove('show');
+            
+            // Show selected location details
+            document.getElementById('locName').textContent = location.name;
+            document.getElementById('locFullName').textContent = location.full_name;
+            document.getElementById('locCoords').textContent = `${location.latitude}, ${location.longitude}`;
+            document.getElementById('locTimezone').textContent = location.timezone;
+            document.getElementById('locCountry').textContent = `${location.country_name} (${location.country_code})`;
+            
+            selectedLocationDiv.classList.add('show');
+            
+            console.log('Selected location:', location);
+        }
+        
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.location-input-wrapper')) {
+                suggestionsDiv.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
