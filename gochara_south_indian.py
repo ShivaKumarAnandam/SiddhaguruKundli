@@ -141,7 +141,9 @@ def format_longitude_dms(longitude: float) -> str:
     
     return f"{degrees:02d}° {RASHI_ABBREV[rashi_index]} {minutes:02d}' {seconds:05.2f}\""
 
+import functools
 
+@functools.lru_cache(maxsize=128)
 def calculate_gochara_chart(
     date: str,
     time: str,

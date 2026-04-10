@@ -39,6 +39,7 @@ def get_http_client():
 #  when frontend sends only place string (no lat/lon/timezone)
 # ═══════════════════════════════════════════════════════════════════════════
 
+@lru_cache(maxsize=128)
 def geocode_place(place_name: str) -> dict:
     """
     Resolve a place string to {lat, lon, timezone, display_name}.
