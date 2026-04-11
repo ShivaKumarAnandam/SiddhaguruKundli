@@ -510,7 +510,7 @@ NAME_NAKSHATRA_MAP = [
         "pada": 1,
     },
     {
-        "syllables": ["పొ", "ప", "ఫ", "po", "pa", "fa", "paa"],
+        "syllables": ["పా", "ప", "ఫ", "po", "pa", "fa", "paa"],
         "rashi": "కన్య",
         "rashi_en": "Kanya (Virgo)",
         "nakshatra": "ఉత్తర",
