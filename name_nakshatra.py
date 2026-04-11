@@ -234,7 +234,7 @@ NAME_NAKSHATRA_MAP = [
         "pada": 4,
     },
     {
-        "syllables": ["జొ", "జో", "జౌ", "jo", "jou"],
+        "syllables": ["జొ", "జో", "జౌ", "జ్యో", "jo", "jou", "jyo"],
         "rashi": "మకర",
         "rashi_en": "Makara (Capricorn)",
         "nakshatra": "శ్రవణం",
@@ -884,6 +884,14 @@ NAME_NAKSHATRA_MAP = [
 ]
 
 
+# Optimized lookup table - pre-calculated on module load for O(1) fetch
+SYLLABLE_LOOKUP = {}
+for entry in NAME_NAKSHATRA_MAP:
+    for syllable in entry["syllables"]:
+        # Normalize and map to the entry object
+        SYLLABLE_LOOKUP[syllable.lower().strip()] = entry
+
+
 def normalize_syllable(syllable: str) -> str:
     """Normalize syllable for matching - lowercase and strip spaces."""
     return syllable.lower().strip()
@@ -909,20 +917,23 @@ def find_nakshatra_by_name(name: str) -> dict:
     # Telugu syllables with combining marks can be 4-5 characters (e.g., శ్రీ = 4 chars)
     for length in [5, 4, 3, 2, 1]:
         prefix = normalize_syllable(name[:length])
-
-        for entry in NAME_NAKSHATRA_MAP:
-            for syllable in entry["syllables"]:
-                if normalize_syllable(syllable) == prefix:
-                    return {
-                        "name": name,
-                        "matched_syllable": syllable,
-                        "rashi_telugu": entry["rashi"],
-                        "rashi": entry["rashi_en"],
-                        "nakshatra_telugu": entry["nakshatra"],
-                        "nakshatra": entry["nakshatra_en"],
-                        "pada": entry["pada"],
-                        "pada_label": f"{entry['pada']}{'st' if entry['pada'] == 1 else 'nd' if entry['pada'] == 2 else 'rd' if entry['pada'] == 3 else 'th'}",
-                    }
+        
+        entry = SYLLABLE_LOOKUP.get(prefix)
+        if entry:
+            # Found a match!
+            # Find the original syllable for matched_syllable display
+            matched_syllable = next((s for s in entry["syllables"] if normalize_syllable(s) == prefix), prefix)
+            
+            return {
+                "name": name,
+                "matched_syllable": matched_syllable,
+                "rashi_telugu": entry["rashi"],
+                "rashi": entry["rashi_en"],
+                "nakshatra_telugu": entry["nakshatra"],
+                "nakshatra": entry["nakshatra_en"],
+                "pada": entry["pada"],
+                "pada_label": f"{entry['pada']}{'st' if entry['pada'] == 1 else 'nd' if entry['pada'] == 2 else 'rd' if entry['pada'] == 3 else 'th'}",
+            }
 
     raise ValueError(f"No nakshatra mapping found for name starting with '{name[:2]}'")
 
