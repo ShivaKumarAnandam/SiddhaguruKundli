@@ -884,17 +884,17 @@ NAME_NAKSHATRA_MAP = [
 ]
 
 
+def normalize_syllable(syllable: str) -> str:
+    """Normalize syllable for matching - lowercase and strip spaces."""
+    return syllable.lower().strip()
+
+
 # Optimized lookup table - pre-calculated on module load for O(1) fetch
 SYLLABLE_LOOKUP = {}
 for entry in NAME_NAKSHATRA_MAP:
     for syllable in entry["syllables"]:
         # Normalize and map to the entry object
-        SYLLABLE_LOOKUP[syllable.lower().strip()] = entry
-
-
-def normalize_syllable(syllable: str) -> str:
-    """Normalize syllable for matching - lowercase and strip spaces."""
-    return syllable.lower().strip()
+        SYLLABLE_LOOKUP[normalize_syllable(syllable)] = entry
 
 
 def find_nakshatra_by_name(name: str) -> dict:
@@ -917,13 +917,13 @@ def find_nakshatra_by_name(name: str) -> dict:
     # Telugu syllables with combining marks can be 4-5 characters (e.g., శ్రీ = 4 chars)
     for length in [5, 4, 3, 2, 1]:
         prefix = normalize_syllable(name[:length])
-        
+
         entry = SYLLABLE_LOOKUP.get(prefix)
         if entry:
             # Found a match!
             # Find the original syllable for matched_syllable display
             matched_syllable = next((s for s in entry["syllables"] if normalize_syllable(s) == prefix), prefix)
-            
+
             return {
                 "name": name,
                 "matched_syllable": matched_syllable,
