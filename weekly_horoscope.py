@@ -1,8 +1,4 @@
-"""
-Weekly Horoscope: calculates Panchang + predictions for 7 consecutive days
-starting from the birth/submitted date.
-"""
-
+import asyncio
 from datetime import datetime, timedelta
 from ephemeris import local_to_julian_day, get_moon_longitude
 from nakshatra import calculate_nakshatra
@@ -32,10 +28,7 @@ def _day_summary(jd: float, year: int, month: int, day: int, janma_rasi_idx: int
     transit_prediction = ""
     transit_house = None
     if janma_rasi_idx is not None:
-        # Rasi names in nakshatra.py are in order: Mesha, Vrishabha, ...
-        # We need the index 0-11
         transit_rasi_idx = int(moon_lon / 30) % 12
-        # House = (Transit - Janma + 12) % 12 + 1
         transit_house = (transit_rasi_idx - janma_rasi_idx + 12) % 12 + 1
         transit_prediction = MOON_TRANSIT_PREDICTIONS.get(transit_house, "")
 
@@ -79,11 +72,11 @@ def _day_summary(jd: float, year: int, month: int, day: int, janma_rasi_idx: int
     }
 
 
-def calculate_weekly_horoscope(
+async def calculate_weekly_horoscope(
     name: str,
     gender: str,
-    birth_date: str,  # Birth date
-    start_date: str,  # Date to start the weekly view (usually TODAY)
+    birth_date: str,
+    start_date: str,
     hour: int,
     minute: int,
     ampm: str,
@@ -94,32 +87,35 @@ def calculate_weekly_horoscope(
 ) -> dict:
     """
     Return predictions for 7 days starting from *start_date*.
-    Fixes the Janma Rasi from *birth_date* and calculates daily Moon transits.
+    Calculates all days in parallel using asyncio threads for maximum speed.
     """
     # 1. Calculate Janma (Birth) Rasi and Nakshatra
     by, bm, bd = map(int, birth_date.split("-"))
-    # For Janma rasi, we use birth time
     hour24 = hour
     if ampm == "PM" and hour != 12: hour24 += 12
     if ampm == "AM" and hour == 12: hour24 = 0
 
+    # Calculate Janma details (shared across all days)
     jd_birth = local_to_julian_day(by, bm, bd, hour24, minute, timezone)
     moon_lon_birth, _ = get_moon_longitude(jd_birth)
     janma_details = calculate_nakshatra(moon_lon_birth)
     janma_rasi_idx = int(moon_lon_birth / 30) % 12
 
-    # 2. Setup Loop from start_date
+    # 2. Prepare parallel tasks
     sy, sm, sd = map(int, start_date.split("-"))
     start_dt = datetime(sy, sm, sd)
-    days = []
-
+    
+    tasks = []
     for offset in range(7):
         dt = start_dt + timedelta(days=offset)
         y, m, d = dt.year, dt.month, dt.day
-        # Use start of day or birth time? Standard is start of day or at birth time for transit?
-        # Usually transits are calculated for the day in general, let's use the birth time hour for consistency
         jd_transit = local_to_julian_day(y, m, d, hour24, minute, timezone)
-        days.append(_day_summary(jd_transit, y, m, d, janma_rasi_idx))
+        
+        # Wrap the synchronous _day_summary in a thread for concurrency
+        tasks.append(asyncio.to_thread(_day_summary, jd_transit, y, m, d, janma_rasi_idx))
+
+    # 3. Execute all days simultaneously
+    days = await asyncio.gather(*tasks)
 
     return {
         "birth_details": {

@@ -1,11 +1,13 @@
 import swisseph as swe
 import pytz
 from datetime import datetime
+from functools import lru_cache
 
 # Use Moshier ephemeris - built into pyswisseph, no data files needed
 # Accuracy: ~1 arc-second, more than enough (nakshatras are 13.3° wide)
 swe.set_ephe_path('')
 
+@lru_cache(maxsize=1024)
 def local_to_julian_day(year: int, month: int, day: int,
                          hour: int, minute: int, timezone_str: str) -> float:
     tz = pytz.timezone(timezone_str)
@@ -20,6 +22,7 @@ def local_to_julian_day(year: int, month: int, day: int,
     )
     return jd
 
+@lru_cache(maxsize=1024)
 def get_moon_longitude(julian_day: float) -> float:
     # Set Lahiri ayanamsa (standard for Vedic / Indian astrology)
     swe.set_sid_mode(swe.SIDM_LAHIRI)
@@ -36,6 +39,7 @@ def get_moon_longitude(julian_day: float) -> float:
     return moon_lon, moon_speed
 
 
+@lru_cache(maxsize=1024)
 def get_all_planets(julian_day: float) -> dict:
     """
     Calculate positions of all planets for Gochara chart.

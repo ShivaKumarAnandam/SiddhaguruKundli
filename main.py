@@ -223,8 +223,16 @@ async def places_search(
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"GeoNames search failed: {e}")
 
+@app.get("/")
+async def root():
+    return {"message": "Siddhaguru Kundli API is running"}
 
-# ── Nakshatra endpoint ──────────────────────────────────────────────────────
+@app.get("/api/health")
+async def health_check():
+    """Lightweight endpoint for frontend to wake up the server (Cold Start Mitigation)."""
+    return {"status": "ok", "timestamp": datetime.now().isoformat()}
+
+# ── API Endpoints ─────────────────────────────────────────────────────────
 @app.post("/api/nakshatra")
 async def get_nakshatra(details: BirthDetails):
     try:
@@ -524,7 +532,6 @@ Calculate accurate values for the given birth details."""
         raise HTTPException(status_code=500, detail=f"AI horoscope calculation error: {e}")
 
 
-# ── Weekly Horoscope endpoint ───────────────────────────────────────────────
 @app.post("/api/weekly-horoscope")
 async def get_weekly_horoscope(details: WeeklyHoroscopeRequest):
     """
