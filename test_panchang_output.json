@@ -1,0 +1,94 @@
+{
+  "date": "2026-04-17",
+  "masa": "Chaitra",
+  "paksha": "Krishna Paksha",
+  "samvat": 1948,
+  "samvatsara": "Plavanga",
+  "tithi": {
+    "number": 30,
+    "name": "Amavasya",
+    "end_time": "17:21",
+    "next_name": null,
+    "next_end_time": null
+  },
+  "nakshatra": {
+    "number": 27,
+    "name": "Revati",
+    "end_time": "12:02",
+    "next_name": null,
+    "next_end_time": null
+  },
+  "yoga": {
+    "number": 27,
+    "name": "Vaidhriti",
+    "end_time": "07:21",
+    "next_name": "",
+    "next_end_time": "03:45"
+  },
+  "karana": [
+    {
+      "name": "Chatushpada",
+      "number": 59,
+      "end_time": "06:50"
+    },
+    {
+      "name": "Naga",
+      "number": 60,
+      "end_time": "17:21"
+    },
+    {
+      "name": "Kinstughna",
+      "number": 1,
+      "end_time": "16:36"
+    }
+  ],
+  "vaara": "Friday",
+  "sunrise": "05:59",
+  "sunset": "18:31",
+  "moonrise": "05:32",
+  "moonset": "18:29",
+  "sun_rashi": "Mesha",
+  "chandra_rashi": {
+    "name": "Meena",
+    "end_time": "12:02"
+  },
+  "muhurtas": {
+    "rahu_kalam": {
+      "start": "10:42",
+      "end": "12:16"
+    },
+    "gulikai_kalam": {
+      "start": "07:34",
+      "end": "09:08"
+    },
+    "yamaganda": {
+      "start": "15:24",
+      "end": "16:58"
+    },
+    "abhijit_muhurta": {
+      "start": "11:51",
+      "end": "12:41"
+    },
+    "dur_muhurtam": [
+      {
+        "start": "08:30",
+        "end": "09:20"
+      },
+      {
+        "start": "12:41",
+        "end": "13:31"
+      }
+    ],
+    "amrit_kalam": {
+      "start": "10:00",
+      "end": "11:28"
+    },
+    "varjyam": {
+      "start": "18:00",
+      "end": "19:36"
+    }
+  },
+  "festivals": [
+    "Chaitra Amavasya"
+  ]
+}

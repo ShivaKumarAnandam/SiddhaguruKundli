@@ -1333,6 +1333,87 @@ async def generate_gochara_south_indian_get(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
 
+# ── Telugu Panchang endpoints ─────────────────────────────────────────────────
+
+from panchang_service import get_daily_panchang, get_monthly_panchang  # noqa: E402
+
+
+class DailyPanchangRequest(BaseModel):
+    date: str = Field(..., description="Date in YYYY-MM-DD format", example="2026-04-17")
+    latitude: Optional[float] = Field(None, ge=-90, le=90, example=17.385)
+    longitude: Optional[float] = Field(None, ge=-180, le=180, example=78.4867)
+    timezone: Optional[str] = Field(None, example="Asia/Kolkata")
+    place: Optional[str] = Field(None, example="Hyderabad, India")
+    lang: str = Field("en", pattern="^(en|te)$", example="te")
+
+
+class MonthlyPanchangRequest(BaseModel):
+    year: int = Field(..., ge=1800, le=2100, example=2026)
+    month: int = Field(..., ge=1, le=12, example=4)
+    latitude: float = Field(..., ge=-90, le=90, example=17.385)
+    longitude: float = Field(..., ge=-180, le=180, example=78.4867)
+    timezone: str = Field(..., example="Asia/Kolkata")
+    lang: str = Field("en", pattern="^(en|te)$", example="te")
+
+
+def _tz_to_offset(tz_name: str) -> float:
+    """Convert timezone name to UTC offset in hours."""
+    try:
+        tz = pytz.timezone(tz_name)
+        now = datetime.now(tz)
+        return now.utcoffset().total_seconds() / 3600
+    except Exception:
+        return 5.5  # default IST
+
+
+@app.post("/api/panchang/daily", tags=["Panchang"])
+async def daily_panchang(req: DailyPanchangRequest):
+    """Compute full daily Telugu Panchang for a given date and location."""
+    try:
+        # Validate date range
+        year = int(req.date.split("-")[0])
+        if not (1800 <= year <= 2100):
+            raise HTTPException(status_code=400, detail="Date must be between 1800 CE and 2100 CE")
+
+        # Resolve coordinates
+        lat, lon, tz_name = req.latitude, req.longitude, req.timezone
+        if lat is None or lon is None:
+            if not req.place:
+                raise HTTPException(status_code=400, detail="Provide latitude/longitude or place name")
+            geo = await asyncio.to_thread(geocode_place, req.place)
+            lat, lon, tz_name = geo["lat"], geo["lon"], geo["timezone"]
+        elif not tz_name:
+            from geocode import _tf
+            tz_name = await asyncio.to_thread(_tf.timezone_at, lat=lat, lng=lon)
+            if not tz_name:
+                tz_name = "UTC"
+
+        tz_offset = _tz_to_offset(tz_name)
+        result = await get_daily_panchang(req.date, lat, lon, tz_offset, req.lang)
+        return result
+
+    except HTTPException:
+        raise
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
+
+
+@app.post("/api/panchang/monthly", tags=["Panchang"])
+async def monthly_panchang(req: MonthlyPanchangRequest):
+    """Compute monthly Telugu Panchang summaries for every day in a month."""
+    try:
+        tz_offset = _tz_to_offset(req.timezone)
+        result = await get_monthly_panchang(req.year, req.month, req.latitude, req.longitude, tz_offset, req.lang)
+        return result
+
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
