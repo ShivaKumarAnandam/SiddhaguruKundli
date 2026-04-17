@@ -10,6 +10,8 @@ import calendar
 import os
 import sys
 from math import ceil
+from functools import lru_cache
+from datetime import datetime, timedelta
 
 # Make drik-panchanga importable
 _drik_path = os.path.join(os.path.dirname(__file__), "drik-panchanga")
@@ -127,6 +129,7 @@ KARANA_NAMES_TE = [
 ]
 
 # Karana mapping: karana number (1-60) → unique karana name index (1-11)
+@lru_cache(maxsize=32)
 def _karana_index(karana_num: int) -> int:
     """Map karana number (1-60) to unique karana name index (1-11).
 
@@ -222,6 +225,52 @@ PAKSHA_NAMES = {
 # Helpers
 # ---------------------------------------------------------------------------
 
+# Simple in-memory cache for daily panchang results (TTL: 1 hour)
+_daily_cache = {}
+_daily_cache_ttl = {}
+CACHE_TTL_SECONDS = 3600
+
+def _get_cached_daily(cache_key: str):
+    """Get cached daily panchang if still valid."""
+    if cache_key in _daily_cache:
+        if cache_key in _daily_cache_ttl:
+            if datetime.now() < _daily_cache_ttl[cache_key]:
+                return _daily_cache[cache_key]
+            else:
+                # Expired, remove from cache
+                del _daily_cache[cache_key]
+                del _daily_cache_ttl[cache_key]
+    return None
+
+def _set_cached_daily(cache_key: str, data: dict):
+    """Cache daily panchang result with TTL."""
+    _daily_cache[cache_key] = data
+    _daily_cache_ttl[cache_key] = datetime.now() + timedelta(seconds=CACHE_TTL_SECONDS)
+
+@lru_cache(maxsize=128)
+def _cached_get_name(index: int, lang: str, name_type: str):
+    """Cached name lookup to avoid repeated list access."""
+    if name_type == 'tithi':
+        names = TITHI_NAMES_TE if lang == 'te' else TITHI_NAMES_EN
+    elif name_type == 'nakshatra':
+        names = NAKSHATRA_NAMES_TE if lang == 'te' else NAKSHATRA_NAMES_EN
+    elif name_type == 'yoga':
+        names = YOGA_NAMES_TE if lang == 'te' else YOGA_NAMES_EN
+    elif name_type == 'karana':
+        names = KARANA_NAMES_TE if lang == 'te' else KARANA_NAMES_EN
+    elif name_type == 'masa':
+        names = MASA_NAMES_TE if lang == 'te' else MASA_NAMES_EN
+    elif name_type == 'samvatsara':
+        names = SAMVATSARA_NAMES_TE if lang == 'te' else SAMVATSARA_NAMES_EN
+    elif name_type == 'rashi':
+        names = RASHI_NAMES_TE if lang == 'te' else RASHI_NAMES_EN
+    else:
+        return str(index)
+    
+    if 1 <= index < len(names):
+        return names[index]
+    return names[index % len(names)] if len(names) > 1 else str(index)
+
 def _dms_to_hhmm(dms):
     """Convert a [h, m, s] array from panchanga.py to 'HH:MM' string."""
     if not dms or len(dms) < 2:
@@ -257,12 +306,14 @@ def _get_name(index, en_list, te_list, lang):
     return names[index % len(names)] if len(names) > 1 else str(index)
 
 
+@lru_cache(maxsize=64)
 def _paksha_from_tithi(tithi_num):
     """Determine paksha from tithi number: 1-15 = Shukla, 16-30 = Krishna."""
     tithi_num = int(tithi_num)
     return "shukla" if 1 <= tithi_num <= 15 else "krishna"
 
 
+@lru_cache(maxsize=64)
 def _tithi_in_paksha(tithi_num):
     """Convert absolute tithi (1-30) to within-paksha tithi (1-15)."""
     tithi_num = int(tithi_num)
@@ -345,6 +396,12 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
     Returns:
         Dict matching the DailyPanchangResponse schema.
     """
+    # Check cache first
+    cache_key = f"{date_str}|{lat:.4f}|{lon:.4f}|{tz_offset}|{lang}"
+    cached = _get_cached_daily(cache_key)
+    if cached:
+        return cached
+    
     year, month, day = map(int, date_str.split("-"))
     date_obj = Date(year, month, day)
     place = Place(lat, lon, tz_offset)
@@ -542,7 +599,7 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
         get_festivals, masa_num, paksha_num, tithi_in_paksha, lang)
 
     # --- Build response ---
-    return {
+    result = {
         "date": date_str,
         # Header
         "masa": masa_name,
@@ -596,6 +653,10 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
         # Festivals
         "festivals": festivals,
     }
+    
+    # Cache the result
+    _set_cached_daily(cache_key, result)
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -605,11 +666,12 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
 async def _compute_day_summary(year: int, month: int, day: int,
                                 lat: float, lon: float, tz_offset: float,
                                 lang: str) -> dict:
-    """Compute a detailed daily summary for the monthly grid."""
+    """Compute a detailed daily summary for the monthly grid (optimized version)."""
     date_obj = Date(year, month, day)
     place = Place(lat, lon, tz_offset)
     jd = gregorian_to_jd(date_obj)
 
+    # Parallel fetch only essential data for monthly view
     (
         tithi_result,
         nakshatra_result,
@@ -617,7 +679,7 @@ async def _compute_day_summary(year: int, month: int, day: int,
         masa_result,
         sunrise_result,
         sunset_result,
-        chandra_rashi_with_time,
+        chandra_rashi_num,
     ) = await asyncio.gather(
         asyncio.to_thread(_tithi, jd, place),
         asyncio.to_thread(_nakshatra, jd, place),
@@ -625,7 +687,7 @@ async def _compute_day_summary(year: int, month: int, day: int,
         asyncio.to_thread(_masa, jd, place),
         asyncio.to_thread(_sunrise, jd, place),
         asyncio.to_thread(_sunset, jd, place),
-        asyncio.to_thread(_chandra_rashi_with_end_time, jd, place),
+        asyncio.to_thread(_chandra_rashi, jd),
     )
 
     tithi_num = int(tithi_result[0])
@@ -636,14 +698,14 @@ async def _compute_day_summary(year: int, month: int, day: int,
     
     vaara_val = int(vaara_result)
     masa_num = int(masa_result[0])
-    
-    chandra_rashi_result, chandra_rashi_end_dms = chandra_rashi_with_time
 
     paksha_key = _paksha_from_tithi(tithi_num)
     paksha_num = 1 if paksha_key == "shukla" else 2
     paksha_name = PAKSHA_NAMES.get(lang, PAKSHA_NAMES["en"])[paksha_key]
 
     tithi_in_paksha = _tithi_in_paksha(tithi_num)
+    
+    # Get festivals synchronously (it's a simple dict lookup)
     festivals = get_festivals(masa_num, paksha_num, tithi_in_paksha, lang)
     
     # Get sunrise/sunset times
@@ -653,12 +715,8 @@ async def _compute_day_summary(year: int, month: int, day: int,
     # Get nakshatra end time
     nak_end_time = _dms_to_hhmm(nak_end_dms)
     
-    # Get chandra rashi
-    chandra_rashi_name = _get_name(chandra_rashi_result, RASHI_NAMES_EN, RASHI_NAMES_TE, lang)
-    chandra_rashi_end_time = _dms_to_hhmm(chandra_rashi_end_dms) if chandra_rashi_end_dms else None
-    
-    # Calculate moon phase (0-29 for tithi, useful for moon icon)
-    moon_phase = tithi_num
+    # Get chandra rashi name (no end time needed for monthly view)
+    chandra_rashi_name = _get_name(chandra_rashi_num, RASHI_NAMES_EN, RASHI_NAMES_TE, lang)
 
     return {
         "date": f"{year:04d}-{month:02d}-{day:02d}",
@@ -674,9 +732,9 @@ async def _compute_day_summary(year: int, month: int, day: int,
         "sunset": sunset_hhmm,
         "chandra_rashi": {
             "name": chandra_rashi_name,
-            "end_time": chandra_rashi_end_time
+            "end_time": None  # Skip end time calculation for monthly view (performance)
         },
-        "moon_phase": moon_phase,  # 1-30, useful for displaying moon icons
+        "moon_phase": tithi_num,
         "festivals": festivals,
     }
 
