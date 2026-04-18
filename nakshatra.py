@@ -5,7 +5,7 @@ PADA_SPAN      = NAKSHATRA_SPAN / 4  # 3.3333...°
 
 NAKSHATRAS = [
     {"name": "Ashwini",              "deity": "Ashwini Kumaras", "gana": "Deva",     "animal": "Horse",          "color": "Red",          "stone": "Coral",      "syllables": ["Chu","Che","Cho","La"],    "direction": "East",  "symbol": "Horse head",            "zodiac": "Aries"},
-    {"name": "Bharani",              "deity": "Yama",            "gana": "Manushya", "animal": "Elephant",       "color": "Red",          "stone": "Diamond",    "syllables": ["Li","Lu","Le","Lo"],       "direction": "West",  "symbol": "Yoni (female organ)",   "zodiac": "Aries"},
+    {"name": "Bharani",              "deity": "Yama",            "gana": "Manushya", "animal": "Elephant",       "color": "Red",          "stone": "Diamond",    "syllables": ["Li","Lu","Le","Lo"],       "direction": "West",  "symbol": "Yoni",   "zodiac": "Aries"},
     {"name": "Krittika",             "deity": "Agni",            "gana": "Rakshasa", "animal": "Sheep",          "color": "White",        "stone": "Ruby",       "syllables": ["A","I","U","E"],           "direction": "North", "symbol": "Razor / Flame",         "zodiac": "Aries/Taurus"},
     {"name": "Rohini",               "deity": "Brahma",          "gana": "Manushya", "animal": "Cobra",          "color": "White",        "stone": "Pearl",      "syllables": ["O","Va","Vi","Vu"],        "direction": "East",  "symbol": "Chariot",               "zodiac": "Taurus"},
     {"name": "Mrigashira",           "deity": "Soma",            "gana": "Deva",     "animal": "Female Serpent", "color": "Silver",       "stone": "Emerald",    "syllables": ["Ve","Vo","Ka","Ki"],       "direction": "South", "symbol": "Deer head",             "zodiac": "Taurus/Gemini"},
