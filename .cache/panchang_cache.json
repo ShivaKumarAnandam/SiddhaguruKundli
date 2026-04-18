@@ -1,0 +1,2103 @@
+{
+  "daily": {
+    "2026-04-18|17.5173|78.8863|5.5|en": {
+      "date": "2026-04-18",
+      "masa": "Vaisakha",
+      "paksha": "Shukla Paksha",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 1,
+        "name": "Pratipada",
+        "end_time": "14:11",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 1,
+        "name": "Ashwini",
+        "end_time": "09:42",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 2,
+        "name": "Priti",
+        "end_time": "23:55",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "Bava",
+          "number": 2,
+          "end_time": "14:11"
+        },
+        {
+          "name": "Balava",
+          "number": 3,
+          "end_time": "00:31"
+        }
+      ],
+      "vaara": "Saturday",
+      "sunrise": "05:57",
+      "sunset": "18:30",
+      "moonrise": "06:15",
+      "moonset": "19:31",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Mesha",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "09:06",
+          "end": "10:40"
+        },
+        "gulikai_kalam": {
+          "start": "05:58",
+          "end": "07:32"
+        },
+        "yamaganda": {
+          "start": "13:48",
+          "end": "15:22"
+        },
+        "abhijit_muhurta": {
+          "start": "11:49",
+          "end": "12:39"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "05:58",
+            "end": "06:48"
+          },
+          {
+            "start": "11:49",
+            "end": "12:39"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "09:58",
+          "end": "11:26"
+        },
+        "varjyam": {
+          "start": "01:58",
+          "end": "03:34"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-18|17.5173|78.8863|5.5|te": {
+      "date": "2026-04-18",
+      "masa": "వైశాఖం",
+      "paksha": "శుక్ల పక్షం",
+      "samvat": 1948,
+      "samvatsara": "ప్లవంగ",
+      "tithi": {
+        "number": 1,
+        "name": "పాడ్యమి",
+        "end_time": "14:11",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 1,
+        "name": "అశ్విని",
+        "end_time": "09:42",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 2,
+        "name": "ప్రీతి",
+        "end_time": "23:55",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "బవ",
+          "number": 2,
+          "end_time": "14:11"
+        },
+        {
+          "name": "బాలవ",
+          "number": 3,
+          "end_time": "00:31"
+        }
+      ],
+      "vaara": "శనివారం",
+      "sunrise": "05:57",
+      "sunset": "18:30",
+      "moonrise": "06:15",
+      "moonset": "19:31",
+      "sun_rashi": "మేషం",
+      "chandra_rashi": {
+        "name": "మేషం",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "09:06",
+          "end": "10:40"
+        },
+        "gulikai_kalam": {
+          "start": "05:58",
+          "end": "07:32"
+        },
+        "yamaganda": {
+          "start": "13:48",
+          "end": "15:22"
+        },
+        "abhijit_muhurta": {
+          "start": "11:49",
+          "end": "12:39"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "05:58",
+            "end": "06:48"
+          },
+          {
+            "start": "11:49",
+            "end": "12:39"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "09:58",
+          "end": "11:26"
+        },
+        "varjyam": {
+          "start": "01:58",
+          "end": "03:34"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-18|17.5173|78.8863|5.5|hi": {
+      "date": "2026-04-18",
+      "masa": "Vaisakha",
+      "paksha": "शुक्ल पक्ष",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 1,
+        "name": "Pratipada",
+        "end_time": "14:11",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 1,
+        "name": "Ashwini",
+        "end_time": "09:42",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 2,
+        "name": "Priti",
+        "end_time": "23:55",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "Bava",
+          "number": 2,
+          "end_time": "14:11"
+        },
+        {
+          "name": "Balava",
+          "number": 3,
+          "end_time": "00:31"
+        }
+      ],
+      "vaara": "Saturday",
+      "sunrise": "05:57",
+      "sunset": "18:30",
+      "moonrise": "06:15",
+      "moonset": "19:31",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Mesha",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "09:06",
+          "end": "10:40"
+        },
+        "gulikai_kalam": {
+          "start": "05:58",
+          "end": "07:32"
+        },
+        "yamaganda": {
+          "start": "13:48",
+          "end": "15:22"
+        },
+        "abhijit_muhurta": {
+          "start": "11:49",
+          "end": "12:39"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "05:58",
+            "end": "06:48"
+          },
+          {
+            "start": "11:49",
+            "end": "12:39"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "09:58",
+          "end": "11:26"
+        },
+        "varjyam": {
+          "start": "01:58",
+          "end": "03:34"
+        }
+      },
+      "festivals": []
+    }
+  },
+  "daily_ttl": {
+    "2026-04-18|17.5173|78.8863|5.5|en": "2026-04-19T22:20:21.713618",
+    "2026-04-18|17.5173|78.8863|5.5|te": "2026-04-19T22:22:13.974162",
+    "2026-04-18|17.5173|78.8863|5.5|hi": "2026-04-19T22:30:11.968448"
+  },
+  "monthly": {
+    "2026|4|17.5173|78.8863|5.5|hi": {
+      "year": 2026,
+      "month": 4,
+      "masa": "Chaitra",
+      "samvat": 1948,
+      "days": [
+        {
+          "date": "2026-04-01",
+          "tithi_name": "Chaturdashi",
+          "tithi_number": 14,
+          "tithi_end_time": "07:06",
+          "nakshatra_name": "Uttara Phalguni",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "16:17",
+          "vaara": "Wednesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:10",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-02",
+          "tithi_name": "Purnima",
+          "tithi_number": 15,
+          "tithi_end_time": "07:42",
+          "nakshatra_name": "Hasta",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "17:38",
+          "vaara": "Thursday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:09",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "Chaitra Pournami"
+          ]
+        },
+        {
+          "date": "2026-04-03",
+          "tithi_name": "Pratipada",
+          "tithi_number": 16,
+          "tithi_end_time": "08:42",
+          "nakshatra_name": "Chitra",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "19:24",
+          "vaara": "Friday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:08",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 16,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-04",
+          "tithi_name": "Dwitiya",
+          "tithi_number": 17,
+          "tithi_end_time": "10:09",
+          "nakshatra_name": "Swati",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "21:35",
+          "vaara": "Saturday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:07",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 17,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-05",
+          "tithi_name": "Tritiya",
+          "tithi_number": 18,
+          "tithi_end_time": "12:00",
+          "nakshatra_name": "Vishakha",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "00:07",
+          "vaara": "Sunday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:07",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 18,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-06",
+          "tithi_name": "Chaturthi",
+          "tithi_number": 19,
+          "tithi_end_time": "14:11",
+          "nakshatra_name": "Anuradha",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "02:56",
+          "vaara": "Monday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:06",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "Sankashtahara Chaturthi"
+          ]
+        },
+        {
+          "date": "2026-04-07",
+          "tithi_name": "Panchami",
+          "tithi_number": 20,
+          "tithi_end_time": "16:35",
+          "nakshatra_name": "Jyeshtha",
+          "nakshatra_number": 18,
+          "nakshatra_end_time": "05:53",
+          "vaara": "Tuesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:05",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 20,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-08",
+          "tithi_name": "Shashthi",
+          "tithi_number": 21,
+          "tithi_end_time": "19:02",
+          "nakshatra_name": "Moola",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "08:48",
+          "vaara": "Wednesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:04",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 21,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-09",
+          "tithi_name": "Saptami",
+          "tithi_number": 22,
+          "tithi_end_time": "21:20",
+          "nakshatra_name": "Moola",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "08:48",
+          "vaara": "Thursday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:04",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "Dhanu",
+            "end_time": null
+          },
+          "moon_phase": 22,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-10",
+          "tithi_name": "Ashtami",
+          "tithi_number": 23,
+          "tithi_end_time": "23:16",
+          "nakshatra_name": "Purva Ashadha",
+          "nakshatra_number": 20,
+          "nakshatra_end_time": "11:27",
+          "vaara": "Friday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:03",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "Dhanu",
+            "end_time": null
+          },
+          "moon_phase": 23,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-11",
+          "tithi_name": "Navami",
+          "tithi_number": 24,
+          "tithi_end_time": "00:38",
+          "nakshatra_name": "Uttara Ashadha",
+          "nakshatra_number": 21,
+          "nakshatra_end_time": "13:39",
+          "vaara": "Saturday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:02",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "Makara",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-12",
+          "tithi_name": "Dashami",
+          "tithi_number": 25,
+          "tithi_end_time": "01:17",
+          "nakshatra_name": "Shravana",
+          "nakshatra_number": 22,
+          "nakshatra_end_time": "15:14",
+          "vaara": "Sunday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:01",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "Makara",
+            "end_time": null
+          },
+          "moon_phase": 25,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-13",
+          "tithi_name": "Ekadashi",
+          "tithi_number": 26,
+          "tithi_end_time": "01:09",
+          "nakshatra_name": "Dhanishta",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "16:03",
+          "vaara": "Monday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:01",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "Kumbha",
+            "end_time": null
+          },
+          "moon_phase": 26,
+          "festivals": [
+            "Varuthini Ekadashi"
+          ]
+        },
+        {
+          "date": "2026-04-14",
+          "tithi_name": "Dwadashi",
+          "tithi_number": 27,
+          "tithi_end_time": "00:12",
+          "nakshatra_name": "Shatabhisha",
+          "nakshatra_number": 24,
+          "nakshatra_end_time": "16:05",
+          "vaara": "Tuesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:00",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "Kumbha",
+            "end_time": null
+          },
+          "moon_phase": 27,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-15",
+          "tithi_name": "Trayodashi",
+          "tithi_number": 28,
+          "tithi_end_time": "22:31",
+          "nakshatra_name": "Purva Bhadrapada",
+          "nakshatra_number": 25,
+          "nakshatra_end_time": "15:22",
+          "vaara": "Wednesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:59",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "Kumbha",
+            "end_time": null
+          },
+          "moon_phase": 28,
+          "festivals": [
+            "Chaitra Krishna Pradosham"
+          ]
+        },
+        {
+          "date": "2026-04-16",
+          "tithi_name": "Chaturdashi",
+          "tithi_number": 29,
+          "tithi_end_time": "20:11",
+          "nakshatra_name": "Uttara Bhadrapada",
+          "nakshatra_number": 26,
+          "nakshatra_end_time": "13:58",
+          "vaara": "Thursday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:58",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "Meena",
+            "end_time": null
+          },
+          "moon_phase": 29,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-17",
+          "tithi_name": "Amavasya",
+          "tithi_number": 30,
+          "tithi_end_time": "17:21",
+          "nakshatra_name": "Revati",
+          "nakshatra_number": 27,
+          "nakshatra_end_time": "12:02",
+          "vaara": "Friday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:58",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "Meena",
+            "end_time": null
+          },
+          "moon_phase": 30,
+          "festivals": [
+            "Chaitra Amavasya"
+          ]
+        },
+        {
+          "date": "2026-04-18",
+          "tithi_name": "Pratipada",
+          "tithi_number": 1,
+          "tithi_end_time": "14:11",
+          "nakshatra_name": "Ashwini",
+          "nakshatra_number": 1,
+          "nakshatra_end_time": "09:42",
+          "vaara": "Saturday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:57",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "Mesha",
+            "end_time": null
+          },
+          "moon_phase": 1,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-19",
+          "tithi_name": "Dwitiya",
+          "tithi_number": 2,
+          "tithi_end_time": "10:49",
+          "nakshatra_name": "Bharani",
+          "nakshatra_number": 2,
+          "nakshatra_end_time": "07:09",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:56",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "Mesha",
+            "end_time": null
+          },
+          "moon_phase": 2,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-20",
+          "tithi_name": "Tritiya",
+          "tithi_number": 3,
+          "tithi_end_time": "07:28",
+          "nakshatra_name": "Rohini",
+          "nakshatra_number": 4,
+          "nakshatra_end_time": "02:08",
+          "vaara": "Monday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:56",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "Vrishabha",
+            "end_time": null
+          },
+          "moon_phase": 3,
+          "festivals": [
+            "Akshaya Tritiya"
+          ]
+        },
+        {
+          "date": "2026-04-21",
+          "tithi_name": "Panchami",
+          "tithi_number": 5,
+          "tithi_end_time": "01:20",
+          "nakshatra_name": "Mrigashira",
+          "nakshatra_number": 5,
+          "nakshatra_end_time": "23:58",
+          "vaara": "Tuesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:55",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "Vrishabha",
+            "end_time": null
+          },
+          "moon_phase": 5,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-22",
+          "tithi_name": "Shashthi",
+          "tithi_number": 6,
+          "tithi_end_time": "22:50",
+          "nakshatra_name": "Ardra",
+          "nakshatra_number": 6,
+          "nakshatra_end_time": "22:13",
+          "vaara": "Wednesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:54",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "Mithuna",
+            "end_time": null
+          },
+          "moon_phase": 6,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-23",
+          "tithi_name": "Saptami",
+          "tithi_number": 7,
+          "tithi_end_time": "20:49",
+          "nakshatra_name": "Punarvasu",
+          "nakshatra_number": 7,
+          "nakshatra_end_time": "20:57",
+          "vaara": "Thursday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:54",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "Mithuna",
+            "end_time": null
+          },
+          "moon_phase": 7,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-24",
+          "tithi_name": "Ashtami",
+          "tithi_number": 8,
+          "tithi_end_time": "19:22",
+          "nakshatra_name": "Pushya",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "20:14",
+          "vaara": "Friday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:53",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 8,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-25",
+          "tithi_name": "Navami",
+          "tithi_number": 9,
+          "tithi_end_time": "18:28",
+          "nakshatra_name": "Ashlesha",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "20:04",
+          "vaara": "Saturday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:52",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 9,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-26",
+          "tithi_name": "Dashami",
+          "tithi_number": 10,
+          "tithi_end_time": "18:07",
+          "nakshatra_name": "Magha",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "20:27",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:52",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 10,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-27",
+          "tithi_name": "Ekadashi",
+          "tithi_number": 11,
+          "tithi_end_time": "18:16",
+          "nakshatra_name": "Purva Phalguni",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "21:18",
+          "vaara": "Monday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:51",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "Mohini Ekadashi"
+          ]
+        },
+        {
+          "date": "2026-04-28",
+          "tithi_name": "Dwadashi",
+          "tithi_number": 12,
+          "tithi_end_time": "18:52",
+          "nakshatra_name": "Uttara Phalguni",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "22:36",
+          "vaara": "Tuesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:51",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 12,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-29",
+          "tithi_name": "Trayodashi",
+          "tithi_number": 13,
+          "tithi_end_time": "19:52",
+          "nakshatra_name": "Hasta",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "00:16",
+          "vaara": "Wednesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:50",
+          "sunset": "18:33",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "Vaisakha Shukla Pradosham"
+          ]
+        },
+        {
+          "date": "2026-04-30",
+          "tithi_name": "Chaturdashi",
+          "tithi_number": 14,
+          "tithi_end_time": "21:13",
+          "nakshatra_name": "Chitra",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "02:16",
+          "vaara": "Thursday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:50",
+          "sunset": "18:33",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        }
+      ]
+    },
+    "2026|5|17.5173|78.8863|5.5|hi": {
+      "year": 2026,
+      "month": 5,
+      "masa": "Vaisakha",
+      "samvat": 1948,
+      "days": [
+        {
+          "date": "2026-05-01",
+          "tithi_name": "Purnima",
+          "tithi_number": 15,
+          "tithi_end_time": "22:53",
+          "nakshatra_name": "Swati",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "04:35",
+          "vaara": "Friday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:49",
+          "sunset": "18:33",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "Vaisakha Pournami"
+          ]
+        },
+        {
+          "date": "2026-05-02",
+          "tithi_name": "Pratipada",
+          "tithi_number": 16,
+          "tithi_end_time": "00:50",
+          "nakshatra_name": "Vishakha",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "07:09",
+          "vaara": "Saturday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:48",
+          "sunset": "18:34",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 16,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-03",
+          "tithi_name": "Dwitiya",
+          "tithi_number": 17,
+          "tithi_end_time": "03:02",
+          "nakshatra_name": "Vishakha",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "07:09",
+          "vaara": "Sunday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:48",
+          "sunset": "18:34",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 17,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-04",
+          "tithi_name": "Tritiya",
+          "tithi_number": 18,
+          "tithi_end_time": "05:24",
+          "nakshatra_name": "Anuradha",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "09:57",
+          "vaara": "Monday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:47",
+          "sunset": "18:34",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 18,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-05",
+          "tithi_name": "Chaturthi",
+          "tithi_number": 19,
+          "tithi_end_time": "07:51",
+          "nakshatra_name": "Jyeshtha",
+          "nakshatra_number": 18,
+          "nakshatra_end_time": "12:54",
+          "vaara": "Tuesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:47",
+          "sunset": "18:35",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "Sankashtahara Chaturthi"
+          ]
+        },
+        {
+          "date": "2026-05-06",
+          "tithi_name": "Chaturthi",
+          "tithi_number": 19,
+          "tithi_end_time": "07:51",
+          "nakshatra_name": "Moola",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "15:53",
+          "vaara": "Wednesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:46",
+          "sunset": "18:35",
+          "chandra_rashi": {
+            "name": "Dhanu",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "Sankashtahara Chaturthi"
+          ]
+        },
+        {
+          "date": "2026-05-07",
+          "tithi_name": "Panchami",
+          "tithi_number": 20,
+          "tithi_end_time": "10:14",
+          "nakshatra_name": "Purva Ashadha",
+          "nakshatra_number": 20,
+          "nakshatra_end_time": "18:45",
+          "vaara": "Thursday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:46",
+          "sunset": "18:35",
+          "chandra_rashi": {
+            "name": "Dhanu",
+            "end_time": null
+          },
+          "moon_phase": 20,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-08",
+          "tithi_name": "Shashthi",
+          "tithi_number": 21,
+          "tithi_end_time": "12:22",
+          "nakshatra_name": "Uttara Ashadha",
+          "nakshatra_number": 21,
+          "nakshatra_end_time": "21:19",
+          "vaara": "Friday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:46",
+          "sunset": "18:36",
+          "chandra_rashi": {
+            "name": "Makara",
+            "end_time": null
+          },
+          "moon_phase": 21,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-09",
+          "tithi_name": "Saptami",
+          "tithi_number": 22,
+          "tithi_end_time": "14:03",
+          "nakshatra_name": "Shravana",
+          "nakshatra_number": 22,
+          "nakshatra_end_time": "23:24",
+          "vaara": "Saturday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:45",
+          "sunset": "18:36",
+          "chandra_rashi": {
+            "name": "Makara",
+            "end_time": null
+          },
+          "moon_phase": 22,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-10",
+          "tithi_name": "Ashtami",
+          "tithi_number": 23,
+          "tithi_end_time": "15:07",
+          "nakshatra_name": "Dhanishta",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "00:50",
+          "vaara": "Sunday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:45",
+          "sunset": "18:36",
+          "chandra_rashi": {
+            "name": "Makara",
+            "end_time": null
+          },
+          "moon_phase": 23,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-11",
+          "tithi_name": "Navami",
+          "tithi_number": 24,
+          "tithi_end_time": "15:25",
+          "nakshatra_name": "Shatabhisha",
+          "nakshatra_number": 24,
+          "nakshatra_end_time": "01:28",
+          "vaara": "Monday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:44",
+          "sunset": "18:37",
+          "chandra_rashi": {
+            "name": "Kumbha",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-12",
+          "tithi_name": "Dashami",
+          "tithi_number": 25,
+          "tithi_end_time": "14:52",
+          "nakshatra_name": "Purva Bhadrapada",
+          "nakshatra_number": 25,
+          "nakshatra_end_time": "01:17",
+          "vaara": "Tuesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:44",
+          "sunset": "18:37",
+          "chandra_rashi": {
+            "name": "Kumbha",
+            "end_time": null
+          },
+          "moon_phase": 25,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-13",
+          "tithi_name": "Ekadashi",
+          "tithi_number": 26,
+          "tithi_end_time": "13:30",
+          "nakshatra_name": "Uttara Bhadrapada",
+          "nakshatra_number": 26,
+          "nakshatra_end_time": "00:17",
+          "vaara": "Wednesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:44",
+          "sunset": "18:37",
+          "chandra_rashi": {
+            "name": "Meena",
+            "end_time": null
+          },
+          "moon_phase": 26,
+          "festivals": [
+            "Apara Ekadashi"
+          ]
+        },
+        {
+          "date": "2026-05-14",
+          "tithi_name": "Dwadashi",
+          "tithi_number": 27,
+          "tithi_end_time": "11:21",
+          "nakshatra_name": "Revati",
+          "nakshatra_number": 27,
+          "nakshatra_end_time": "22:33",
+          "vaara": "Thursday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:43",
+          "sunset": "18:38",
+          "chandra_rashi": {
+            "name": "Meena",
+            "end_time": null
+          },
+          "moon_phase": 27,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-15",
+          "tithi_name": "Trayodashi",
+          "tithi_number": 28,
+          "tithi_end_time": "08:31",
+          "nakshatra_name": "Ashwini",
+          "nakshatra_number": 1,
+          "nakshatra_end_time": "20:14",
+          "vaara": "Friday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:43",
+          "sunset": "18:38",
+          "chandra_rashi": {
+            "name": "Mesha",
+            "end_time": null
+          },
+          "moon_phase": 28,
+          "festivals": [
+            "Vaisakha Krishna Pradosham"
+          ]
+        },
+        {
+          "date": "2026-05-16",
+          "tithi_name": "Amavasya",
+          "tithi_number": 30,
+          "tithi_end_time": "01:31",
+          "nakshatra_name": "Bharani",
+          "nakshatra_number": 2,
+          "nakshatra_end_time": "17:30",
+          "vaara": "Saturday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "05:43",
+          "sunset": "18:38",
+          "chandra_rashi": {
+            "name": "Mesha",
+            "end_time": null
+          },
+          "moon_phase": 30,
+          "festivals": [
+            "Vaisakha Amavasya"
+          ]
+        },
+        {
+          "date": "2026-05-17",
+          "tithi_name": "Pratipada",
+          "tithi_number": 1,
+          "tithi_end_time": "21:41",
+          "nakshatra_name": "Krittika",
+          "nakshatra_number": 3,
+          "nakshatra_end_time": "14:32",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:42",
+          "sunset": "18:39",
+          "chandra_rashi": {
+            "name": "Vrishabha",
+            "end_time": null
+          },
+          "moon_phase": 1,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-18",
+          "tithi_name": "Dwitiya",
+          "tithi_number": 2,
+          "tithi_end_time": "17:53",
+          "nakshatra_name": "Rohini",
+          "nakshatra_number": 4,
+          "nakshatra_end_time": "11:31",
+          "vaara": "Monday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:42",
+          "sunset": "18:39",
+          "chandra_rashi": {
+            "name": "Vrishabha",
+            "end_time": null
+          },
+          "moon_phase": 2,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-19",
+          "tithi_name": "Tritiya",
+          "tithi_number": 3,
+          "tithi_end_time": "14:18",
+          "nakshatra_name": "Mrigashira",
+          "nakshatra_number": 5,
+          "nakshatra_end_time": "08:41",
+          "vaara": "Tuesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:42",
+          "sunset": "18:39",
+          "chandra_rashi": {
+            "name": "Mithuna",
+            "end_time": null
+          },
+          "moon_phase": 3,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-20",
+          "tithi_name": "Chaturthi",
+          "tithi_number": 4,
+          "tithi_end_time": "11:07",
+          "nakshatra_name": "Ardra",
+          "nakshatra_number": 6,
+          "nakshatra_end_time": "06:11",
+          "vaara": "Wednesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:41",
+          "sunset": "18:40",
+          "chandra_rashi": {
+            "name": "Mithuna",
+            "end_time": null
+          },
+          "moon_phase": 4,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-21",
+          "tithi_name": "Panchami",
+          "tithi_number": 5,
+          "tithi_end_time": "08:27",
+          "nakshatra_name": "Pushya",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "02:49",
+          "vaara": "Thursday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:41",
+          "sunset": "18:40",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 5,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-22",
+          "tithi_name": "Shashthi",
+          "tithi_number": 6,
+          "tithi_end_time": "06:25",
+          "nakshatra_name": "Ashlesha",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "02:08",
+          "vaara": "Friday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:41",
+          "sunset": "18:40",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 6,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-23",
+          "tithi_name": "Ashtami",
+          "tithi_number": 8,
+          "tithi_end_time": "04:27",
+          "nakshatra_name": "Magha",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "02:09",
+          "vaara": "Saturday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:41",
+          "sunset": "18:41",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 8,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-24",
+          "tithi_name": "Navami",
+          "tithi_number": 9,
+          "tithi_end_time": "04:31",
+          "nakshatra_name": "Purva Phalguni",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "02:50",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:41",
+          "sunset": "18:41",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 9,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-25",
+          "tithi_name": "Dashami",
+          "tithi_number": 10,
+          "tithi_end_time": "05:11",
+          "nakshatra_name": "Uttara Phalguni",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "04:08",
+          "vaara": "Monday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:40",
+          "sunset": "18:42",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 10,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-26",
+          "tithi_name": "Ekadashi",
+          "tithi_number": 11,
+          "tithi_end_time": "06:22",
+          "nakshatra_name": "Hasta",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "05:56",
+          "vaara": "Tuesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:40",
+          "sunset": "18:42",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "Nirjala Ekadashi"
+          ]
+        },
+        {
+          "date": "2026-05-27",
+          "tithi_name": "Ekadashi",
+          "tithi_number": 11,
+          "tithi_end_time": "06:22",
+          "nakshatra_name": "Hasta",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "05:56",
+          "vaara": "Wednesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:40",
+          "sunset": "18:42",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "Nirjala Ekadashi"
+          ]
+        },
+        {
+          "date": "2026-05-28",
+          "tithi_name": "Dwadashi",
+          "tithi_number": 12,
+          "tithi_end_time": "07:57",
+          "nakshatra_name": "Chitra",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "08:08",
+          "vaara": "Thursday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:40",
+          "sunset": "18:43",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 12,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-29",
+          "tithi_name": "Trayodashi",
+          "tithi_number": 13,
+          "tithi_end_time": "09:51",
+          "nakshatra_name": "Swati",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "10:37",
+          "vaara": "Friday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:40",
+          "sunset": "18:43",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "Jyeshtha Shukla Pradosham"
+          ]
+        },
+        {
+          "date": "2026-05-30",
+          "tithi_name": "Chaturdashi",
+          "tithi_number": 14,
+          "tithi_end_time": "11:58",
+          "nakshatra_name": "Vishakha",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "13:20",
+          "vaara": "Saturday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:40",
+          "sunset": "18:43",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-31",
+          "tithi_name": "Purnima",
+          "tithi_number": 15,
+          "tithi_end_time": "14:15",
+          "nakshatra_name": "Anuradha",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "16:11",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "05:40",
+          "sunset": "18:44",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "Jyeshtha Pournami"
+          ]
+        }
+      ]
+    },
+    "2026|3|17.5173|78.8863|5.5|hi": {
+      "year": 2026,
+      "month": 3,
+      "masa": "Phalguna",
+      "samvat": 1947,
+      "days": [
+        {
+          "date": "2026-03-01",
+          "tithi_name": "Trayodashi",
+          "tithi_number": 13,
+          "tithi_end_time": "19:09",
+          "nakshatra_name": "Pushya",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "08:34",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:33",
+          "sunset": "18:19",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "Phalguna Shukla Pradosham"
+          ]
+        },
+        {
+          "date": "2026-03-02",
+          "tithi_name": "Chaturdashi",
+          "tithi_number": 14,
+          "tithi_end_time": "17:56",
+          "nakshatra_name": "Ashlesha",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "07:51",
+          "vaara": "Monday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:33",
+          "sunset": "18:20",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-03",
+          "tithi_name": "Purnima",
+          "tithi_number": 15,
+          "tithi_end_time": "17:07",
+          "nakshatra_name": "Magha",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "07:31",
+          "vaara": "Tuesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:32",
+          "sunset": "18:20",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "Holi"
+          ]
+        },
+        {
+          "date": "2026-03-04",
+          "tithi_name": "Pratipada",
+          "tithi_number": 16,
+          "tithi_end_time": "16:49",
+          "nakshatra_name": "Purva Phalguni",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "07:38",
+          "vaara": "Wednesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:31",
+          "sunset": "18:20",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 16,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-05",
+          "tithi_name": "Dwitiya",
+          "tithi_number": 17,
+          "tithi_end_time": "17:04",
+          "nakshatra_name": "Uttara Phalguni",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "08:17",
+          "vaara": "Thursday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:31",
+          "sunset": "18:20",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 17,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-06",
+          "tithi_name": "Tritiya",
+          "tithi_number": 18,
+          "tithi_end_time": "17:53",
+          "nakshatra_name": "Hasta",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "09:29",
+          "vaara": "Friday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:30",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "Kanya",
+            "end_time": null
+          },
+          "moon_phase": 18,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-07",
+          "tithi_name": "Chaturthi",
+          "tithi_number": 19,
+          "tithi_end_time": "19:17",
+          "nakshatra_name": "Chitra",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "11:15",
+          "vaara": "Saturday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:29",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "Sankashtahara Chaturthi"
+          ]
+        },
+        {
+          "date": "2026-03-08",
+          "tithi_name": "Panchami",
+          "tithi_number": 20,
+          "tithi_end_time": "21:11",
+          "nakshatra_name": "Swati",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "13:31",
+          "vaara": "Sunday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:28",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 20,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-09",
+          "tithi_name": "Shashthi",
+          "tithi_number": 21,
+          "tithi_end_time": "23:27",
+          "nakshatra_name": "Vishakha",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "16:11",
+          "vaara": "Monday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:28",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "Tula",
+            "end_time": null
+          },
+          "moon_phase": 21,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-10",
+          "tithi_name": "Saptami",
+          "tithi_number": 22,
+          "tithi_end_time": "01:54",
+          "nakshatra_name": "Anuradha",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "19:05",
+          "vaara": "Tuesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:27",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 22,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-11",
+          "tithi_name": "Ashtami",
+          "tithi_number": 23,
+          "tithi_end_time": "04:19",
+          "nakshatra_name": "Jyeshtha",
+          "nakshatra_number": 18,
+          "nakshatra_end_time": "22:00",
+          "vaara": "Wednesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:26",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "Vrischika",
+            "end_time": null
+          },
+          "moon_phase": 23,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-12",
+          "tithi_name": "Navami",
+          "tithi_number": 24,
+          "tithi_end_time": "06:29",
+          "nakshatra_name": "Moola",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "00:43",
+          "vaara": "Thursday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:25",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "Dhanu",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-13",
+          "tithi_name": "Navami",
+          "tithi_number": 24,
+          "tithi_end_time": "06:29",
+          "nakshatra_name": "Purva Ashadha",
+          "nakshatra_number": 20,
+          "nakshatra_end_time": "03:03",
+          "vaara": "Friday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:25",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "Dhanu",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-14",
+          "tithi_name": "Dashami",
+          "tithi_number": 25,
+          "tithi_end_time": "08:11",
+          "nakshatra_name": "Uttara Ashadha",
+          "nakshatra_number": 21,
+          "nakshatra_end_time": "04:49",
+          "vaara": "Saturday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:24",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "Dhanu",
+            "end_time": null
+          },
+          "moon_phase": 25,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-15",
+          "tithi_name": "Ekadashi",
+          "tithi_number": 26,
+          "tithi_end_time": "09:17",
+          "nakshatra_name": "Shravana",
+          "nakshatra_number": 22,
+          "nakshatra_end_time": "05:56",
+          "vaara": "Sunday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:23",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "Makara",
+            "end_time": null
+          },
+          "moon_phase": 26,
+          "festivals": [
+            "Papamochani Ekadashi"
+          ]
+        },
+        {
+          "date": "2026-03-16",
+          "tithi_name": "Dwadashi",
+          "tithi_number": 27,
+          "tithi_end_time": "09:41",
+          "nakshatra_name": "Dhanishta",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "06:22",
+          "vaara": "Monday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:22",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "Makara",
+            "end_time": null
+          },
+          "moon_phase": 27,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-17",
+          "tithi_name": "Trayodashi",
+          "tithi_number": 28,
+          "tithi_end_time": "09:23",
+          "nakshatra_name": "Dhanishta",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "06:22",
+          "vaara": "Tuesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:22",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "Kumbha",
+            "end_time": null
+          },
+          "moon_phase": 28,
+          "festivals": [
+            "Phalguna Krishna Pradosham"
+          ]
+        },
+        {
+          "date": "2026-03-18",
+          "tithi_name": "Chaturdashi",
+          "tithi_number": 29,
+          "tithi_end_time": "08:25",
+          "nakshatra_name": "Purva Bhadrapada",
+          "nakshatra_number": 25,
+          "nakshatra_end_time": "05:21",
+          "vaara": "Wednesday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:21",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "Kumbha",
+            "end_time": null
+          },
+          "moon_phase": 29,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-19",
+          "tithi_name": "Amavasya",
+          "tithi_number": 30,
+          "tithi_end_time": "06:53",
+          "nakshatra_name": "Uttara Bhadrapada",
+          "nakshatra_number": 26,
+          "nakshatra_end_time": "04:04",
+          "vaara": "Thursday",
+          "paksha": "कृष्ण पक्ष",
+          "sunrise": "06:20",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "Meena",
+            "end_time": null
+          },
+          "moon_phase": 30,
+          "festivals": [
+            "Phalguna Amavasya"
+          ]
+        },
+        {
+          "date": "2026-03-20",
+          "tithi_name": "Dwitiya",
+          "tithi_number": 2,
+          "tithi_end_time": "02:31",
+          "nakshatra_name": "Revati",
+          "nakshatra_number": 27,
+          "nakshatra_end_time": "02:27",
+          "vaara": "Friday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:19",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "Meena",
+            "end_time": null
+          },
+          "moon_phase": 2,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-21",
+          "tithi_name": "Tritiya",
+          "tithi_number": 3,
+          "tithi_end_time": "23:56",
+          "nakshatra_name": "Ashwini",
+          "nakshatra_number": 1,
+          "nakshatra_end_time": "00:37",
+          "vaara": "Saturday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:18",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "Mesha",
+            "end_time": null
+          },
+          "moon_phase": 3,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-22",
+          "tithi_name": "Chaturthi",
+          "tithi_number": 4,
+          "tithi_end_time": "21:17",
+          "nakshatra_name": "Bharani",
+          "nakshatra_number": 2,
+          "nakshatra_end_time": "22:42",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:18",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "Mesha",
+            "end_time": null
+          },
+          "moon_phase": 4,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-23",
+          "tithi_name": "Panchami",
+          "tithi_number": 5,
+          "tithi_end_time": "18:38",
+          "nakshatra_name": "Krittika",
+          "nakshatra_number": 3,
+          "nakshatra_end_time": "20:49",
+          "vaara": "Monday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:17",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "Vrishabha",
+            "end_time": null
+          },
+          "moon_phase": 5,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-24",
+          "tithi_name": "Shashthi",
+          "tithi_number": 6,
+          "tithi_end_time": "16:08",
+          "nakshatra_name": "Rohini",
+          "nakshatra_number": 4,
+          "nakshatra_end_time": "19:04",
+          "vaara": "Tuesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:16",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "Vrishabha",
+            "end_time": null
+          },
+          "moon_phase": 6,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-25",
+          "tithi_name": "Saptami",
+          "tithi_number": 7,
+          "tithi_end_time": "13:50",
+          "nakshatra_name": "Mrigashira",
+          "nakshatra_number": 5,
+          "nakshatra_end_time": "17:33",
+          "vaara": "Wednesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:15",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "Vrishabha",
+            "end_time": null
+          },
+          "moon_phase": 7,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-26",
+          "tithi_name": "Ashtami",
+          "tithi_number": 8,
+          "tithi_end_time": "11:49",
+          "nakshatra_name": "Ardra",
+          "nakshatra_number": 6,
+          "nakshatra_end_time": "16:19",
+          "vaara": "Thursday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:14",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "Mithuna",
+            "end_time": null
+          },
+          "moon_phase": 8,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-27",
+          "tithi_name": "Navami",
+          "tithi_number": 9,
+          "tithi_end_time": "10:07",
+          "nakshatra_name": "Punarvasu",
+          "nakshatra_number": 7,
+          "nakshatra_end_time": "15:24",
+          "vaara": "Friday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:14",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "Mithuna",
+            "end_time": null
+          },
+          "moon_phase": 9,
+          "festivals": [
+            "Rama Navami"
+          ]
+        },
+        {
+          "date": "2026-03-28",
+          "tithi_name": "Dashami",
+          "tithi_number": 10,
+          "tithi_end_time": "08:46",
+          "nakshatra_name": "Pushya",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "14:50",
+          "vaara": "Saturday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:13",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 10,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-29",
+          "tithi_name": "Ekadashi",
+          "tithi_number": 11,
+          "tithi_end_time": "07:46",
+          "nakshatra_name": "Ashlesha",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "14:37",
+          "vaara": "Sunday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:12",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "Karka",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "Kamada Ekadashi"
+          ]
+        },
+        {
+          "date": "2026-03-30",
+          "tithi_name": "Dwadashi",
+          "tithi_number": 12,
+          "tithi_end_time": "07:10",
+          "nakshatra_name": "Magha",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "14:47",
+          "vaara": "Monday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:11",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 12,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-31",
+          "tithi_name": "Trayodashi",
+          "tithi_number": 13,
+          "tithi_end_time": "06:56",
+          "nakshatra_name": "Purva Phalguni",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "15:20",
+          "vaara": "Tuesday",
+          "paksha": "शुक्ल पक्ष",
+          "sunrise": "06:10",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "Simha",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "Chaitra Shukla Pradosham"
+          ]
+        }
+      ]
+    }
+  },
+  "monthly_ttl": {
+    "2026|4|17.5173|78.8863|5.5|hi": "2026-04-19T22:30:11.650775",
+    "2026|5|17.5173|78.8863|5.5|hi": "2026-04-19T22:30:11.706506",
+    "2026|3|17.5173|78.8863|5.5|hi": "2026-04-19T22:30:11.937056"
+  }
+}

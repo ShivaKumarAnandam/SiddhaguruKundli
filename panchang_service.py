@@ -9,6 +9,7 @@ import asyncio
 import calendar
 import os
 import sys
+import json
 from math import ceil
 from functools import lru_cache
 from datetime import datetime, timedelta
@@ -75,6 +76,16 @@ TITHI_NAMES_TE = [
     "ఏకాదశి", "ద్వాదశి", "త్రయోదశి", "చతుర్దశి", "అమావాస్య",
 ]
 
+TITHI_NAMES_HI = [
+    "",
+    "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी",
+    "षष्ठी", "सप्तमी", "अष्टमी", "नवमी", "दशमी",
+    "एकादशी", "द्वादशी", "त्रयोदशी", "चतुर्दशी", "पूर्णिमा",
+    "प्रतिपदा", "द्वितीया", "तृतीया", "चतुर्थी", "पंचमी",
+    "षष्ठी", "सप्तमी", "अष्टमी", "नवमी", "दशमी",
+    "एकादशी", "द्वादशी", "त्रयोदशी", "चतुर्दशी", "अमावस्या",
+]
+
 NAKSHATRA_NAMES_EN = [
     "",  # 0-index placeholder
     "Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira",
@@ -93,6 +104,16 @@ NAKSHATRA_NAMES_TE = [
     "విశాఖ", "అనూరాధ", "జ్యేష్ఠ", "మూల", "పూర్వాషాఢ",
     "ఉత్తరాషాఢ", "శ్రవణం", "ధనిష్ఠ", "శతభిషం",
     "పూర్వాభాద్ర", "ఉత్తరాభాద్ర", "రేవతి",
+]
+
+NAKSHATRA_NAMES_HI = [
+    "",
+    "अश्विनी", "भरणी", "कृत्तिका", "रोहिणी", "मृगशिरा",
+    "आर्द्रा", "पुनर्वसु", "पुष्य", "अश्लेषा", "मघा",
+    "पूर्वाफाल्गुनी", "उत्तराफाल्गुनी", "हस्त", "चित्रा", "स्वाती",
+    "विशाखा", "अनुराधा", "ज्येष्ठा", "मूल", "पूर्वाषाढ़ा",
+    "उत्तराषाढ़ा", "श्रवण", "धनिष्ठा", "शतभिषा",
+    "पूर्वाभाद्रपद", "उत्तराभाद्रपद", "रेवती",
 ]
 
 YOGA_NAMES_EN = [
@@ -115,6 +136,16 @@ YOGA_NAMES_TE = [
     "ఐంద్ర", "వైధృతి",
 ]
 
+YOGA_NAMES_HI = [
+    "",
+    "विष्कुम्भ", "प्रीति", "आयुष्मान", "सौभाग्य", "शोभन",
+    "अतिगण्ड", "सुकर्मा", "धृति", "शूल", "गण्ड",
+    "वृद्धि", "ध्रुव", "व्याघात", "हर्षण", "वज्र",
+    "सिद्धि", "व्यतीपात", "वरीयान", "परिघ", "शिव",
+    "सिद्ध", "साध्य", "शुभ", "शुक्ल", "ब्रह्म",
+    "ऐन्द्र", "वैधृति",
+]
+
 # 11 unique Karana names (7 movable + 4 fixed)
 KARANA_NAMES_EN = [
     "",
@@ -126,6 +157,12 @@ KARANA_NAMES_TE = [
     "",
     "కింస్తుఘ్న", "బవ", "బాలవ", "కౌలవ", "తైతిల",
     "గరజ", "వణిజ", "విష్టి", "శకుని", "చతుష్పాద", "నాగ",
+]
+
+KARANA_NAMES_HI = [
+    "",
+    "किंस्तुघ्न", "बव", "बालव", "कौलव", "तैतिल",
+    "गरज", "वणिज", "विष्टि", "शकुनि", "चतुष्पाद", "नाग",
 ]
 
 # Karana mapping: karana number (1-60) → unique karana name index (1-11)
@@ -155,6 +192,11 @@ VAARA_NAMES_TE = [
     "గురువారం", "శుక్రవారం", "శనివారం",
 ]
 
+VAARA_NAMES_HI = [
+    "रविवार", "सोमवार", "मंगलवार", "बुधवार",
+    "गुरुवार", "शुक्रवार", "शनिवार",
+]
+
 MASA_NAMES_EN = [
     "",
     "Chaitra", "Vaisakha", "Jyeshtha", "Ashadha",
@@ -167,6 +209,13 @@ MASA_NAMES_TE = [
     "చైత్రం", "వైశాఖం", "జ్యేష్ఠం", "ఆషాఢం",
     "శ్రావణం", "భాద్రపదం", "ఆశ్వయుజం", "కార్తీకం",
     "మార్గశిరం", "పుష్యం", "మాఘం", "ఫాల్గుణం",
+]
+
+MASA_NAMES_HI = [
+    "",
+    "चैत्र", "वैशाख", "ज्येष्ठ", "आषाढ़",
+    "श्रावण", "भाद्रपद", "अश्विन", "कार्तिक",
+    "मार्गशीर्ष", "पौष", "माघ", "फाल्गुन",
 ]
 
 SAMVATSARA_NAMES_EN = [
@@ -201,6 +250,22 @@ SAMVATSARA_NAMES_TE = [
     "దుందుభి", "రుధిరోద్గారి", "రక్తాక్షి", "క్రోధన", "అక్షయ",
 ]
 
+SAMVATSARA_NAMES_HI = [
+    "",
+    "प्रभव", "विभव", "शुक्ल", "प्रमोद", "प्रजापति",
+    "अंगिरा", "श्रीमुख", "भाव", "युवा", "धाता",
+    "ईश्वर", "बहुधान्य", "प्रमादी", "विक्रम", "वृष",
+    "चित्रभानु", "स्वभानु", "तारण", "पार्थिव", "व्यय",
+    "सर्वजीत", "सर्वधारी", "विरोधी", "विकृति", "खर",
+    "नंदन", "विजय", "जय", "मन्मथ", "दुर्मुख",
+    "हेविलम्बी", "विलम्बी", "विकारी", "शार्वरी", "प्लव",
+    "शुभकृत", "शोभकृत", "क्रोधी", "विश्वावसु", "पराभव",
+    "प्लवंग", "कीलक", "सौम्य", "साधारण", "विरोधकृत",
+    "परिधावी", "प्रमादी", "आनंद", "राक्षस", "नल",
+    "पिंगल", "कालद्युति", "सिद्धार्थी", "रौद्र", "दुर्मति",
+    "दुन्दुभी", "रुधिरोद्गारी", "रक्ताक्ष", "क्रोधन", "अक्षय",
+]
+
 RASHI_NAMES_EN = [
     "",
     "Mesha", "Vrishabha", "Mithuna", "Karka",
@@ -215,9 +280,17 @@ RASHI_NAMES_TE = [
     "ధనుస్సు", "మకరం", "కుంభం", "మీనం",
 ]
 
+RASHI_NAMES_HI = [
+    "",
+    "मेष", "वृषभ", "मिथुन", "कर्क",
+    "सिंह", "कन्या", "तुला", "वृश्चिक",
+    "धनु", "मकर", "कुंभ", "मीन",
+]
+
 PAKSHA_NAMES = {
     "en": {"shukla": "Shukla Paksha", "krishna": "Krishna Paksha"},
     "te": {"shukla": "శుక్ల పక్షం", "krishna": "కృష్ణ పక్షం"},
+    "hi": {"shukla": "शुक्ल पक्ष", "krishna": "कृष्ण पक्ष"},
 }
 
 
@@ -225,10 +298,66 @@ PAKSHA_NAMES = {
 # Helpers
 # ---------------------------------------------------------------------------
 
-# Simple in-memory cache for daily panchang results (TTL: 1 hour)
+CACHE_DIR = os.path.join(os.path.dirname(__file__), ".cache")
+CACHE_FILE = os.path.join(CACHE_DIR, "panchang_cache.json")
+
+# In-memory maps for daily and monthly panchang results
 _daily_cache = {}
 _daily_cache_ttl = {}
-CACHE_TTL_SECONDS = 3600
+_monthly_cache = {}
+_monthly_cache_ttl = {}
+CACHE_TTL_SECONDS = 86400  # 24 hours
+
+def _save_cache_to_disk():
+    """Serialize the current in-memory cache to a JSON file."""
+    try:
+        if not os.path.exists(CACHE_DIR):
+            os.makedirs(CACHE_DIR)
+        
+        # We only save valid (non-expired) entries
+        now = datetime.now()
+        data = {
+            "daily": {k: v for k, v in _daily_cache.items() if k in _daily_cache_ttl and now < _daily_cache_ttl[k]},
+            "daily_ttl": {k: _daily_cache_ttl[k].isoformat() for k, v in _daily_cache.items() if k in _daily_cache_ttl and now < _daily_cache_ttl[k]},
+            "monthly": {k: v for k, v in _monthly_cache.items() if k in _monthly_cache_ttl and now < _monthly_cache_ttl[k]},
+            "monthly_ttl": {k: _monthly_cache_ttl[k].isoformat() for k, v in _monthly_cache.items() if k in _monthly_cache_ttl and now < _monthly_cache_ttl[k]},
+        }
+        with open(CACHE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"Cache save error: {e}")
+
+def _load_cache_from_disk():
+    """Load cached data from the JSON file into memory."""
+    global _daily_cache, _daily_cache_ttl, _monthly_cache, _monthly_cache_ttl
+    try:
+        if os.path.exists(CACHE_FILE):
+            with open(CACHE_FILE, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                now = datetime.now()
+                
+                # Load daily
+                daily_ttl = data.get("daily_ttl", {})
+                for k, v in data.get("daily", {}).items():
+                    if k in daily_ttl:
+                        ttl = datetime.fromisoformat(daily_ttl[k])
+                        if now < ttl:
+                            _daily_cache[k] = v
+                            _daily_cache_ttl[k] = ttl
+                
+                # Load monthly
+                monthly_ttl = data.get("monthly_ttl", {})
+                for k, v in data.get("monthly", {}).items():
+                    if k in monthly_ttl:
+                        ttl = datetime.fromisoformat(monthly_ttl[k])
+                        if now < ttl:
+                            _monthly_cache[k] = v
+                            _monthly_cache_ttl[k] = ttl
+    except Exception as e:
+        print(f"Cache load error: {e}")
+
+# Initial load
+_load_cache_from_disk()
 
 def _get_cached_daily(cache_key: str):
     """Get cached daily panchang if still valid."""
@@ -251,19 +380,19 @@ def _set_cached_daily(cache_key: str, data: dict):
 def _cached_get_name(index: int, lang: str, name_type: str):
     """Cached name lookup to avoid repeated list access."""
     if name_type == 'tithi':
-        names = TITHI_NAMES_TE if lang == 'te' else TITHI_NAMES_EN
+        names = TITHI_NAMES_HI if lang == 'hi' else (TITHI_NAMES_TE if lang == 'te' else TITHI_NAMES_EN)
     elif name_type == 'nakshatra':
-        names = NAKSHATRA_NAMES_TE if lang == 'te' else NAKSHATRA_NAMES_EN
+        names = NAKSHATRA_NAMES_HI if lang == 'hi' else (NAKSHATRA_NAMES_TE if lang == 'te' else NAKSHATRA_NAMES_EN)
     elif name_type == 'yoga':
-        names = YOGA_NAMES_TE if lang == 'te' else YOGA_NAMES_EN
+        names = YOGA_NAMES_HI if lang == 'hi' else (YOGA_NAMES_TE if lang == 'te' else YOGA_NAMES_EN)
     elif name_type == 'karana':
-        names = KARANA_NAMES_TE if lang == 'te' else KARANA_NAMES_EN
+        names = KARANA_NAMES_HI if lang == 'hi' else (KARANA_NAMES_TE if lang == 'te' else KARANA_NAMES_EN)
     elif name_type == 'masa':
-        names = MASA_NAMES_TE if lang == 'te' else MASA_NAMES_EN
+        names = MASA_NAMES_HI if lang == 'hi' else (MASA_NAMES_TE if lang == 'te' else MASA_NAMES_EN)
     elif name_type == 'samvatsara':
-        names = SAMVATSARA_NAMES_TE if lang == 'te' else SAMVATSARA_NAMES_EN
+        names = SAMVATSARA_NAMES_HI if lang == 'hi' else (SAMVATSARA_NAMES_TE if lang == 'te' else SAMVATSARA_NAMES_EN)
     elif name_type == 'rashi':
-        names = RASHI_NAMES_TE if lang == 'te' else RASHI_NAMES_EN
+        names = RASHI_NAMES_HI if lang == 'hi' else (RASHI_NAMES_TE if lang == 'te' else RASHI_NAMES_EN)
     else:
         return str(index)
     
@@ -297,10 +426,16 @@ def _dms_to_hhmm(dms):
         return "00:00"
 
 
-def _get_name(index, en_list, te_list, lang):
-    """Safely look up a name from the EN/TE lists by 1-based index."""
+def _get_name(index, en_list, te_list, lang, hi_list=None):
+    """Safely look up a name from the EN/TE/HI lists by 1-based index."""
     index = int(index)
-    names = te_list if lang == "te" else en_list
+    if lang == "hi" and hi_list:
+        names = hi_list
+    elif lang == "te":
+        names = te_list
+    else:
+        names = en_list
+    
     if 1 <= index < len(names):
         return names[index]
     return names[index % len(names)] if len(names) > 1 else str(index)
@@ -398,9 +533,12 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
     """
     # Check cache first
     cache_key = f"{date_str}|{lat:.4f}|{lon:.4f}|{tz_offset}|{lang}"
-    cached = _get_cached_daily(cache_key)
-    if cached:
-        return cached
+    if cache_key in _daily_cache:
+        if datetime.now() < _daily_cache_ttl.get(cache_key, datetime.min):
+            return _daily_cache[cache_key]
+        else:
+            del _daily_cache[cache_key]
+            if cache_key in _daily_cache_ttl: del _daily_cache_ttl[cache_key]
     
     year, month, day = map(int, date_str.split("-"))
     date_obj = Date(year, month, day)
@@ -655,7 +793,9 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
     }
     
     # Cache the result
-    _set_cached_daily(cache_key, result)
+    _daily_cache[cache_key] = result
+    _daily_cache_ttl[cache_key] = datetime.now() + timedelta(seconds=CACHE_TTL_SECONDS)
+    _save_cache_to_disk()
     return result
 
 
@@ -754,6 +894,15 @@ async def get_monthly_panchang(year: int, month: int, lat: float, lon: float,
     Returns:
         Dict matching the MonthlyPanchangResponse schema.
     """
+    # Check cache first
+    cache_key = f"{year}|{month}|{lat:.4f}|{lon:.4f}|{tz_offset}|{lang}"
+    if cache_key in _monthly_cache:
+        if datetime.now() < _monthly_cache_ttl.get(cache_key, datetime.min):
+            return _monthly_cache[cache_key]
+        else:
+            del _monthly_cache[cache_key]
+            if cache_key in _monthly_cache_ttl: del _monthly_cache_ttl[cache_key]
+
     num_days = calendar.monthrange(year, month)[1]
 
     # Batch all days in parallel
@@ -773,10 +922,17 @@ async def get_monthly_panchang(year: int, month: int, lat: float, lon: float,
 
     kali, saka = await asyncio.to_thread(_elapsed_year, jd_first, masa_num)
 
-    return {
+    result = {
         "year": year,
         "month": month,
         "masa": masa_name,
         "samvat": saka,
         "days": list(days),
     }
+
+    # Cache the result
+    _monthly_cache[cache_key] = result
+    _monthly_cache_ttl[cache_key] = datetime.now() + timedelta(seconds=CACHE_TTL_SECONDS)
+    _save_cache_to_disk()
+    
+    return result

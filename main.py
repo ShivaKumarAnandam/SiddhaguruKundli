@@ -1344,7 +1344,7 @@ class DailyPanchangRequest(BaseModel):
     longitude: Optional[float] = Field(None, ge=-180, le=180, example=78.4867)
     timezone: Optional[str] = Field(None, example="Asia/Kolkata")
     place: Optional[str] = Field(None, example="Hyderabad, India")
-    lang: str = Field("en", pattern="^(en|te)$", example="te")
+    lang: str = Field("en", pattern="^(en|te|hi)$", example="te")
 
 
 class MonthlyPanchangRequest(BaseModel):
@@ -1353,7 +1353,7 @@ class MonthlyPanchangRequest(BaseModel):
     latitude: float = Field(..., ge=-90, le=90, example=17.385)
     longitude: float = Field(..., ge=-180, le=180, example=78.4867)
     timezone: str = Field(..., example="Asia/Kolkata")
-    lang: str = Field("en", pattern="^(en|te)$", example="te")
+    lang: str = Field("en", pattern="^(en|te|hi)$", example="te")
 
 
 def _tz_to_offset(tz_name: str) -> float:
