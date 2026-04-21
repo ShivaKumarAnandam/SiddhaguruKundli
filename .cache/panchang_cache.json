@@ -455,6 +455,354 @@
         }
       },
       "festivals": []
+    },
+    "2026-04-21|17.4375|78.9433|5.5|hi": {
+      "date": "2026-04-21",
+      "masa": "Vaisakha",
+      "paksha": "शुक्ल पक्ष",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 5,
+        "name": "Panchami",
+        "end_time": "01:20",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 5,
+        "name": "Mrigashira",
+        "end_time": "23:58",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 5,
+        "name": "Shobhana",
+        "end_time": "12:30",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "Bava",
+          "number": 9,
+          "end_time": "14:45"
+        },
+        {
+          "name": "Balava",
+          "number": 10,
+          "end_time": "01:20"
+        }
+      ],
+      "vaara": "Tuesday",
+      "sunrise": "05:55",
+      "sunset": "18:30",
+      "moonrise": "09:03",
+      "moonset": "22:52",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Vrishabha",
+        "end_time": "13:00"
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "15:22",
+          "end": "16:56"
+        },
+        "gulikai_kalam": {
+          "start": "12:13",
+          "end": "13:48"
+        },
+        "yamaganda": {
+          "start": "09:04",
+          "end": "10:39"
+        },
+        "abhijit_muhurta": {
+          "start": "11:48",
+          "end": "12:38"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "07:36",
+            "end": "08:26"
+          },
+          {
+            "start": "13:29",
+            "end": "14:19"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "16:19",
+          "end": "17:47"
+        },
+        "varjyam": {
+          "start": "19:31",
+          "end": "21:07"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-21|51.5074|-0.1278|1.0|hi": {
+      "date": "2026-04-21",
+      "masa": "Vaisakha",
+      "paksha": "शुक्ल पक्ष",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 5,
+        "name": "Panchami",
+        "end_time": "20:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 5,
+        "name": "Mrigashira",
+        "end_time": "19:28",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 5,
+        "name": "Shobhana",
+        "end_time": "08:00",
+        "next_name": "Atiganda",
+        "next_end_time": "04:38"
+      },
+      "karana": [
+        {
+          "name": "Bava",
+          "number": 9,
+          "end_time": "10:15"
+        },
+        {
+          "name": "Balava",
+          "number": 10,
+          "end_time": "20:50"
+        }
+      ],
+      "vaara": "Tuesday",
+      "sunrise": "05:53",
+      "sunset": "20:05",
+      "moonrise": "07:49",
+      "moonset": "01:01",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Vrishabha",
+        "end_time": "08:30"
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "16:33",
+          "end": "18:19"
+        },
+        "gulikai_kalam": {
+          "start": "13:00",
+          "end": "14:46"
+        },
+        "yamaganda": {
+          "start": "09:27",
+          "end": "11:13"
+        },
+        "abhijit_muhurta": {
+          "start": "12:31",
+          "end": "13:28"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "07:47",
+            "end": "08:44"
+          },
+          {
+            "start": "14:25",
+            "end": "15:22"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "16:18",
+          "end": "17:46"
+        },
+        "varjyam": {
+          "start": "19:30",
+          "end": "21:06"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-21|51.5074|-0.1278|1.0|te": {
+      "date": "2026-04-21",
+      "masa": "వైశాఖం",
+      "paksha": "శుక్ల పక్షం",
+      "samvat": 1948,
+      "samvatsara": "ప్లవంగ",
+      "tithi": {
+        "number": 5,
+        "name": "పంచమి",
+        "end_time": "20:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 5,
+        "name": "మృగశిర",
+        "end_time": "19:28",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 5,
+        "name": "శోభన",
+        "end_time": "08:00",
+        "next_name": "అతిగండ",
+        "next_end_time": "04:38"
+      },
+      "karana": [
+        {
+          "name": "బవ",
+          "number": 9,
+          "end_time": "10:15"
+        },
+        {
+          "name": "బాలవ",
+          "number": 10,
+          "end_time": "20:50"
+        }
+      ],
+      "vaara": "మంగళవారం",
+      "sunrise": "05:53",
+      "sunset": "20:05",
+      "moonrise": "07:49",
+      "moonset": "01:01",
+      "sun_rashi": "మేషం",
+      "chandra_rashi": {
+        "name": "వృషభం",
+        "end_time": "08:30"
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "16:33",
+          "end": "18:19"
+        },
+        "gulikai_kalam": {
+          "start": "13:00",
+          "end": "14:46"
+        },
+        "yamaganda": {
+          "start": "09:27",
+          "end": "11:13"
+        },
+        "abhijit_muhurta": {
+          "start": "12:31",
+          "end": "13:28"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "07:47",
+            "end": "08:44"
+          },
+          {
+            "start": "14:25",
+            "end": "15:22"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "16:18",
+          "end": "17:46"
+        },
+        "varjyam": {
+          "start": "19:30",
+          "end": "21:06"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-21|51.5074|-0.1278|1.0|en": {
+      "date": "2026-04-21",
+      "masa": "Vaisakha",
+      "paksha": "Shukla Paksha",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 5,
+        "name": "Panchami",
+        "end_time": "20:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 5,
+        "name": "Mrigashira",
+        "end_time": "19:28",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 5,
+        "name": "Shobhana",
+        "end_time": "08:00",
+        "next_name": "Atiganda",
+        "next_end_time": "04:38"
+      },
+      "karana": [
+        {
+          "name": "Bava",
+          "number": 9,
+          "end_time": "10:15"
+        },
+        {
+          "name": "Balava",
+          "number": 10,
+          "end_time": "20:50"
+        }
+      ],
+      "vaara": "Tuesday",
+      "sunrise": "05:53",
+      "sunset": "20:05",
+      "moonrise": "07:49",
+      "moonset": "01:01",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Vrishabha",
+        "end_time": "08:30"
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "16:33",
+          "end": "18:19"
+        },
+        "gulikai_kalam": {
+          "start": "13:00",
+          "end": "14:46"
+        },
+        "yamaganda": {
+          "start": "09:27",
+          "end": "11:13"
+        },
+        "abhijit_muhurta": {
+          "start": "12:31",
+          "end": "13:28"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "07:47",
+            "end": "08:44"
+          },
+          {
+            "start": "14:25",
+            "end": "15:22"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "16:18",
+          "end": "17:46"
+        },
+        "varjyam": {
+          "start": "19:30",
+          "end": "21:06"
+        }
+      },
+      "festivals": []
     }
   },
   "daily_ttl": {
@@ -462,7 +810,11 @@
     "2026-04-20|17.5173|78.8863|5.5|en": "2026-04-21T19:48:57.567648",
     "2026-04-20|17.3606|78.4741|5.5|hi": "2026-04-21T19:58:36.435167",
     "2026-04-21|17.5173|78.8863|5.5|en": "2026-04-22T10:48:57.825555",
-    "2026-04-21|17.3606|78.4741|5.5|hi": "2026-04-22T10:49:00.694291"
+    "2026-04-21|17.3606|78.4741|5.5|hi": "2026-04-22T10:49:00.694291",
+    "2026-04-21|17.4375|78.9433|5.5|hi": "2026-04-22T12:48:15.749631",
+    "2026-04-21|51.5074|-0.1278|1.0|hi": "2026-04-22T12:52:55.530668",
+    "2026-04-21|51.5074|-0.1278|1.0|te": "2026-04-22T12:54:45.304000",
+    "2026-04-21|51.5074|-0.1278|1.0|en": "2026-04-22T12:54:45.913019"
   },
   "monthly": {},
   "monthly_ttl": {}
