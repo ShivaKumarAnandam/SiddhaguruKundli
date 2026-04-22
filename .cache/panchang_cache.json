@@ -1,465 +1,9 @@
 {
   "daily": {
-    "2026-04-20|17.5173|78.8863|5.5|te": {
-      "date": "2026-04-20",
-      "masa": "వైశాఖం",
-      "paksha": "శుక్ల పక్షం",
-      "samvat": 1948,
-      "samvatsara": "ప్లవంగ",
-      "tithi": {
-        "number": 3,
-        "name": "తదియ",
-        "end_time": "07:28",
-        "next_name": "చవితి",
-        "next_end_time": "04:15"
-      },
-      "nakshatra": {
-        "number": 4,
-        "name": "రోహిణి",
-        "end_time": "02:08",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "yoga": {
-        "number": 4,
-        "name": "సౌభాగ్య",
-        "end_time": "16:11",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "karana": [
-        {
-          "name": "గరజ",
-          "number": 6,
-          "end_time": "07:28"
-        },
-        {
-          "name": "వణిజ",
-          "number": 7,
-          "end_time": "17:49"
-        },
-        {
-          "name": "విష్టి",
-          "number": 8,
-          "end_time": "04:15"
-        }
-      ],
-      "vaara": "సోమవారం",
-      "sunrise": "05:56",
-      "sunset": "18:30",
-      "moonrise": "08:01",
-      "moonset": "21:47",
-      "sun_rashi": "మేషం",
-      "chandra_rashi": {
-        "name": "వృషభం",
-        "end_time": null
-      },
-      "muhurtas": {
-        "rahu_kalam": {
-          "start": "07:30",
-          "end": "09:05"
-        },
-        "gulikai_kalam": {
-          "start": "13:48",
-          "end": "15:22"
-        },
-        "yamaganda": {
-          "start": "10:39",
-          "end": "12:14"
-        },
-        "abhijit_muhurta": {
-          "start": "11:48",
-          "end": "12:39"
-        },
-        "dur_muhurtam": [
-          {
-            "start": "10:08",
-            "end": "10:58"
-          },
-          {
-            "start": "14:19",
-            "end": "15:10"
-          }
-        ],
-        "amrit_kalam": {
-          "start": "14:44",
-          "end": "16:12"
-        },
-        "varjyam": {
-          "start": "21:08",
-          "end": "22:44"
-        }
-      },
-      "festivals": [
-        "అక్షయ తృతీయ"
-      ]
-    },
-    "2026-04-20|17.5173|78.8863|5.5|en": {
-      "date": "2026-04-20",
-      "masa": "Vaisakha",
-      "paksha": "Shukla Paksha",
-      "samvat": 1948,
-      "samvatsara": "Plavanga",
-      "tithi": {
-        "number": 3,
-        "name": "Tritiya",
-        "end_time": "07:28",
-        "next_name": "Chaturthi",
-        "next_end_time": "04:15"
-      },
-      "nakshatra": {
-        "number": 4,
-        "name": "Rohini",
-        "end_time": "02:08",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "yoga": {
-        "number": 4,
-        "name": "Saubhagya",
-        "end_time": "16:11",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "karana": [
-        {
-          "name": "Garaja",
-          "number": 6,
-          "end_time": "07:28"
-        },
-        {
-          "name": "Vanija",
-          "number": 7,
-          "end_time": "17:49"
-        },
-        {
-          "name": "Vishti",
-          "number": 8,
-          "end_time": "04:15"
-        }
-      ],
-      "vaara": "Monday",
-      "sunrise": "05:56",
-      "sunset": "18:30",
-      "moonrise": "08:01",
-      "moonset": "21:47",
-      "sun_rashi": "Mesha",
-      "chandra_rashi": {
-        "name": "Vrishabha",
-        "end_time": null
-      },
-      "muhurtas": {
-        "rahu_kalam": {
-          "start": "07:30",
-          "end": "09:05"
-        },
-        "gulikai_kalam": {
-          "start": "13:48",
-          "end": "15:22"
-        },
-        "yamaganda": {
-          "start": "10:39",
-          "end": "12:14"
-        },
-        "abhijit_muhurta": {
-          "start": "11:48",
-          "end": "12:39"
-        },
-        "dur_muhurtam": [
-          {
-            "start": "10:08",
-            "end": "10:58"
-          },
-          {
-            "start": "14:19",
-            "end": "15:10"
-          }
-        ],
-        "amrit_kalam": {
-          "start": "14:44",
-          "end": "16:12"
-        },
-        "varjyam": {
-          "start": "21:08",
-          "end": "22:44"
-        }
-      },
-      "festivals": [
-        "Akshaya Tritiya"
-      ]
-    },
-    "2026-04-20|17.3606|78.4741|5.5|hi": {
-      "date": "2026-04-20",
-      "masa": "Vaisakha",
-      "paksha": "शुक्ल पक्ष",
-      "samvat": 1948,
-      "samvatsara": "Plavanga",
-      "tithi": {
-        "number": 3,
-        "name": "Tritiya",
-        "end_time": "07:28",
-        "next_name": "Chaturthi",
-        "next_end_time": "04:15"
-      },
-      "nakshatra": {
-        "number": 4,
-        "name": "Rohini",
-        "end_time": "02:08",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "yoga": {
-        "number": 4,
-        "name": "Saubhagya",
-        "end_time": "16:11",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "karana": [
-        {
-          "name": "Garaja",
-          "number": 6,
-          "end_time": "07:28"
-        },
-        {
-          "name": "Vanija",
-          "number": 7,
-          "end_time": "17:49"
-        },
-        {
-          "name": "Vishti",
-          "number": 8,
-          "end_time": "04:15"
-        }
-      ],
-      "vaara": "Monday",
-      "sunrise": "05:57",
-      "sunset": "18:32",
-      "moonrise": "08:03",
-      "moonset": "21:48",
-      "sun_rashi": "Mesha",
-      "chandra_rashi": {
-        "name": "Vrishabha",
-        "end_time": null
-      },
-      "muhurtas": {
-        "rahu_kalam": {
-          "start": "07:32",
-          "end": "09:07"
-        },
-        "gulikai_kalam": {
-          "start": "13:49",
-          "end": "15:24"
-        },
-        "yamaganda": {
-          "start": "10:41",
-          "end": "12:15"
-        },
-        "abhijit_muhurta": {
-          "start": "11:50",
-          "end": "12:40"
-        },
-        "dur_muhurtam": [
-          {
-            "start": "10:09",
-            "end": "11:00"
-          },
-          {
-            "start": "14:21",
-            "end": "15:11"
-          }
-        ],
-        "amrit_kalam": {
-          "start": "14:46",
-          "end": "16:14"
-        },
-        "varjyam": {
-          "start": "21:10",
-          "end": "22:46"
-        }
-      },
-      "festivals": [
-        "Akshaya Tritiya"
-      ]
-    },
-    "2026-04-21|17.5173|78.8863|5.5|en": {
+    "2026-04-21|17.4375|78.9433|5.5|en": {
       "date": "2026-04-21",
       "masa": "Vaisakha",
       "paksha": "Shukla Paksha",
-      "samvat": 1948,
-      "samvatsara": "Plavanga",
-      "tithi": {
-        "number": 5,
-        "name": "Panchami",
-        "end_time": "01:20",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "nakshatra": {
-        "number": 5,
-        "name": "Mrigashira",
-        "end_time": "23:58",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "yoga": {
-        "number": 5,
-        "name": "Shobhana",
-        "end_time": "12:30",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "karana": [
-        {
-          "name": "Bava",
-          "number": 9,
-          "end_time": "14:45"
-        },
-        {
-          "name": "Balava",
-          "number": 10,
-          "end_time": "01:20"
-        }
-      ],
-      "vaara": "Tuesday",
-      "sunrise": "05:55",
-      "sunset": "18:31",
-      "moonrise": "09:03",
-      "moonset": "22:53",
-      "sun_rashi": "Mesha",
-      "chandra_rashi": {
-        "name": "Vrishabha",
-        "end_time": "13:00"
-      },
-      "muhurtas": {
-        "rahu_kalam": {
-          "start": "15:22",
-          "end": "16:57"
-        },
-        "gulikai_kalam": {
-          "start": "12:13",
-          "end": "13:48"
-        },
-        "yamaganda": {
-          "start": "09:04",
-          "end": "10:39"
-        },
-        "abhijit_muhurta": {
-          "start": "11:48",
-          "end": "12:38"
-        },
-        "dur_muhurtam": [
-          {
-            "start": "07:36",
-            "end": "08:27"
-          },
-          {
-            "start": "13:29",
-            "end": "14:19"
-          }
-        ],
-        "amrit_kalam": {
-          "start": "16:20",
-          "end": "17:48"
-        },
-        "varjyam": {
-          "start": "19:32",
-          "end": "21:08"
-        }
-      },
-      "festivals": []
-    },
-    "2026-04-21|17.3606|78.4741|5.5|hi": {
-      "date": "2026-04-21",
-      "masa": "Vaisakha",
-      "paksha": "शुक्ल पक्ष",
-      "samvat": 1948,
-      "samvatsara": "Plavanga",
-      "tithi": {
-        "number": 5,
-        "name": "Panchami",
-        "end_time": "01:20",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "nakshatra": {
-        "number": 5,
-        "name": "Mrigashira",
-        "end_time": "23:58",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "yoga": {
-        "number": 5,
-        "name": "Shobhana",
-        "end_time": "12:30",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "karana": [
-        {
-          "name": "Bava",
-          "number": 9,
-          "end_time": "14:45"
-        },
-        {
-          "name": "Balava",
-          "number": 10,
-          "end_time": "01:20"
-        }
-      ],
-      "vaara": "Tuesday",
-      "sunrise": "05:57",
-      "sunset": "18:32",
-      "moonrise": "09:05",
-      "moonset": "22:54",
-      "sun_rashi": "Mesha",
-      "chandra_rashi": {
-        "name": "Vrishabha",
-        "end_time": "13:00"
-      },
-      "muhurtas": {
-        "rahu_kalam": {
-          "start": "15:24",
-          "end": "16:58"
-        },
-        "gulikai_kalam": {
-          "start": "12:15",
-          "end": "13:49"
-        },
-        "yamaganda": {
-          "start": "09:06",
-          "end": "10:41"
-        },
-        "abhijit_muhurta": {
-          "start": "11:50",
-          "end": "12:40"
-        },
-        "dur_muhurtam": [
-          {
-            "start": "07:38",
-            "end": "08:28"
-          },
-          {
-            "start": "13:30",
-            "end": "14:21"
-          }
-        ],
-        "amrit_kalam": {
-          "start": "16:21",
-          "end": "17:49"
-        },
-        "varjyam": {
-          "start": "19:33",
-          "end": "21:09"
-        }
-      },
-      "festivals": []
-    },
-    "2026-04-21|17.4375|78.9433|5.5|hi": {
-      "date": "2026-04-21",
-      "masa": "Vaisakha",
-      "paksha": "शुक्ल पक्ष",
       "samvat": 1948,
       "samvatsara": "Plavanga",
       "tithi": {
@@ -543,94 +87,7 @@
       },
       "festivals": []
     },
-    "2026-04-21|51.5074|-0.1278|1.0|hi": {
-      "date": "2026-04-21",
-      "masa": "Vaisakha",
-      "paksha": "शुक्ल पक्ष",
-      "samvat": 1948,
-      "samvatsara": "Plavanga",
-      "tithi": {
-        "number": 5,
-        "name": "Panchami",
-        "end_time": "20:50",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "nakshatra": {
-        "number": 5,
-        "name": "Mrigashira",
-        "end_time": "19:28",
-        "next_name": null,
-        "next_end_time": null
-      },
-      "yoga": {
-        "number": 5,
-        "name": "Shobhana",
-        "end_time": "08:00",
-        "next_name": "Atiganda",
-        "next_end_time": "04:38"
-      },
-      "karana": [
-        {
-          "name": "Bava",
-          "number": 9,
-          "end_time": "10:15"
-        },
-        {
-          "name": "Balava",
-          "number": 10,
-          "end_time": "20:50"
-        }
-      ],
-      "vaara": "Tuesday",
-      "sunrise": "05:53",
-      "sunset": "20:05",
-      "moonrise": "07:49",
-      "moonset": "01:01",
-      "sun_rashi": "Mesha",
-      "chandra_rashi": {
-        "name": "Vrishabha",
-        "end_time": "08:30"
-      },
-      "muhurtas": {
-        "rahu_kalam": {
-          "start": "16:33",
-          "end": "18:19"
-        },
-        "gulikai_kalam": {
-          "start": "13:00",
-          "end": "14:46"
-        },
-        "yamaganda": {
-          "start": "09:27",
-          "end": "11:13"
-        },
-        "abhijit_muhurta": {
-          "start": "12:31",
-          "end": "13:28"
-        },
-        "dur_muhurtam": [
-          {
-            "start": "07:47",
-            "end": "08:44"
-          },
-          {
-            "start": "14:25",
-            "end": "15:22"
-          }
-        ],
-        "amrit_kalam": {
-          "start": "16:18",
-          "end": "17:46"
-        },
-        "varjyam": {
-          "start": "19:30",
-          "end": "21:06"
-        }
-      },
-      "festivals": []
-    },
-    "2026-04-21|51.5074|-0.1278|1.0|te": {
+    "2026-04-21|17.4375|78.9433|5.5|te": {
       "date": "2026-04-21",
       "masa": "వైశాఖం",
       "paksha": "శుక్ల పక్షం",
@@ -639,183 +96,2624 @@
       "tithi": {
         "number": 5,
         "name": "పంచమి",
-        "end_time": "20:50",
+        "end_time": "01:20",
         "next_name": null,
         "next_end_time": null
       },
       "nakshatra": {
         "number": 5,
         "name": "మృగశిర",
-        "end_time": "19:28",
+        "end_time": "23:58",
         "next_name": null,
         "next_end_time": null
       },
       "yoga": {
         "number": 5,
         "name": "శోభన",
-        "end_time": "08:00",
-        "next_name": "అతిగండ",
-        "next_end_time": "04:38"
+        "end_time": "12:30",
+        "next_name": null,
+        "next_end_time": null
       },
       "karana": [
         {
           "name": "బవ",
           "number": 9,
-          "end_time": "10:15"
+          "end_time": "14:45"
         },
         {
           "name": "బాలవ",
           "number": 10,
-          "end_time": "20:50"
+          "end_time": "01:20"
         }
       ],
       "vaara": "మంగళవారం",
-      "sunrise": "05:53",
-      "sunset": "20:05",
-      "moonrise": "07:49",
-      "moonset": "01:01",
+      "sunrise": "05:55",
+      "sunset": "18:30",
+      "moonrise": "09:03",
+      "moonset": "22:52",
       "sun_rashi": "మేషం",
       "chandra_rashi": {
         "name": "వృషభం",
-        "end_time": "08:30"
+        "end_time": "13:00"
       },
       "muhurtas": {
         "rahu_kalam": {
-          "start": "16:33",
-          "end": "18:19"
+          "start": "15:22",
+          "end": "16:56"
         },
         "gulikai_kalam": {
-          "start": "13:00",
-          "end": "14:46"
+          "start": "12:13",
+          "end": "13:48"
         },
         "yamaganda": {
-          "start": "09:27",
-          "end": "11:13"
+          "start": "09:04",
+          "end": "10:39"
         },
         "abhijit_muhurta": {
-          "start": "12:31",
-          "end": "13:28"
+          "start": "11:48",
+          "end": "12:38"
         },
         "dur_muhurtam": [
           {
-            "start": "07:47",
-            "end": "08:44"
+            "start": "07:36",
+            "end": "08:26"
           },
           {
-            "start": "14:25",
-            "end": "15:22"
+            "start": "13:29",
+            "end": "14:19"
           }
         ],
         "amrit_kalam": {
-          "start": "16:18",
-          "end": "17:46"
+          "start": "16:19",
+          "end": "17:47"
         },
         "varjyam": {
-          "start": "19:30",
-          "end": "21:06"
+          "start": "19:31",
+          "end": "21:07"
         }
       },
       "festivals": []
     },
-    "2026-04-21|51.5074|-0.1278|1.0|en": {
+    "2026-04-21|17.3606|78.4741|5.5|te": {
       "date": "2026-04-21",
-      "masa": "Vaisakha",
-      "paksha": "Shukla Paksha",
+      "masa": "వైశాఖం",
+      "paksha": "శుక్ల పక్షం",
       "samvat": 1948,
-      "samvatsara": "Plavanga",
+      "samvatsara": "ప్లవంగ",
       "tithi": {
         "number": 5,
-        "name": "Panchami",
-        "end_time": "20:50",
+        "name": "పంచమి",
+        "end_time": "01:20",
         "next_name": null,
         "next_end_time": null
       },
       "nakshatra": {
         "number": 5,
-        "name": "Mrigashira",
-        "end_time": "19:28",
+        "name": "మృగశిర",
+        "end_time": "23:58",
         "next_name": null,
         "next_end_time": null
       },
       "yoga": {
         "number": 5,
-        "name": "Shobhana",
-        "end_time": "08:00",
-        "next_name": "Atiganda",
-        "next_end_time": "04:38"
+        "name": "శోభన",
+        "end_time": "12:30",
+        "next_name": null,
+        "next_end_time": null
       },
       "karana": [
         {
-          "name": "Bava",
+          "name": "బవ",
           "number": 9,
-          "end_time": "10:15"
+          "end_time": "14:45"
         },
         {
-          "name": "Balava",
+          "name": "బాలవ",
           "number": 10,
-          "end_time": "20:50"
+          "end_time": "01:20"
         }
       ],
-      "vaara": "Tuesday",
-      "sunrise": "05:53",
-      "sunset": "20:05",
-      "moonrise": "07:49",
-      "moonset": "01:01",
-      "sun_rashi": "Mesha",
+      "vaara": "మంగళవారం",
+      "sunrise": "05:57",
+      "sunset": "18:32",
+      "moonrise": "09:05",
+      "moonset": "22:54",
+      "sun_rashi": "మేషం",
       "chandra_rashi": {
-        "name": "Vrishabha",
-        "end_time": "08:30"
+        "name": "వృషభం",
+        "end_time": "13:00"
       },
       "muhurtas": {
         "rahu_kalam": {
-          "start": "16:33",
-          "end": "18:19"
+          "start": "15:24",
+          "end": "16:58"
         },
         "gulikai_kalam": {
-          "start": "13:00",
-          "end": "14:46"
+          "start": "12:15",
+          "end": "13:49"
         },
         "yamaganda": {
-          "start": "09:27",
-          "end": "11:13"
+          "start": "09:06",
+          "end": "10:41"
         },
         "abhijit_muhurta": {
-          "start": "12:31",
-          "end": "13:28"
+          "start": "11:50",
+          "end": "12:40"
         },
         "dur_muhurtam": [
           {
-            "start": "07:47",
-            "end": "08:44"
+            "start": "07:38",
+            "end": "08:28"
           },
           {
-            "start": "14:25",
-            "end": "15:22"
+            "start": "13:30",
+            "end": "14:21"
           }
         ],
         "amrit_kalam": {
-          "start": "16:18",
-          "end": "17:46"
+          "start": "16:21",
+          "end": "17:49"
         },
         "varjyam": {
-          "start": "19:30",
-          "end": "21:06"
+          "start": "19:33",
+          "end": "21:09"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-22|17.4375|78.9433|5.5|te": {
+      "date": "2026-04-22",
+      "masa": "వైశాఖం",
+      "paksha": "శుక్ల పక్షం",
+      "samvat": 1948,
+      "samvatsara": "ప్లవంగ",
+      "tithi": {
+        "number": 6,
+        "name": "షష్ఠి",
+        "end_time": "22:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 6,
+        "name": "ఆర్ద్ర",
+        "end_time": "22:13",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 6,
+        "name": "అతిగండ",
+        "end_time": "09:08",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "కౌలవ",
+          "number": 11,
+          "end_time": "12:01"
+        },
+        {
+          "name": "తైతిల",
+          "number": 12,
+          "end_time": "22:50"
+        }
+      ],
+      "vaara": "బుధవారం",
+      "sunrise": "05:54",
+      "sunset": "18:31",
+      "moonrise": "10:08",
+      "moonset": "23:53",
+      "sun_rashi": "మేషం",
+      "chandra_rashi": {
+        "name": "మిథునం",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "12:13",
+          "end": "13:47"
+        },
+        "gulikai_kalam": {
+          "start": "10:38",
+          "end": "12:13"
+        },
+        "yamaganda": {
+          "start": "07:29",
+          "end": "09:04"
+        },
+        "abhijit_muhurta": {
+          "start": "11:48",
+          "end": "12:38"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "10:57",
+            "end": "11:48"
+          },
+          {
+            "start": "15:09",
+            "end": "16:00"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "06:43",
+          "end": "08:11"
+        },
+        "varjyam": {
+          "start": "17:55",
+          "end": "19:31"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-22|17.3606|78.4741|5.5|te": {
+      "date": "2026-04-22",
+      "masa": "వైశాఖం",
+      "paksha": "శుక్ల పక్షం",
+      "samvat": 1948,
+      "samvatsara": "ప్లవంగ",
+      "tithi": {
+        "number": 6,
+        "name": "షష్ఠి",
+        "end_time": "22:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 6,
+        "name": "ఆర్ద్ర",
+        "end_time": "22:13",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 6,
+        "name": "అతిగండ",
+        "end_time": "09:08",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "కౌలవ",
+          "number": 11,
+          "end_time": "12:01"
+        },
+        {
+          "name": "తైతిల",
+          "number": 12,
+          "end_time": "22:50"
+        }
+      ],
+      "vaara": "బుధవారం",
+      "sunrise": "05:56",
+      "sunset": "18:32",
+      "moonrise": "10:10",
+      "moonset": "23:55",
+      "sun_rashi": "మేషం",
+      "chandra_rashi": {
+        "name": "మిథునం",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "12:15",
+          "end": "13:49"
+        },
+        "gulikai_kalam": {
+          "start": "10:40",
+          "end": "12:15"
+        },
+        "yamaganda": {
+          "start": "07:31",
+          "end": "09:06"
+        },
+        "abhijit_muhurta": {
+          "start": "11:50",
+          "end": "12:40"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "10:59",
+            "end": "11:50"
+          },
+          {
+            "start": "15:11",
+            "end": "16:02"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "06:45",
+          "end": "08:13"
+        },
+        "varjyam": {
+          "start": "17:57",
+          "end": "19:33"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-23|17.4375|78.9433|5.5|te": {
+      "date": "2026-04-23",
+      "masa": "వైశాఖం",
+      "paksha": "శుక్ల పక్షం",
+      "samvat": 1948,
+      "samvatsara": "ప్లవంగ",
+      "tithi": {
+        "number": 7,
+        "name": "సప్తమి",
+        "end_time": "20:49",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 7,
+        "name": "పునర్వసు",
+        "end_time": "20:57",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 7,
+        "name": "సుకర్మ",
+        "end_time": "06:07",
+        "next_name": "ధృతి",
+        "next_end_time": "03:32"
+      },
+      "karana": [
+        {
+          "name": "గరజ",
+          "number": 13,
+          "end_time": "09:45"
+        },
+        {
+          "name": "వణిజ",
+          "number": 14,
+          "end_time": "20:49"
+        }
+      ],
+      "vaara": "గురువారం",
+      "sunrise": "05:54",
+      "sunset": "18:31",
+      "moonrise": "11:13",
+      "moonset": "00:46",
+      "sun_rashi": "మేషం",
+      "chandra_rashi": {
+        "name": "మిథునం",
+        "end_time": "15:13"
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "13:47",
+          "end": "15:22"
+        },
+        "gulikai_kalam": {
+          "start": "09:03",
+          "end": "10:38"
+        },
+        "yamaganda": {
+          "start": "05:54",
+          "end": "07:29"
+        },
+        "abhijit_muhurta": {
+          "start": "11:47",
+          "end": "12:38"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "09:16",
+            "end": "10:06"
+          },
+          {
+            "start": "13:28",
+            "end": "14:19"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "08:18",
+          "end": "09:46"
+        },
+        "varjyam": {
+          "start": "16:18",
+          "end": "17:54"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-22|17.4375|78.9433|5.5|hi": {
+      "date": "2026-04-22",
+      "masa": "Vaisakha",
+      "paksha": "शुक्ल पक्ष",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 6,
+        "name": "Shashthi",
+        "end_time": "22:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 6,
+        "name": "Ardra",
+        "end_time": "22:13",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 6,
+        "name": "Atiganda",
+        "end_time": "09:08",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "Kaulava",
+          "number": 11,
+          "end_time": "12:01"
+        },
+        {
+          "name": "Taitila",
+          "number": 12,
+          "end_time": "22:50"
+        }
+      ],
+      "vaara": "Wednesday",
+      "sunrise": "05:54",
+      "sunset": "18:31",
+      "moonrise": "10:08",
+      "moonset": "23:53",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Mithuna",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "12:13",
+          "end": "13:47"
+        },
+        "gulikai_kalam": {
+          "start": "10:38",
+          "end": "12:13"
+        },
+        "yamaganda": {
+          "start": "07:29",
+          "end": "09:04"
+        },
+        "abhijit_muhurta": {
+          "start": "11:48",
+          "end": "12:38"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "10:57",
+            "end": "11:48"
+          },
+          {
+            "start": "15:09",
+            "end": "16:00"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "06:43",
+          "end": "08:11"
+        },
+        "varjyam": {
+          "start": "17:55",
+          "end": "19:31"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-22|17.4375|78.9433|5.5|en": {
+      "date": "2026-04-22",
+      "masa": "Vaisakha",
+      "paksha": "Shukla Paksha",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 6,
+        "name": "Shashthi",
+        "end_time": "22:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 6,
+        "name": "Ardra",
+        "end_time": "22:13",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 6,
+        "name": "Atiganda",
+        "end_time": "09:08",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "Kaulava",
+          "number": 11,
+          "end_time": "12:01"
+        },
+        {
+          "name": "Taitila",
+          "number": 12,
+          "end_time": "22:50"
+        }
+      ],
+      "vaara": "Wednesday",
+      "sunrise": "05:54",
+      "sunset": "18:31",
+      "moonrise": "10:08",
+      "moonset": "23:53",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Mithuna",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "12:13",
+          "end": "13:47"
+        },
+        "gulikai_kalam": {
+          "start": "10:38",
+          "end": "12:13"
+        },
+        "yamaganda": {
+          "start": "07:29",
+          "end": "09:04"
+        },
+        "abhijit_muhurta": {
+          "start": "11:48",
+          "end": "12:38"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "10:57",
+            "end": "11:48"
+          },
+          {
+            "start": "15:09",
+            "end": "16:00"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "06:43",
+          "end": "08:11"
+        },
+        "varjyam": {
+          "start": "17:55",
+          "end": "19:31"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-22|17.3606|78.4741|5.5|en": {
+      "date": "2026-04-22",
+      "masa": "Vaisakha",
+      "paksha": "Shukla Paksha",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 6,
+        "name": "Shashthi",
+        "end_time": "22:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 6,
+        "name": "Ardra",
+        "end_time": "22:13",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 6,
+        "name": "Atiganda",
+        "end_time": "09:08",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "Kaulava",
+          "number": 11,
+          "end_time": "12:01"
+        },
+        {
+          "name": "Taitila",
+          "number": 12,
+          "end_time": "22:50"
+        }
+      ],
+      "vaara": "Wednesday",
+      "sunrise": "05:56",
+      "sunset": "18:32",
+      "moonrise": "10:10",
+      "moonset": "23:55",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Mithuna",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "12:15",
+          "end": "13:49"
+        },
+        "gulikai_kalam": {
+          "start": "10:40",
+          "end": "12:15"
+        },
+        "yamaganda": {
+          "start": "07:31",
+          "end": "09:06"
+        },
+        "abhijit_muhurta": {
+          "start": "11:50",
+          "end": "12:40"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "10:59",
+            "end": "11:50"
+          },
+          {
+            "start": "15:11",
+            "end": "16:02"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "06:45",
+          "end": "08:13"
+        },
+        "varjyam": {
+          "start": "17:57",
+          "end": "19:33"
+        }
+      },
+      "festivals": []
+    },
+    "2026-04-22|17.3606|78.4741|5.5|hi": {
+      "date": "2026-04-22",
+      "masa": "Vaisakha",
+      "paksha": "शुक्ल पक्ष",
+      "samvat": 1948,
+      "samvatsara": "Plavanga",
+      "tithi": {
+        "number": 6,
+        "name": "Shashthi",
+        "end_time": "22:50",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "nakshatra": {
+        "number": 6,
+        "name": "Ardra",
+        "end_time": "22:13",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "yoga": {
+        "number": 6,
+        "name": "Atiganda",
+        "end_time": "09:08",
+        "next_name": null,
+        "next_end_time": null
+      },
+      "karana": [
+        {
+          "name": "Kaulava",
+          "number": 11,
+          "end_time": "12:01"
+        },
+        {
+          "name": "Taitila",
+          "number": 12,
+          "end_time": "22:50"
+        }
+      ],
+      "vaara": "Wednesday",
+      "sunrise": "05:56",
+      "sunset": "18:32",
+      "moonrise": "10:10",
+      "moonset": "23:55",
+      "sun_rashi": "Mesha",
+      "chandra_rashi": {
+        "name": "Mithuna",
+        "end_time": null
+      },
+      "muhurtas": {
+        "rahu_kalam": {
+          "start": "12:15",
+          "end": "13:49"
+        },
+        "gulikai_kalam": {
+          "start": "10:40",
+          "end": "12:15"
+        },
+        "yamaganda": {
+          "start": "07:31",
+          "end": "09:06"
+        },
+        "abhijit_muhurta": {
+          "start": "11:50",
+          "end": "12:40"
+        },
+        "dur_muhurtam": [
+          {
+            "start": "10:59",
+            "end": "11:50"
+          },
+          {
+            "start": "15:11",
+            "end": "16:02"
+          }
+        ],
+        "amrit_kalam": {
+          "start": "06:45",
+          "end": "08:13"
+        },
+        "varjyam": {
+          "start": "17:57",
+          "end": "19:33"
         }
       },
       "festivals": []
     }
   },
   "daily_ttl": {
-    "2026-04-20|17.5173|78.8863|5.5|te": "2026-04-21T19:48:56.031455",
-    "2026-04-20|17.5173|78.8863|5.5|en": "2026-04-21T19:48:57.567648",
-    "2026-04-20|17.3606|78.4741|5.5|hi": "2026-04-21T19:58:36.435167",
-    "2026-04-21|17.5173|78.8863|5.5|en": "2026-04-22T10:48:57.825555",
-    "2026-04-21|17.3606|78.4741|5.5|hi": "2026-04-22T10:49:00.694291",
-    "2026-04-21|17.4375|78.9433|5.5|hi": "2026-04-22T12:48:15.749631",
-    "2026-04-21|51.5074|-0.1278|1.0|hi": "2026-04-22T12:52:55.530668",
-    "2026-04-21|51.5074|-0.1278|1.0|te": "2026-04-22T12:54:45.304000",
-    "2026-04-21|51.5074|-0.1278|1.0|en": "2026-04-22T12:54:45.913019"
+    "2026-04-21|17.4375|78.9433|5.5|en": "2026-04-22T21:00:26.371521",
+    "2026-04-21|17.4375|78.9433|5.5|te": "2026-04-22T21:00:40.216317",
+    "2026-04-21|17.3606|78.4741|5.5|te": "2026-04-22T22:01:43.959143",
+    "2026-04-22|17.4375|78.9433|5.5|te": "2026-04-23T07:18:21.673920",
+    "2026-04-22|17.3606|78.4741|5.5|te": "2026-04-23T07:18:43.108506",
+    "2026-04-23|17.4375|78.9433|5.5|te": "2026-04-23T07:20:14.081287",
+    "2026-04-22|17.4375|78.9433|5.5|hi": "2026-04-23T07:59:51.735498",
+    "2026-04-22|17.4375|78.9433|5.5|en": "2026-04-23T07:59:53.291503",
+    "2026-04-22|17.3606|78.4741|5.5|en": "2026-04-23T19:27:58.442302",
+    "2026-04-22|17.3606|78.4741|5.5|hi": "2026-04-23T19:42:58.433500"
   },
-  "monthly": {},
-  "monthly_ttl": {}
+  "monthly": {
+    "2026|3|17.4375|78.9433|5.5|te": {
+      "year": 2026,
+      "month": 3,
+      "masa": "ఫాల్గుణం",
+      "samvat": 1947,
+      "days": [
+        {
+          "date": "2026-03-01",
+          "tithi_name": "త్రయోదశి",
+          "tithi_number": 13,
+          "tithi_end_time": "19:09",
+          "nakshatra_name": "పుష్యమి",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "08:34",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:33",
+          "sunset": "18:19",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "ఫాల్గుణ శుక్ల ప్రదోషం"
+          ]
+        },
+        {
+          "date": "2026-03-02",
+          "tithi_name": "చతుర్దశి",
+          "tithi_number": 14,
+          "tithi_end_time": "17:56",
+          "nakshatra_name": "ఆశ్లేష",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "07:51",
+          "vaara": "సోమవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:33",
+          "sunset": "18:19",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-03",
+          "tithi_name": "పూర్ణిమ",
+          "tithi_number": 15,
+          "tithi_end_time": "17:07",
+          "nakshatra_name": "మఘ",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "07:31",
+          "vaara": "మంగళవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:32",
+          "sunset": "18:20",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "హోళి"
+          ]
+        },
+        {
+          "date": "2026-03-04",
+          "tithi_name": "పాడ్యమి",
+          "tithi_number": 16,
+          "tithi_end_time": "16:49",
+          "nakshatra_name": "పూర్వ ఫల్గుణి",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "07:38",
+          "vaara": "బుధవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:31",
+          "sunset": "18:20",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 16,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-05",
+          "tithi_name": "విదియ",
+          "tithi_number": 17,
+          "tithi_end_time": "17:04",
+          "nakshatra_name": "ఉత్తర ఫల్గుణి",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "08:17",
+          "vaara": "గురువారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:30",
+          "sunset": "18:20",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 17,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-06",
+          "tithi_name": "తదియ",
+          "tithi_number": 18,
+          "tithi_end_time": "17:53",
+          "nakshatra_name": "హస్త",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "09:29",
+          "vaara": "శుక్రవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:30",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 18,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-07",
+          "tithi_name": "చవితి",
+          "tithi_number": 19,
+          "tithi_end_time": "19:17",
+          "nakshatra_name": "చిత్త",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "11:15",
+          "vaara": "శనివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:29",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "సంకష్టహర చతుర్థి"
+          ]
+        },
+        {
+          "date": "2026-03-08",
+          "tithi_name": "పంచమి",
+          "tithi_number": 20,
+          "tithi_end_time": "21:11",
+          "nakshatra_name": "స్వాతి",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "13:31",
+          "vaara": "ఆదివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:28",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 20,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-09",
+          "tithi_name": "షష్ఠి",
+          "tithi_number": 21,
+          "tithi_end_time": "23:27",
+          "nakshatra_name": "విశాఖ",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "16:11",
+          "vaara": "సోమవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:28",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 21,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-10",
+          "tithi_name": "సప్తమి",
+          "tithi_number": 22,
+          "tithi_end_time": "01:54",
+          "nakshatra_name": "అనూరాధ",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "19:05",
+          "vaara": "మంగళవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:27",
+          "sunset": "18:21",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 22,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-11",
+          "tithi_name": "అష్టమి",
+          "tithi_number": 23,
+          "tithi_end_time": "04:19",
+          "nakshatra_name": "జ్యేష్ఠ",
+          "nakshatra_number": 18,
+          "nakshatra_end_time": "22:00",
+          "vaara": "బుధవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:26",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 23,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-12",
+          "tithi_name": "నవమి",
+          "tithi_number": 24,
+          "tithi_end_time": "06:29",
+          "nakshatra_name": "మూల",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "00:43",
+          "vaara": "గురువారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:25",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "ధనుస్సు",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-13",
+          "tithi_name": "నవమి",
+          "tithi_number": 24,
+          "tithi_end_time": "06:29",
+          "nakshatra_name": "పూర్వాషాఢ",
+          "nakshatra_number": 20,
+          "nakshatra_end_time": "03:03",
+          "vaara": "శుక్రవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:24",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "ధనుస్సు",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-14",
+          "tithi_name": "దశమి",
+          "tithi_number": 25,
+          "tithi_end_time": "08:11",
+          "nakshatra_name": "ఉత్తరాషాఢ",
+          "nakshatra_number": 21,
+          "nakshatra_end_time": "04:49",
+          "vaara": "శనివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:24",
+          "sunset": "18:22",
+          "chandra_rashi": {
+            "name": "ధనుస్సు",
+            "end_time": null
+          },
+          "moon_phase": 25,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-15",
+          "tithi_name": "ఏకాదశి",
+          "tithi_number": 26,
+          "tithi_end_time": "09:17",
+          "nakshatra_name": "శ్రవణం",
+          "nakshatra_number": 22,
+          "nakshatra_end_time": "05:56",
+          "vaara": "ఆదివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:23",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "మకరం",
+            "end_time": null
+          },
+          "moon_phase": 26,
+          "festivals": [
+            "పాపమోచని ఏకాదశి"
+          ]
+        },
+        {
+          "date": "2026-03-16",
+          "tithi_name": "ద్వాదశి",
+          "tithi_number": 27,
+          "tithi_end_time": "09:41",
+          "nakshatra_name": "ధనిష్ఠ",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "06:22",
+          "vaara": "సోమవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:22",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "మకరం",
+            "end_time": null
+          },
+          "moon_phase": 27,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-17",
+          "tithi_name": "త్రయోదశి",
+          "tithi_number": 28,
+          "tithi_end_time": "09:23",
+          "nakshatra_name": "ధనిష్ఠ",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "06:22",
+          "vaara": "మంగళవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:21",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "కుంభం",
+            "end_time": null
+          },
+          "moon_phase": 28,
+          "festivals": [
+            "ఫాల్గుణ కృష్ణ ప్రదోషం"
+          ]
+        },
+        {
+          "date": "2026-03-18",
+          "tithi_name": "చతుర్దశి",
+          "tithi_number": 29,
+          "tithi_end_time": "08:25",
+          "nakshatra_name": "పూర్వాభాద్ర",
+          "nakshatra_number": 25,
+          "nakshatra_end_time": "05:21",
+          "vaara": "బుధవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:21",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "కుంభం",
+            "end_time": null
+          },
+          "moon_phase": 29,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-19",
+          "tithi_name": "అమావాస్య",
+          "tithi_number": 30,
+          "tithi_end_time": "06:53",
+          "nakshatra_name": "ఉత్తరాభాద్ర",
+          "nakshatra_number": 26,
+          "nakshatra_end_time": "04:04",
+          "vaara": "గురువారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:20",
+          "sunset": "18:23",
+          "chandra_rashi": {
+            "name": "మీనం",
+            "end_time": null
+          },
+          "moon_phase": 30,
+          "festivals": [
+            "ఫాల్గుణ అమావాస్య"
+          ]
+        },
+        {
+          "date": "2026-03-20",
+          "tithi_name": "విదియ",
+          "tithi_number": 2,
+          "tithi_end_time": "02:31",
+          "nakshatra_name": "రేవతి",
+          "nakshatra_number": 27,
+          "nakshatra_end_time": "02:27",
+          "vaara": "శుక్రవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:19",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "మీనం",
+            "end_time": null
+          },
+          "moon_phase": 2,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-21",
+          "tithi_name": "తదియ",
+          "tithi_number": 3,
+          "tithi_end_time": "23:56",
+          "nakshatra_name": "అశ్విని",
+          "nakshatra_number": 1,
+          "nakshatra_end_time": "00:37",
+          "vaara": "శనివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:18",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "మేషం",
+            "end_time": null
+          },
+          "moon_phase": 3,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-22",
+          "tithi_name": "చవితి",
+          "tithi_number": 4,
+          "tithi_end_time": "21:17",
+          "nakshatra_name": "భరణి",
+          "nakshatra_number": 2,
+          "nakshatra_end_time": "22:42",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:17",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "మేషం",
+            "end_time": null
+          },
+          "moon_phase": 4,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-23",
+          "tithi_name": "పంచమి",
+          "tithi_number": 5,
+          "tithi_end_time": "18:38",
+          "nakshatra_name": "కృత్తిక",
+          "nakshatra_number": 3,
+          "nakshatra_end_time": "20:49",
+          "vaara": "సోమవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:17",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "వృషభం",
+            "end_time": null
+          },
+          "moon_phase": 5,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-24",
+          "tithi_name": "షష్ఠి",
+          "tithi_number": 6,
+          "tithi_end_time": "16:08",
+          "nakshatra_name": "రోహిణి",
+          "nakshatra_number": 4,
+          "nakshatra_end_time": "19:04",
+          "vaara": "మంగళవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:16",
+          "sunset": "18:24",
+          "chandra_rashi": {
+            "name": "వృషభం",
+            "end_time": null
+          },
+          "moon_phase": 6,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-25",
+          "tithi_name": "సప్తమి",
+          "tithi_number": 7,
+          "tithi_end_time": "13:50",
+          "nakshatra_name": "మృగశిర",
+          "nakshatra_number": 5,
+          "nakshatra_end_time": "17:33",
+          "vaara": "బుధవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:15",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "వృషభం",
+            "end_time": null
+          },
+          "moon_phase": 7,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-26",
+          "tithi_name": "అష్టమి",
+          "tithi_number": 8,
+          "tithi_end_time": "11:49",
+          "nakshatra_name": "ఆర్ద్ర",
+          "nakshatra_number": 6,
+          "nakshatra_end_time": "16:19",
+          "vaara": "గురువారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:14",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "మిథునం",
+            "end_time": null
+          },
+          "moon_phase": 8,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-27",
+          "tithi_name": "నవమి",
+          "tithi_number": 9,
+          "tithi_end_time": "10:07",
+          "nakshatra_name": "పునర్వసు",
+          "nakshatra_number": 7,
+          "nakshatra_end_time": "15:24",
+          "vaara": "శుక్రవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:13",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "మిథునం",
+            "end_time": null
+          },
+          "moon_phase": 9,
+          "festivals": [
+            "రామ నవమి"
+          ]
+        },
+        {
+          "date": "2026-03-28",
+          "tithi_name": "దశమి",
+          "tithi_number": 10,
+          "tithi_end_time": "08:46",
+          "nakshatra_name": "పుష్యమి",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "14:50",
+          "vaara": "శనివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:13",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 10,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-29",
+          "tithi_name": "ఏకాదశి",
+          "tithi_number": 11,
+          "tithi_end_time": "07:46",
+          "nakshatra_name": "ఆశ్లేష",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "14:37",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:12",
+          "sunset": "18:25",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "కామద ఏకాదశి"
+          ]
+        },
+        {
+          "date": "2026-03-30",
+          "tithi_name": "ద్వాదశి",
+          "tithi_number": 12,
+          "tithi_end_time": "07:10",
+          "nakshatra_name": "మఘ",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "14:47",
+          "vaara": "సోమవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:11",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 12,
+          "festivals": []
+        },
+        {
+          "date": "2026-03-31",
+          "tithi_name": "త్రయోదశి",
+          "tithi_number": 13,
+          "tithi_end_time": "06:56",
+          "nakshatra_name": "పూర్వ ఫల్గుణి",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "15:20",
+          "vaara": "మంగళవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:10",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "చైత్ర శుక్ల ప్రదోషం"
+          ]
+        }
+      ]
+    },
+    "2026|4|17.4375|78.9433|5.5|te": {
+      "year": 2026,
+      "month": 4,
+      "masa": "చైత్రం",
+      "samvat": 1948,
+      "days": [
+        {
+          "date": "2026-04-01",
+          "tithi_name": "చతుర్దశి",
+          "tithi_number": 14,
+          "tithi_end_time": "07:06",
+          "nakshatra_name": "ఉత్తర ఫల్గుణి",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "16:17",
+          "vaara": "బుధవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:10",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-02",
+          "tithi_name": "పూర్ణిమ",
+          "tithi_number": 15,
+          "tithi_end_time": "07:42",
+          "nakshatra_name": "హస్త",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "17:38",
+          "vaara": "గురువారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "06:09",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "చైత్ర పౌర్ణమి"
+          ]
+        },
+        {
+          "date": "2026-04-03",
+          "tithi_name": "పాడ్యమి",
+          "tithi_number": 16,
+          "tithi_end_time": "08:42",
+          "nakshatra_name": "చిత్త",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "19:24",
+          "vaara": "శుక్రవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:08",
+          "sunset": "18:26",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 16,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-04",
+          "tithi_name": "విదియ",
+          "tithi_number": 17,
+          "tithi_end_time": "10:09",
+          "nakshatra_name": "స్వాతి",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "21:35",
+          "vaara": "శనివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:07",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 17,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-05",
+          "tithi_name": "తదియ",
+          "tithi_number": 18,
+          "tithi_end_time": "12:00",
+          "nakshatra_name": "విశాఖ",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "00:07",
+          "vaara": "ఆదివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:06",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 18,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-06",
+          "tithi_name": "చవితి",
+          "tithi_number": 19,
+          "tithi_end_time": "14:11",
+          "nakshatra_name": "అనూరాధ",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "02:56",
+          "vaara": "సోమవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:06",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "సంకష్టహర చతుర్థి"
+          ]
+        },
+        {
+          "date": "2026-04-07",
+          "tithi_name": "పంచమి",
+          "tithi_number": 20,
+          "tithi_end_time": "16:35",
+          "nakshatra_name": "జ్యేష్ఠ",
+          "nakshatra_number": 18,
+          "nakshatra_end_time": "05:53",
+          "vaara": "మంగళవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:05",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 20,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-08",
+          "tithi_name": "షష్ఠి",
+          "tithi_number": 21,
+          "tithi_end_time": "19:02",
+          "nakshatra_name": "మూల",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "08:48",
+          "vaara": "బుధవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:04",
+          "sunset": "18:27",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 21,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-09",
+          "tithi_name": "సప్తమి",
+          "tithi_number": 22,
+          "tithi_end_time": "21:20",
+          "nakshatra_name": "మూల",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "08:48",
+          "vaara": "గురువారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:03",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "ధనుస్సు",
+            "end_time": null
+          },
+          "moon_phase": 22,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-10",
+          "tithi_name": "అష్టమి",
+          "tithi_number": 23,
+          "tithi_end_time": "23:16",
+          "nakshatra_name": "పూర్వాషాఢ",
+          "nakshatra_number": 20,
+          "nakshatra_end_time": "11:27",
+          "vaara": "శుక్రవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:03",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "ధనుస్సు",
+            "end_time": null
+          },
+          "moon_phase": 23,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-11",
+          "tithi_name": "నవమి",
+          "tithi_number": 24,
+          "tithi_end_time": "00:38",
+          "nakshatra_name": "ఉత్తరాషాఢ",
+          "nakshatra_number": 21,
+          "nakshatra_end_time": "13:39",
+          "vaara": "శనివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:02",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "మకరం",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-12",
+          "tithi_name": "దశమి",
+          "tithi_number": 25,
+          "tithi_end_time": "01:17",
+          "nakshatra_name": "శ్రవణం",
+          "nakshatra_number": 22,
+          "nakshatra_end_time": "15:14",
+          "vaara": "ఆదివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:01",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "మకరం",
+            "end_time": null
+          },
+          "moon_phase": 25,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-13",
+          "tithi_name": "ఏకాదశి",
+          "tithi_number": 26,
+          "tithi_end_time": "01:09",
+          "nakshatra_name": "ధనిష్ఠ",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "16:03",
+          "vaara": "సోమవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:00",
+          "sunset": "18:28",
+          "chandra_rashi": {
+            "name": "కుంభం",
+            "end_time": null
+          },
+          "moon_phase": 26,
+          "festivals": [
+            "వరూథిని ఏకాదశి"
+          ]
+        },
+        {
+          "date": "2026-04-14",
+          "tithi_name": "ద్వాదశి",
+          "tithi_number": 27,
+          "tithi_end_time": "00:12",
+          "nakshatra_name": "శతభిషం",
+          "nakshatra_number": 24,
+          "nakshatra_end_time": "16:05",
+          "vaara": "మంగళవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "06:00",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "కుంభం",
+            "end_time": null
+          },
+          "moon_phase": 27,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-15",
+          "tithi_name": "త్రయోదశి",
+          "tithi_number": 28,
+          "tithi_end_time": "22:31",
+          "nakshatra_name": "పూర్వాభాద్ర",
+          "nakshatra_number": 25,
+          "nakshatra_end_time": "15:22",
+          "vaara": "బుధవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:59",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "కుంభం",
+            "end_time": null
+          },
+          "moon_phase": 28,
+          "festivals": [
+            "చైత్ర కృష్ణ ప్రదోషం"
+          ]
+        },
+        {
+          "date": "2026-04-16",
+          "tithi_name": "చతుర్దశి",
+          "tithi_number": 29,
+          "tithi_end_time": "20:11",
+          "nakshatra_name": "ఉత్తరాభాద్ర",
+          "nakshatra_number": 26,
+          "nakshatra_end_time": "13:58",
+          "vaara": "గురువారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:58",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "మీనం",
+            "end_time": null
+          },
+          "moon_phase": 29,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-17",
+          "tithi_name": "అమావాస్య",
+          "tithi_number": 30,
+          "tithi_end_time": "17:21",
+          "nakshatra_name": "రేవతి",
+          "nakshatra_number": 27,
+          "nakshatra_end_time": "12:02",
+          "vaara": "శుక్రవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:58",
+          "sunset": "18:29",
+          "chandra_rashi": {
+            "name": "మీనం",
+            "end_time": null
+          },
+          "moon_phase": 30,
+          "festivals": [
+            "చైత్ర అమావాస్య"
+          ]
+        },
+        {
+          "date": "2026-04-18",
+          "tithi_name": "పాడ్యమి",
+          "tithi_number": 1,
+          "tithi_end_time": "14:11",
+          "nakshatra_name": "అశ్విని",
+          "nakshatra_number": 1,
+          "nakshatra_end_time": "09:42",
+          "vaara": "శనివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:57",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "మేషం",
+            "end_time": null
+          },
+          "moon_phase": 1,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-19",
+          "tithi_name": "విదియ",
+          "tithi_number": 2,
+          "tithi_end_time": "10:49",
+          "nakshatra_name": "భరణి",
+          "nakshatra_number": 2,
+          "nakshatra_end_time": "07:09",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:56",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "మేషం",
+            "end_time": null
+          },
+          "moon_phase": 2,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-20",
+          "tithi_name": "తదియ",
+          "tithi_number": 3,
+          "tithi_end_time": "07:28",
+          "nakshatra_name": "రోహిణి",
+          "nakshatra_number": 4,
+          "nakshatra_end_time": "02:08",
+          "vaara": "సోమవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:56",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "వృషభం",
+            "end_time": null
+          },
+          "moon_phase": 3,
+          "festivals": [
+            "అక్షయ తృతీయ"
+          ]
+        },
+        {
+          "date": "2026-04-21",
+          "tithi_name": "పంచమి",
+          "tithi_number": 5,
+          "tithi_end_time": "01:20",
+          "nakshatra_name": "మృగశిర",
+          "nakshatra_number": 5,
+          "nakshatra_end_time": "23:58",
+          "vaara": "మంగళవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:55",
+          "sunset": "18:30",
+          "chandra_rashi": {
+            "name": "వృషభం",
+            "end_time": null
+          },
+          "moon_phase": 5,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-22",
+          "tithi_name": "షష్ఠి",
+          "tithi_number": 6,
+          "tithi_end_time": "22:50",
+          "nakshatra_name": "ఆర్ద్ర",
+          "nakshatra_number": 6,
+          "nakshatra_end_time": "22:13",
+          "vaara": "బుధవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:54",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "మిథునం",
+            "end_time": null
+          },
+          "moon_phase": 6,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-23",
+          "tithi_name": "సప్తమి",
+          "tithi_number": 7,
+          "tithi_end_time": "20:49",
+          "nakshatra_name": "పునర్వసు",
+          "nakshatra_number": 7,
+          "nakshatra_end_time": "20:57",
+          "vaara": "గురువారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:54",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "మిథునం",
+            "end_time": null
+          },
+          "moon_phase": 7,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-24",
+          "tithi_name": "అష్టమి",
+          "tithi_number": 8,
+          "tithi_end_time": "19:22",
+          "nakshatra_name": "పుష్యమి",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "20:14",
+          "vaara": "శుక్రవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:53",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 8,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-25",
+          "tithi_name": "నవమి",
+          "tithi_number": 9,
+          "tithi_end_time": "18:28",
+          "nakshatra_name": "ఆశ్లేష",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "20:04",
+          "vaara": "శనివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:52",
+          "sunset": "18:31",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 9,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-26",
+          "tithi_name": "దశమి",
+          "tithi_number": 10,
+          "tithi_end_time": "18:07",
+          "nakshatra_name": "మఘ",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "20:27",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:52",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 10,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-27",
+          "tithi_name": "ఏకాదశి",
+          "tithi_number": 11,
+          "tithi_end_time": "18:16",
+          "nakshatra_name": "పూర్వ ఫల్గుణి",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "21:18",
+          "vaara": "సోమవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:51",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "మోహిని ఏకాదశి"
+          ]
+        },
+        {
+          "date": "2026-04-28",
+          "tithi_name": "ద్వాదశి",
+          "tithi_number": 12,
+          "tithi_end_time": "18:52",
+          "nakshatra_name": "ఉత్తర ఫల్గుణి",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "22:36",
+          "vaara": "మంగళవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:51",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 12,
+          "festivals": []
+        },
+        {
+          "date": "2026-04-29",
+          "tithi_name": "త్రయోదశి",
+          "tithi_number": 13,
+          "tithi_end_time": "19:52",
+          "nakshatra_name": "హస్త",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "00:16",
+          "vaara": "బుధవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:50",
+          "sunset": "18:32",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "వైశాఖ శుక్ల ప్రదోషం"
+          ]
+        },
+        {
+          "date": "2026-04-30",
+          "tithi_name": "చతుర్దశి",
+          "tithi_number": 14,
+          "tithi_end_time": "21:13",
+          "nakshatra_name": "చిత్త",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "02:16",
+          "vaara": "గురువారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:49",
+          "sunset": "18:33",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        }
+      ]
+    },
+    "2026|5|17.4375|78.9433|5.5|te": {
+      "year": 2026,
+      "month": 5,
+      "masa": "వైశాఖం",
+      "samvat": 1948,
+      "days": [
+        {
+          "date": "2026-05-01",
+          "tithi_name": "పూర్ణిమ",
+          "tithi_number": 15,
+          "tithi_end_time": "22:53",
+          "nakshatra_name": "స్వాతి",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "04:35",
+          "vaara": "శుక్రవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:49",
+          "sunset": "18:33",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "వైశాఖ పౌర్ణమి"
+          ]
+        },
+        {
+          "date": "2026-05-02",
+          "tithi_name": "పాడ్యమి",
+          "tithi_number": 16,
+          "tithi_end_time": "00:50",
+          "nakshatra_name": "విశాఖ",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "07:09",
+          "vaara": "శనివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:48",
+          "sunset": "18:33",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 16,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-03",
+          "tithi_name": "విదియ",
+          "tithi_number": 17,
+          "tithi_end_time": "03:02",
+          "nakshatra_name": "విశాఖ",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "07:09",
+          "vaara": "ఆదివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:48",
+          "sunset": "18:34",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 17,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-04",
+          "tithi_name": "తదియ",
+          "tithi_number": 18,
+          "tithi_end_time": "05:24",
+          "nakshatra_name": "అనూరాధ",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "09:57",
+          "vaara": "సోమవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:47",
+          "sunset": "18:34",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 18,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-05",
+          "tithi_name": "చవితి",
+          "tithi_number": 19,
+          "tithi_end_time": "07:51",
+          "nakshatra_name": "జ్యేష్ఠ",
+          "nakshatra_number": 18,
+          "nakshatra_end_time": "12:54",
+          "vaara": "మంగళవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:47",
+          "sunset": "18:34",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "సంకష్టహర చతుర్థి"
+          ]
+        },
+        {
+          "date": "2026-05-06",
+          "tithi_name": "చవితి",
+          "tithi_number": 19,
+          "tithi_end_time": "07:51",
+          "nakshatra_name": "మూల",
+          "nakshatra_number": 19,
+          "nakshatra_end_time": "15:53",
+          "vaara": "బుధవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:46",
+          "sunset": "18:35",
+          "chandra_rashi": {
+            "name": "ధనుస్సు",
+            "end_time": null
+          },
+          "moon_phase": 19,
+          "festivals": [
+            "సంకష్టహర చతుర్థి"
+          ]
+        },
+        {
+          "date": "2026-05-07",
+          "tithi_name": "పంచమి",
+          "tithi_number": 20,
+          "tithi_end_time": "10:14",
+          "nakshatra_name": "పూర్వాషాఢ",
+          "nakshatra_number": 20,
+          "nakshatra_end_time": "18:45",
+          "vaara": "గురువారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:46",
+          "sunset": "18:35",
+          "chandra_rashi": {
+            "name": "ధనుస్సు",
+            "end_time": null
+          },
+          "moon_phase": 20,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-08",
+          "tithi_name": "షష్ఠి",
+          "tithi_number": 21,
+          "tithi_end_time": "12:22",
+          "nakshatra_name": "ఉత్తరాషాఢ",
+          "nakshatra_number": 21,
+          "nakshatra_end_time": "21:19",
+          "vaara": "శుక్రవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:45",
+          "sunset": "18:35",
+          "chandra_rashi": {
+            "name": "మకరం",
+            "end_time": null
+          },
+          "moon_phase": 21,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-09",
+          "tithi_name": "సప్తమి",
+          "tithi_number": 22,
+          "tithi_end_time": "14:03",
+          "nakshatra_name": "శ్రవణం",
+          "nakshatra_number": 22,
+          "nakshatra_end_time": "23:24",
+          "vaara": "శనివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:45",
+          "sunset": "18:36",
+          "chandra_rashi": {
+            "name": "మకరం",
+            "end_time": null
+          },
+          "moon_phase": 22,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-10",
+          "tithi_name": "అష్టమి",
+          "tithi_number": 23,
+          "tithi_end_time": "15:07",
+          "nakshatra_name": "ధనిష్ఠ",
+          "nakshatra_number": 23,
+          "nakshatra_end_time": "00:50",
+          "vaara": "ఆదివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:45",
+          "sunset": "18:36",
+          "chandra_rashi": {
+            "name": "మకరం",
+            "end_time": null
+          },
+          "moon_phase": 23,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-11",
+          "tithi_name": "నవమి",
+          "tithi_number": 24,
+          "tithi_end_time": "15:25",
+          "nakshatra_name": "శతభిషం",
+          "nakshatra_number": 24,
+          "nakshatra_end_time": "01:28",
+          "vaara": "సోమవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:44",
+          "sunset": "18:36",
+          "chandra_rashi": {
+            "name": "కుంభం",
+            "end_time": null
+          },
+          "moon_phase": 24,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-12",
+          "tithi_name": "దశమి",
+          "tithi_number": 25,
+          "tithi_end_time": "14:52",
+          "nakshatra_name": "పూర్వాభాద్ర",
+          "nakshatra_number": 25,
+          "nakshatra_end_time": "01:17",
+          "vaara": "మంగళవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:44",
+          "sunset": "18:37",
+          "chandra_rashi": {
+            "name": "కుంభం",
+            "end_time": null
+          },
+          "moon_phase": 25,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-13",
+          "tithi_name": "ఏకాదశి",
+          "tithi_number": 26,
+          "tithi_end_time": "13:30",
+          "nakshatra_name": "ఉత్తరాభాద్ర",
+          "nakshatra_number": 26,
+          "nakshatra_end_time": "00:17",
+          "vaara": "బుధవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:43",
+          "sunset": "18:37",
+          "chandra_rashi": {
+            "name": "మీనం",
+            "end_time": null
+          },
+          "moon_phase": 26,
+          "festivals": [
+            "అపర ఏకాదశి"
+          ]
+        },
+        {
+          "date": "2026-05-14",
+          "tithi_name": "ద్వాదశి",
+          "tithi_number": 27,
+          "tithi_end_time": "11:21",
+          "nakshatra_name": "రేవతి",
+          "nakshatra_number": 27,
+          "nakshatra_end_time": "22:33",
+          "vaara": "గురువారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:43",
+          "sunset": "18:37",
+          "chandra_rashi": {
+            "name": "మీనం",
+            "end_time": null
+          },
+          "moon_phase": 27,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-15",
+          "tithi_name": "త్రయోదశి",
+          "tithi_number": 28,
+          "tithi_end_time": "08:31",
+          "nakshatra_name": "అశ్విని",
+          "nakshatra_number": 1,
+          "nakshatra_end_time": "20:14",
+          "vaara": "శుక్రవారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:43",
+          "sunset": "18:38",
+          "chandra_rashi": {
+            "name": "మేషం",
+            "end_time": null
+          },
+          "moon_phase": 28,
+          "festivals": [
+            "వైశాఖ కృష్ణ ప్రదోషం"
+          ]
+        },
+        {
+          "date": "2026-05-16",
+          "tithi_name": "అమావాస్య",
+          "tithi_number": 30,
+          "tithi_end_time": "01:31",
+          "nakshatra_name": "భరణి",
+          "nakshatra_number": 2,
+          "nakshatra_end_time": "17:30",
+          "vaara": "శనివారం",
+          "paksha": "కృష్ణ పక్షం",
+          "sunrise": "05:42",
+          "sunset": "18:38",
+          "chandra_rashi": {
+            "name": "మేషం",
+            "end_time": null
+          },
+          "moon_phase": 30,
+          "festivals": [
+            "వైశాఖ అమావాస్య"
+          ]
+        },
+        {
+          "date": "2026-05-17",
+          "tithi_name": "పాడ్యమి",
+          "tithi_number": 1,
+          "tithi_end_time": "21:41",
+          "nakshatra_name": "కృత్తిక",
+          "nakshatra_number": 3,
+          "nakshatra_end_time": "14:32",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:42",
+          "sunset": "18:38",
+          "chandra_rashi": {
+            "name": "వృషభం",
+            "end_time": null
+          },
+          "moon_phase": 1,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-18",
+          "tithi_name": "విదియ",
+          "tithi_number": 2,
+          "tithi_end_time": "17:53",
+          "nakshatra_name": "రోహిణి",
+          "nakshatra_number": 4,
+          "nakshatra_end_time": "11:31",
+          "vaara": "సోమవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:42",
+          "sunset": "18:39",
+          "chandra_rashi": {
+            "name": "వృషభం",
+            "end_time": null
+          },
+          "moon_phase": 2,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-19",
+          "tithi_name": "తదియ",
+          "tithi_number": 3,
+          "tithi_end_time": "14:18",
+          "nakshatra_name": "మృగశిర",
+          "nakshatra_number": 5,
+          "nakshatra_end_time": "08:41",
+          "vaara": "మంగళవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:42",
+          "sunset": "18:39",
+          "chandra_rashi": {
+            "name": "మిథునం",
+            "end_time": null
+          },
+          "moon_phase": 3,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-20",
+          "tithi_name": "చవితి",
+          "tithi_number": 4,
+          "tithi_end_time": "11:07",
+          "nakshatra_name": "ఆర్ద్ర",
+          "nakshatra_number": 6,
+          "nakshatra_end_time": "06:11",
+          "vaara": "బుధవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:41",
+          "sunset": "18:39",
+          "chandra_rashi": {
+            "name": "మిథునం",
+            "end_time": null
+          },
+          "moon_phase": 4,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-21",
+          "tithi_name": "పంచమి",
+          "tithi_number": 5,
+          "tithi_end_time": "08:27",
+          "nakshatra_name": "పుష్యమి",
+          "nakshatra_number": 8,
+          "nakshatra_end_time": "02:49",
+          "vaara": "గురువారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:41",
+          "sunset": "18:40",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 5,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-22",
+          "tithi_name": "షష్ఠి",
+          "tithi_number": 6,
+          "tithi_end_time": "06:25",
+          "nakshatra_name": "ఆశ్లేష",
+          "nakshatra_number": 9,
+          "nakshatra_end_time": "02:08",
+          "vaara": "శుక్రవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:41",
+          "sunset": "18:40",
+          "chandra_rashi": {
+            "name": "కర్కాటకం",
+            "end_time": null
+          },
+          "moon_phase": 6,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-23",
+          "tithi_name": "అష్టమి",
+          "tithi_number": 8,
+          "tithi_end_time": "04:27",
+          "nakshatra_name": "మఘ",
+          "nakshatra_number": 10,
+          "nakshatra_end_time": "02:09",
+          "vaara": "శనివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:41",
+          "sunset": "18:40",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 8,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-24",
+          "tithi_name": "నవమి",
+          "tithi_number": 9,
+          "tithi_end_time": "04:31",
+          "nakshatra_name": "పూర్వ ఫల్గుణి",
+          "nakshatra_number": 11,
+          "nakshatra_end_time": "02:50",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:41",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 9,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-25",
+          "tithi_name": "దశమి",
+          "tithi_number": 10,
+          "tithi_end_time": "05:11",
+          "nakshatra_name": "ఉత్తర ఫల్గుణి",
+          "nakshatra_number": 12,
+          "nakshatra_end_time": "04:08",
+          "vaara": "సోమవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:41",
+          "chandra_rashi": {
+            "name": "సింహం",
+            "end_time": null
+          },
+          "moon_phase": 10,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-26",
+          "tithi_name": "ఏకాదశి",
+          "tithi_number": 11,
+          "tithi_end_time": "06:22",
+          "nakshatra_name": "హస్త",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "05:56",
+          "vaara": "మంగళవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:42",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "నిర్జల ఏకాదశి"
+          ]
+        },
+        {
+          "date": "2026-05-27",
+          "tithi_name": "ఏకాదశి",
+          "tithi_number": 11,
+          "tithi_end_time": "06:22",
+          "nakshatra_name": "హస్త",
+          "nakshatra_number": 13,
+          "nakshatra_end_time": "05:56",
+          "vaara": "బుధవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:42",
+          "chandra_rashi": {
+            "name": "కన్య",
+            "end_time": null
+          },
+          "moon_phase": 11,
+          "festivals": [
+            "నిర్జల ఏకాదశి"
+          ]
+        },
+        {
+          "date": "2026-05-28",
+          "tithi_name": "ద్వాదశి",
+          "tithi_number": 12,
+          "tithi_end_time": "07:57",
+          "nakshatra_name": "చిత్త",
+          "nakshatra_number": 14,
+          "nakshatra_end_time": "08:08",
+          "vaara": "గురువారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:42",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 12,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-29",
+          "tithi_name": "త్రయోదశి",
+          "tithi_number": 13,
+          "tithi_end_time": "09:51",
+          "nakshatra_name": "స్వాతి",
+          "nakshatra_number": 15,
+          "nakshatra_end_time": "10:37",
+          "vaara": "శుక్రవారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:43",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 13,
+          "festivals": [
+            "జ్యేష్ఠ శుక్ల ప్రదోషం"
+          ]
+        },
+        {
+          "date": "2026-05-30",
+          "tithi_name": "చతుర్దశి",
+          "tithi_number": 14,
+          "tithi_end_time": "11:58",
+          "nakshatra_name": "విశాఖ",
+          "nakshatra_number": 16,
+          "nakshatra_end_time": "13:20",
+          "vaara": "శనివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:43",
+          "chandra_rashi": {
+            "name": "తుల",
+            "end_time": null
+          },
+          "moon_phase": 14,
+          "festivals": []
+        },
+        {
+          "date": "2026-05-31",
+          "tithi_name": "పూర్ణిమ",
+          "tithi_number": 15,
+          "tithi_end_time": "14:15",
+          "nakshatra_name": "అనూరాధ",
+          "nakshatra_number": 17,
+          "nakshatra_end_time": "16:11",
+          "vaara": "ఆదివారం",
+          "paksha": "శుక్ల పక్షం",
+          "sunrise": "05:40",
+          "sunset": "18:43",
+          "chandra_rashi": {
+            "name": "వృశ్చికం",
+            "end_time": null
+          },
+          "moon_phase": 15,
+          "festivals": [
+            "జ్యేష్ఠ పౌర్ణమి"
+          ]
+        }
+      ]
+    }
+  },
+  "monthly_ttl": {
+    "2026|3|17.4375|78.9433|5.5|te": "2026-04-23T07:18:29.874955",
+    "2026|4|17.4375|78.9433|5.5|te": "2026-04-23T07:18:29.893976",
+    "2026|5|17.4375|78.9433|5.5|te": "2026-04-23T07:18:29.939878"
+  }
 }
