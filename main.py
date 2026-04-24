@@ -12,7 +12,7 @@ from typing import Optional
 import httpx
 import pytz
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import HTMLResponse
@@ -63,7 +63,7 @@ async def custom_docs():
         return HTMLResponse(f.read())
 
 # Add GZip compression for faster response times
-app.add_middleware(GZipMiddleware, minimum_size=1000)
+app.add_middleware(GZipMiddleware, minimum_size=2000)
 
 app.add_middleware(
     CORSMiddleware,
@@ -123,6 +123,7 @@ async def resolve_geo(details: BirthDetails) -> dict:
 # ── Place search (GeoNames) ─────────────────────────────────────────────────
 @app.get("/api/places")
 async def places_search(
+    response: Response,
     q: str = Query(..., min_length=2, description="Search query (min 2 chars)"),
     max_rows: int = Query(10, ge=1, le=20),
 ):
@@ -136,13 +137,15 @@ async def places_search(
     """
     try:
         results = await search_places(q, max_rows)
+        response.headers["Cache-Control"] = "public, max-age=86400"
         return {"query": q, "count": len(results), "results": results}
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"GeoNames search failed: {e}")
 
 @app.get("/api/health")
-async def health_check():
+async def health_check(response: Response):
     """Lightweight endpoint for frontend to wake up the server (Cold Start Mitigation)."""
+    response.headers["Cache-Control"] = "no-cache"
     return {"status": "ok", "timestamp": datetime.now().isoformat()}
 
 # ── API Endpoints ─────────────────────────────────────────────────────────

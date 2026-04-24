@@ -33,6 +33,19 @@ def get_http_client():
         )
     return _http_client
 
+_sync_http_client = None
+
+def get_sync_http_client():
+    """Get or create persistent sync HTTP client for connection reuse."""
+    global _sync_http_client
+    if _sync_http_client is None:
+        _sync_http_client = httpx.Client(
+            timeout=10.0,
+            headers=_HEADERS,
+            limits=httpx.Limits(max_keepalive_connections=20, max_connections=50)
+        )
+    return _sync_http_client
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 #  SYNC geocode — used internally by /api/nakshatra & /api/horoscope
@@ -59,10 +72,10 @@ def _geocode_photon_sync(place_name: str) -> dict:
     url = "https://photon.komoot.io/api/"
     params = {"q": place_name.strip(), "limit": 1, "lang": "en"}
 
-    with httpx.Client(timeout=10, headers=_HEADERS) as client:
-        resp = client.get(url, params=params)
-        resp.raise_for_status()
-        data = resp.json()
+    client = get_sync_http_client()
+    resp = client.get(url, params=params)
+    resp.raise_for_status()
+    data = resp.json()
 
     features = data.get("features", [])
     if not features:
@@ -95,10 +108,10 @@ def _geocode_geonames_sync(place_name: str) -> dict:
         "style": "MEDIUM",
     }
 
-    with httpx.Client(timeout=10) as client:
-        resp = client.get(url, params=params)
-        resp.raise_for_status()
-        data = resp.json()
+    client = get_sync_http_client()
+    resp = client.get(url, params=params)
+    resp.raise_for_status()
+    data = resp.json()
 
     if "status" in data:
         raise RuntimeError(data["status"].get("message", "GeoNames error"))

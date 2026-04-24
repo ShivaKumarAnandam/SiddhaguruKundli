@@ -716,25 +716,28 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
     sunrise_jd_ut = sunrise_jd - tz_offset / 24.0
     sunset_jd_ut = sunset_jd - tz_offset / 24.0
 
-    rahu_start, rahu_end = await asyncio.to_thread(
-        calc_rahu_kalam, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset)
-    gulikai_start, gulikai_end = await asyncio.to_thread(
-        calc_gulikai_kalam, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset)
-    yamaganda_start, yamaganda_end = await asyncio.to_thread(
-        calc_yamaganda, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset)
-    abhijit_start, abhijit_end = await asyncio.to_thread(
-        calc_abhijit_muhurta, sunrise_jd_ut, sunset_jd_ut, tz_offset)
-    dur_muhurtam_list = await asyncio.to_thread(
-        calc_dur_muhurtam, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset)
-    amrit_start, amrit_end = await asyncio.to_thread(
-        calc_amrit_kalam, nak_num, sunrise_jd_ut, sunset_jd_ut, tz_offset)
-    varjyam_start, varjyam_end = await asyncio.to_thread(
-        calc_varjyam, nak_num, sunrise_jd_ut, sunset_jd_ut, tz_offset)
-
-    # --- Festivals ---
+    # --- Muhurta timings & Festivals (Parallelized) ---
     tithi_in_paksha = _tithi_in_paksha(tithi_num)
-    festivals = await asyncio.to_thread(
-        get_festivals, masa_num, paksha_num, tithi_in_paksha, lang)
+    
+    (
+        (rahu_start, rahu_end),
+        (gulikai_start, gulikai_end),
+        (yamaganda_start, yamaganda_end),
+        (abhijit_start, abhijit_end),
+        dur_muhurtam_list,
+        (amrit_start, amrit_end),
+        (varjyam_start, varjyam_end),
+        festivals
+    ) = await asyncio.gather(
+        asyncio.to_thread(calc_rahu_kalam, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset),
+        asyncio.to_thread(calc_gulikai_kalam, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset),
+        asyncio.to_thread(calc_yamaganda, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset),
+        asyncio.to_thread(calc_abhijit_muhurta, sunrise_jd_ut, sunset_jd_ut, tz_offset),
+        asyncio.to_thread(calc_dur_muhurtam, sunrise_jd_ut, sunset_jd_ut, vaara_result, tz_offset),
+        asyncio.to_thread(calc_amrit_kalam, nak_num, sunrise_jd_ut, sunset_jd_ut, tz_offset),
+        asyncio.to_thread(calc_varjyam, nak_num, sunrise_jd_ut, sunset_jd_ut, tz_offset),
+        asyncio.to_thread(get_festivals, masa_num, paksha_num, tithi_in_paksha, lang)
+    )
 
     # --- Build response ---
     result = {
@@ -795,9 +798,8 @@ async def get_daily_panchang(date_str: str, lat: float, lon: float,
     # Cache the result
     _daily_cache[cache_key] = result
     _daily_cache_ttl[cache_key] = datetime.now() + timedelta(seconds=CACHE_TTL_SECONDS)
-    _save_cache_to_disk()
+    asyncio.create_task(asyncio.to_thread(_save_cache_to_disk))
     return result
-
 
 # ---------------------------------------------------------------------------
 # Monthly Panchang
@@ -905,12 +907,17 @@ async def get_monthly_panchang(year: int, month: int, lat: float, lon: float,
 
     num_days = calendar.monthrange(year, month)[1]
 
-    # Batch all days in parallel
-    tasks = [
-        _compute_day_summary(year, month, d, lat, lon, tz_offset, lang)
-        for d in range(1, num_days + 1)
-    ]
-    days = await asyncio.gather(*tasks)
+    # Batch all days in chunks to avoid thread pool exhaustion
+    days = []
+    chunk_size = 10
+    for i in range(1, num_days + 1, chunk_size):
+        chunk_end = min(i + chunk_size, num_days + 1)
+        tasks = [
+            _compute_day_summary(year, month, d, lat, lon, tz_offset, lang)
+            for d in range(i, chunk_end)
+        ]
+        chunk_results = await asyncio.gather(*tasks)
+        days.extend(chunk_results)
 
     # Determine masa from the first day for the header
     first_date = Date(year, month, 1)
@@ -933,6 +940,6 @@ async def get_monthly_panchang(year: int, month: int, lat: float, lon: float,
     # Cache the result
     _monthly_cache[cache_key] = result
     _monthly_cache_ttl[cache_key] = datetime.now() + timedelta(seconds=CACHE_TTL_SECONDS)
-    _save_cache_to_disk()
+    asyncio.create_task(asyncio.to_thread(_save_cache_to_disk))
     
     return result
