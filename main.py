@@ -8,6 +8,8 @@ from contextlib import asynccontextmanager
 from datetime import date as dt_date
 from datetime import datetime
 from typing import Optional
+import socket
+import re
 
 import httpx
 import pytz
@@ -402,6 +404,53 @@ async def monthly_panchang(req: MonthlyPanchangRequest):
         raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
 
 
+def get_local_ip():
+    """Finds the local IP address of the machine."""
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # Connection not actually established, just used to find the interface
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
+
+def update_flutter_api_service(ip_address):
+    """Updates the api_service.dart file in the Flutter project with the current IP."""
+    # Path to api_service.dart (adjusting relative to Backend directory)
+    api_service_path = os.path.join("..", "SiddhaguruAstrology", "lib", "core", "api_service.dart")
+    
+    if not os.path.exists(api_service_path):
+        print(f"⚠️  Warning: api_service.dart not found at {api_service_path}")
+        return
+
+    try:
+        with open(api_service_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        # Regex to find the local IP line in baseUrl getter
+        # Matches return 'http://<any_ip>:<any_port>/api';
+        pattern = r"return 'http://[\d\.]+:(\d+)/api';"
+        replacement = f"return 'http://{ip_address}:\\1/api';"
+        
+        new_content = re.sub(pattern, replacement, content)
+
+        if content != new_content:
+            with open(api_service_path, "w", encoding="utf-8") as f:
+                f.write(new_content)
+            print(f"🚀 Updated Flutter ApiService with IP: {ip_address}")
+        else:
+            print(f"✅ Flutter ApiService is already up to date with IP: {ip_address}")
+
+    except Exception as e:
+        print(f"❌ Failed to update api_service.dart: {e}")
+
 if __name__ == "__main__":
+    local_ip = get_local_ip()
+    print(f"📡 Detected Local IP: {local_ip}")
+    update_flutter_api_service(local_ip)
+    
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8008, reload=True)
