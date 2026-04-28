@@ -27,7 +27,7 @@ def get_http_client():
     global _http_client
     if _http_client is None:
         _http_client = httpx.AsyncClient(
-            timeout=5.0,  # Reduced from 10s to 5s
+            timeout=10.0,  # Increased for better stability
             headers=_HEADERS,
             limits=httpx.Limits(max_keepalive_connections=20, max_connections=50)
         )
@@ -63,7 +63,9 @@ def geocode_place(place_name: str) -> dict:
         raise ValueError("Place name cannot be empty")
 
     if GEONAMES_USERNAME:
+        print(f"🌍 Geocoding: '{place_name}' using [GeoNames]")
         return _geocode_geonames_sync(place_name)
+    print(f"🌍 Geocoding: '{place_name}' using [Photon Fallback]")
     return _geocode_photon_sync(place_name)
 
 
@@ -155,8 +157,10 @@ async def search_places(query: str, max_rows: int = 10) -> list[dict]:
         return _search_cache[cache_key]
 
     if GEONAMES_USERNAME:
+        print(f"🔍 Searching: '{query}' using [GeoNames]")
         result = await _search_geonames(query, max_rows)
     else:
+        print(f"🔍 Searching: '{query}' using [Photon Fallback]")
         result = await _search_photon(query, max_rows)
         
     if len(_search_cache) >= _MAX_CACHE_SIZE:
