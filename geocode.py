@@ -62,11 +62,19 @@ def geocode_place(place_name: str) -> dict:
     if not place_name or not place_name.strip():
         raise ValueError("Place name cannot be empty")
 
-    if GEONAMES_USERNAME:
-        print(f"🌍 Geocoding: '{place_name}' using [GeoNames]")
-        return _geocode_geonames_sync(place_name)
-    print(f"🌍 Geocoding: '{place_name}' using [Photon Fallback]")
-    return _geocode_photon_sync(place_name)
+    try:
+        # Priority: Photon (Fast, no limits)
+        result = _geocode_photon_sync(place_name)
+        print(f"🌍 Geocoding: '{place_name}' [SUCCESS] using [Photon]")
+        return result
+    except Exception as e:
+        if GEONAMES_USERNAME:
+            print(f"🌍 Photon failed/no result, falling back to [GeoNames] for '{place_name}'")
+            result = _geocode_geonames_sync(place_name)
+            print(f"🌍 Geocoding: '{place_name}' [SUCCESS] using [GeoNames Fallback]")
+            return result
+        print(f"🌍 Photon failed for '{place_name}' and no GeoNames username configured: {e}")
+        raise e
 
 
 def _geocode_photon_sync(place_name: str) -> dict:
@@ -156,12 +164,30 @@ async def search_places(query: str, max_rows: int = 10) -> list[dict]:
     if cache_key in _search_cache:
         return _search_cache[cache_key]
 
-    if GEONAMES_USERNAME:
-        print(f"🔍 Searching: '{query}' using [GeoNames]")
-        result = await _search_geonames(query, max_rows)
-    else:
-        print(f"🔍 Searching: '{query}' using [Photon Fallback]")
+    try:
+        # Priority: Photon
         result = await _search_photon(query, max_rows)
+        
+        if result:
+            print(f"🔍 Searching: '{query}' [SUCCESS] using [Photon]")
+        
+        # If Photon returned nothing, try GeoNames as backup
+        if not result and GEONAMES_USERNAME:
+            print(f"🔍 Photon found nothing, falling back to [GeoNames] for '{query}'")
+            result = await _search_geonames(query, max_rows)
+            if result:
+                print(f"🔍 Searching: '{query}' [SUCCESS] using [GeoNames Fallback]")
+            else:
+                print(f"🔍 Searching: '{query}' [NO RESULTS] in both engines")
+    except Exception as e:
+        if GEONAMES_USERNAME:
+            print(f"🔍 Photon failed, falling back to [GeoNames] for '{query}': {e}")
+            result = await _search_geonames(query, max_rows)
+            if result:
+                print(f"🔍 Searching: '{query}' [SUCCESS] using [GeoNames Fallback]")
+        else:
+            print(f"🔍 Photon failed for '{query}' and no fallback available: {e}")
+            result = []
         
     if len(_search_cache) >= _MAX_CACHE_SIZE:
         _search_cache.pop(next(iter(_search_cache)))
