@@ -95,7 +95,7 @@ def test_panchang_api():
     """Test the panchang API and compare with expected values."""
     
     # API endpoint
-    url = "http://localhost:8008/api/panchang/daily"
+    url = "http://localhost:8005/api/panchang/daily"
     
     # Request payload (Hyderabad coordinates)
     payload = {

@@ -38,10 +38,10 @@ Get free API key: https://aistudio.google.com/app/apikey
 
 3. **Start backend server**
 ```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uvicorn main:app --reload --host 0.0.0.0 --port 8005
 ```
 
-Backend runs at: http://localhost:8000
+Backend runs at: http://localhost:8005
 
 ### Frontend Setup
 
@@ -97,9 +97,9 @@ SiddhaguruKundli/
 - `POST /api/gochara/bygemini` - AI transit predictions with chart
 
 ### Documentation
-- Swagger UI: http://localhost:8000/swagger
-- ReDoc: http://localhost:8000/redoc
-- Interactive Docs: http://localhost:8000/docs
+- Swagger UI: http://localhost:8005/swagger
+- ReDoc: http://localhost:8005/redoc
+- Interactive Docs: http://localhost:8005/docs
 
 ## 🎨 Frontend Features
 
@@ -225,7 +225,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 pip install -r requirements.txt
 
 # Run with production server
-uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4
+uvicorn main:app --host 0.0.0.0 --port 8005 --workers 4
 ```
 
 ### Frontend Deployment
@@ -249,7 +249,7 @@ npm run build
 
 ### Nakshatra Calculation
 ```bash
-curl -X POST http://localhost:8000/api/nakshatra \
+curl -X POST http://localhost:8005/api/nakshatra \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Shiva Kumar",
@@ -264,14 +264,14 @@ curl -X POST http://localhost:8000/api/nakshatra \
 
 ### Name Nakshatra Lookup
 ```bash
-curl -X POST http://localhost:8000/api/nakshatra-by-name \
+curl -X POST http://localhost:8005/api/nakshatra-by-name \
   -H "Content-Type: application/json" \
   -d '{"name": "Srinivas"}'
 ```
 
 ### Place Search
 ```bash
-curl "http://localhost:8000/api/places?q=Hyderabad&max_rows=5"
+curl "http://localhost:8005/api/places?q=Hyderabad&max_rows=5"
 ```
 
 ## 🎨 Menu Structure
@@ -291,8 +291,8 @@ curl "http://localhost:8000/api/places?q=Hyderabad&max_rows=5"
 
 **Port already in use**
 ```bash
-# Kill process on port 8000
-netstat -ano | findstr :8000
+# Kill process on port 8005
+netstat -ano | findstr :8005
 taskkill /PID <process_id> /F
 ```
 
@@ -494,7 +494,7 @@ npm run dev
 ```
 
 ### Testing API
-- Use Swagger UI: http://localhost:8000/swagger
+- Use Swagger UI: http://localhost:8005/swagger
 - Use curl or Postman
 - Check browser DevTools Network tab
 
@@ -669,7 +669,7 @@ npm install
 npm run dev
 
 # 4. Open browser
-# Backend: http://localhost:8000
+# Backend: http://localhost:8005
 # Frontend: http://localhost:5173
 ```
 

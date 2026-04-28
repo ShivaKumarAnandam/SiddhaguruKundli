@@ -115,8 +115,8 @@ python main.py
 ```
 
 Then access:
-- **Swagger UI**: http://localhost:8000/swagger
-- **Demo Page**: http://localhost:8000/static/prokerala-location-demo.html
+- **Swagger UI**: http://localhost:8005/swagger
+- **Demo Page**: http://localhost:8005/static/prokerala-location-demo.html
 
 ### Standalone API (Optional)
 
@@ -159,7 +159,7 @@ locationInput.addEventListener('input', async function(e) {
     
     try {
         const response = await fetch(
-            `http://localhost:8000/api/location/search?q=${encodeURIComponent(query)}`
+            `http://localhost:8005/api/location/search?q=${encodeURIComponent(query)}`
         );
         const data = await response.json();
         
@@ -202,7 +202,7 @@ function LocationSearch() {
         const timer = setTimeout(async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:8000/api/location/search?q=${encodeURIComponent(query)}`
+                    `http://localhost:8005/api/location/search?q=${encodeURIComponent(query)}`
                 );
                 const data = await response.json();
                 setSuggestions(data.results);
@@ -259,7 +259,7 @@ function LocationSearch() {
 A complete working demo is available at:
 
 ```
-http://localhost:8000/static/prokerala-location-demo.html
+http://localhost:8005/static/prokerala-location-demo.html
 ```
 
 Features:
@@ -367,7 +367,7 @@ const chart = await chartResponse.json();
 
 ### Test in Swagger UI
 
-1. Go to http://localhost:8000/swagger
+1. Go to http://localhost:8005/swagger
 2. Find "ProKerala Location" section
 3. Try `/api/location/search` endpoint
 4. Enter query: "Bhongir"
@@ -375,7 +375,7 @@ const chart = await chartResponse.json();
 
 ### Test in Browser
 
-1. Go to http://localhost:8000/static/prokerala-location-demo.html
+1. Go to http://localhost:8005/static/prokerala-location-demo.html
 2. Type "Bhongir" in the search box
 3. Select from suggestions
 4. See location details
@@ -384,10 +384,10 @@ const chart = await chartResponse.json();
 
 ```bash
 # Search
-curl "http://localhost:8000/api/location/search?q=Bhongir"
+curl "http://localhost:8005/api/location/search?q=Bhongir"
 
 # Get details
-curl "http://localhost:8000/api/location/1269843"
+curl "http://localhost:8005/api/location/1269843"
 ```
 
 ---

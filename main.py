@@ -453,4 +453,4 @@ if __name__ == "__main__":
     update_flutter_api_service(local_ip)
     
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8008, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8005, reload=True)

@@ -274,7 +274,7 @@ GET /api/gochara/south-indian?date=2026-03-21&time=11:21:10&place=Bhongir,%20Ind
 
 2. **Open Swagger UI**:
    ```
-   http://localhost:8000/swagger
+   http://localhost:8005/swagger
    ```
 
 3. **Find "Gochara Chart" section** - You'll see all endpoints
