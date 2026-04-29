@@ -44,6 +44,14 @@ def init_db():
         # Optimization: Index on timestamp for lightning-fast pruning
         conn.execute("CREATE INDEX IF NOT EXISTS idx_cache_timestamp ON cache(timestamp)")
 
+def get_cache_count():
+    """Get the total number of entries in the cache."""
+    try:
+        with sqlite3.connect(DB_FILE) as conn:
+            return conn.execute("SELECT COUNT(*) FROM cache").fetchone()[0]
+    except Exception:
+        return 0
+
 def get_from_cache(key: str):
     try:
         with sqlite3.connect(DB_FILE) as conn:
@@ -137,13 +145,15 @@ def geocode_place(place_name: str) -> dict:
     cache_key = f"sync_{place_name.strip().lower()}"
     cached = get_from_cache(cache_key)
     if cached:
-        print(f"🌍 Geocoding: '{place_name}' [CACHE HIT] from cache.db")
+        count = get_cache_count()
+        print(f"🌍 Geocoding: '{place_name}' [CACHE HIT] from cache.db ({count}/{PRUNE_THRESHOLD} entries)")
         return cached
 
     try:
         # Priority: Photon (Fast, no limits)
         result = _geocode_photon_sync(place_name)
-        print(f"🌍 Geocoding: '{place_name}' [SEARCHED REAL-TIME] using [Photon]")
+        count = get_cache_count() + 1 # +1 because we are about to save
+        print(f"🌍 Geocoding: '{place_name}' [SEARCHED REAL-TIME] using [Photon] ({count}/{PRUNE_THRESHOLD} entries)")
         save_to_cache(cache_key, result)
         return result
     except Exception as e:
@@ -239,7 +249,8 @@ async def search_places(query: str, max_rows: int = 10) -> list[dict]:
     cache_key = f"search_{query.strip().lower()}_{max_rows}"
     cached = get_from_cache(cache_key)
     if cached:
-        print(f"🔍 Searching: '{query}' [CACHE HIT] from cache.db")
+        count = get_cache_count()
+        print(f"🔍 Searching: '{query}' [CACHE HIT] from cache.db ({count}/{PRUNE_THRESHOLD} entries)")
         return cached
 
     try:
@@ -247,7 +258,8 @@ async def search_places(query: str, max_rows: int = 10) -> list[dict]:
         result = await _search_photon(query, max_rows)
         
         if result:
-            print(f"🔍 Searching: '{query}' [SEARCHED REAL-TIME] using [Photon]")
+            count = get_cache_count() + 1
+            print(f"🔍 Searching: '{query}' [SEARCHED REAL-TIME] using [Photon] ({count}/{PRUNE_THRESHOLD} entries)")
         
         # If Photon returned nothing, try GeoNames as backup
         if not result and GEONAMES_USERNAME:
