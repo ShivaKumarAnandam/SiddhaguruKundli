@@ -12,12 +12,84 @@ If not set, Photon is used automatically.
 
 import os
 import httpx
+import json
+import sqlite3
 from timezonefinder import TimezoneFinder
 from functools import lru_cache
 
 GEONAMES_USERNAME = os.getenv("GEONAMES_USERNAME", "")
 _tf = TimezoneFinder()
 _HEADERS = {"User-Agent": "Mozilla/5.0 (NakshatraApp/2.0)"}
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  PERSISTENT SQLITE CACHE (Worker-Safe)
+# ═══════════════════════════════════════════════════════════════════════════
+DB_FILE = "geocoding_cache.db"
+PRUNE_THRESHOLD = 11000  # Max entries to keep
+PRUNE_CHANCE = 0.05    # 5% chance to prune on every write (efficient)
+
+def init_db():
+    with sqlite3.connect(DB_FILE) as conn:
+        # Optimization: Enable WAL mode for better concurrency
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA synchronous=NORMAL")
+        
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS cache (
+                key TEXT PRIMARY KEY,
+                value TEXT,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        # Optimization: Index on timestamp for lightning-fast pruning
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_cache_timestamp ON cache(timestamp)")
+
+def get_from_cache(key: str):
+    try:
+        with sqlite3.connect(DB_FILE) as conn:
+            cursor = conn.execute("SELECT value FROM cache WHERE key = ?", (key,))
+            row = cursor.fetchone()
+            if row:
+                # Optimization: Update timestamp on read to implement true LRU
+                conn.execute("UPDATE cache SET timestamp = CURRENT_TIMESTAMP WHERE key = ?", (key,))
+                return json.loads(row[0])
+            return None
+    except Exception as e:
+        print(f"⚠️ Cache read error: {e}")
+        return None
+
+def prune_cache():
+    """Keep only the most recent PRUNE_THRESHOLD entries."""
+    try:
+        with sqlite3.connect(DB_FILE) as conn:
+            # Delete older entries if we exceed the threshold
+            conn.execute(f"""
+                DELETE FROM cache WHERE key NOT IN (
+                    SELECT key FROM cache ORDER BY timestamp DESC LIMIT {PRUNE_THRESHOLD}
+                )
+            """)
+    except Exception as e:
+        print(f"⚠️ Cache prune error: {e}")
+
+def save_to_cache(key: str, value: any):
+    try:
+        with sqlite3.connect(DB_FILE) as conn:
+            conn.execute(
+                "INSERT OR REPLACE INTO cache (key, value, timestamp) VALUES (?, ?, CURRENT_TIMESTAMP)",
+                (key, json.dumps(value, ensure_ascii=False))
+            )
+        
+        # Periodically prune to prevent unbounded growth
+        import random
+        if random.random() < PRUNE_CHANCE:
+            prune_cache()
+    except Exception as e:
+        print(f"⚠️ Cache write error: {e}")
+
+# Initialize the database on startup
+init_db()
+
+# ═══════════════════════════════════════════════════════════════════════════
 
 # Persistent HTTP client for connection pooling (much faster)
 _http_client = None
@@ -27,7 +99,7 @@ def get_http_client():
     global _http_client
     if _http_client is None:
         _http_client = httpx.AsyncClient(
-            timeout=10.0,  # Increased for better stability
+            timeout=10.0,  # Restored to standard timeout
             headers=_HEADERS,
             limits=httpx.Limits(max_keepalive_connections=20, max_connections=50)
         )
@@ -40,7 +112,7 @@ def get_sync_http_client():
     global _sync_http_client
     if _sync_http_client is None:
         _sync_http_client = httpx.Client(
-            timeout=10.0,
+            timeout=10.0, # Restored to standard timeout
             headers=_HEADERS,
             limits=httpx.Limits(max_keepalive_connections=20, max_connections=50)
         )
@@ -56,22 +128,30 @@ def get_sync_http_client():
 def geocode_place(place_name: str) -> dict:
     """
     Resolve a place string to {lat, lon, timezone, display_name}.
-    Uses GeoNames if configured, else Photon — same engines as /api/places.
-    Finds every village/hamlet on Earth.
+    Uses persistent cache first, then Photon/GeoNames.
     """
     if not place_name or not place_name.strip():
         raise ValueError("Place name cannot be empty")
 
+    # Check Persistent Cache (SQLite)
+    cache_key = f"sync_{place_name.strip().lower()}"
+    cached = get_from_cache(cache_key)
+    if cached:
+        print(f"🌍 Geocoding: '{place_name}' [CACHE HIT] from cache.db")
+        return cached
+
     try:
         # Priority: Photon (Fast, no limits)
         result = _geocode_photon_sync(place_name)
-        print(f"🌍 Geocoding: '{place_name}' [SUCCESS] using [Photon]")
+        print(f"🌍 Geocoding: '{place_name}' [SEARCHED REAL-TIME] using [Photon]")
+        save_to_cache(cache_key, result)
         return result
     except Exception as e:
         if GEONAMES_USERNAME:
             print(f"🌍 Photon failed/no result, falling back to [GeoNames] for '{place_name}'")
             result = _geocode_geonames_sync(place_name)
-            print(f"🌍 Geocoding: '{place_name}' [SUCCESS] using [GeoNames Fallback]")
+            print(f"🌍 Geocoding: '{place_name}' [SEARCHED REAL-TIME] using [GeoNames Fallback]")
+            save_to_cache(cache_key, result)
             return result
         print(f"🌍 Photon failed for '{place_name}' and no GeoNames username configured: {e}")
         raise e
@@ -149,34 +229,32 @@ def _geocode_geonames_sync(place_name: str) -> dict:
 #  ASYNC search — used by GET /api/places (autocomplete dropdown)
 # ═══════════════════════════════════════════════════════════════════════════
 
-_search_cache = {}
-_MAX_CACHE_SIZE = 10000
-
 async def search_places(query: str, max_rows: int = 10) -> list[dict]:
     """
-    Search for populated places. Uses GeoNames if configured, else Photon.
-    Returns list of {display, name, admin1, country, lat, lon, timezone, ...}.
+    Search for populated places. Uses persistent SQLite cache first, then Photon/GeoNames.
     """
     if not query or len(query.strip()) < 2:
         return []
         
-    cache_key = f"{query.strip().lower()}_{max_rows}"
-    if cache_key in _search_cache:
-        return _search_cache[cache_key]
+    cache_key = f"search_{query.strip().lower()}_{max_rows}"
+    cached = get_from_cache(cache_key)
+    if cached:
+        print(f"🔍 Searching: '{query}' [CACHE HIT] from cache.db")
+        return cached
 
     try:
         # Priority: Photon
         result = await _search_photon(query, max_rows)
         
         if result:
-            print(f"🔍 Searching: '{query}' [SUCCESS] using [Photon]")
+            print(f"🔍 Searching: '{query}' [SEARCHED REAL-TIME] using [Photon]")
         
         # If Photon returned nothing, try GeoNames as backup
         if not result and GEONAMES_USERNAME:
             print(f"🔍 Photon found nothing, falling back to [GeoNames] for '{query}'")
             result = await _search_geonames(query, max_rows)
             if result:
-                print(f"🔍 Searching: '{query}' [SUCCESS] using [GeoNames Fallback]")
+                print(f"🔍 Searching: '{query}' [SEARCHED REAL-TIME] using [GeoNames Fallback]")
             else:
                 print(f"🔍 Searching: '{query}' [NO RESULTS] in both engines")
     except Exception as e:
@@ -184,14 +262,13 @@ async def search_places(query: str, max_rows: int = 10) -> list[dict]:
             print(f"🔍 Photon failed, falling back to [GeoNames] for '{query}': {e}")
             result = await _search_geonames(query, max_rows)
             if result:
-                print(f"🔍 Searching: '{query}' [SUCCESS] using [GeoNames Fallback]")
+                print(f"🔍 Searching: '{query}' [SEARCHED REAL-TIME] using [GeoNames Fallback]")
         else:
             print(f"🔍 Photon failed for '{query}' and no fallback available: {e}")
             result = []
-        
-    if len(_search_cache) >= _MAX_CACHE_SIZE:
-        _search_cache.pop(next(iter(_search_cache)))
-    _search_cache[cache_key] = result
+    
+    # Save to persistent SQLite cache
+    save_to_cache(cache_key, result)
     
     return result
 
