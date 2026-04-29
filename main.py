@@ -158,10 +158,13 @@ async def get_nakshatra(details: BirthDetails):
         year, month, day = map(int, details.date.split("-"))
         hour24, minute = parse_to_24h(details.hour, details.minute, details.ampm)
         
-        # Offload math to thread
-        jd = await asyncio.to_thread(local_to_julian_day, year, month, day, hour24, minute, geo["timezone"])
-        moon_lon, moon_speed = await asyncio.to_thread(get_moon_longitude, jd)
-        nk = await asyncio.to_thread(calculate_nakshatra, moon_lon, moon_speed)
+        # Consolidated calculation to minimize thread overhead
+        def run_calculation():
+            jd = local_to_julian_day(year, month, day, hour24, minute, geo["timezone"])
+            moon_lon, moon_speed = get_moon_longitude(jd)
+            return jd, calculate_nakshatra(moon_lon, moon_speed)
+
+        jd, nk = await asyncio.to_thread(run_calculation)
 
         return {
             "name": details.name, "gender": details.gender,

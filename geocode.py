@@ -18,7 +18,7 @@ from timezonefinder import TimezoneFinder
 from functools import lru_cache
 
 GEONAMES_USERNAME = os.getenv("GEONAMES_USERNAME", "")
-_tf = TimezoneFinder()
+_tf = TimezoneFinder(in_memory=True)  # Optimization: Use in-memory data for faster lookups
 _HEADERS = {"User-Agent": "Mozilla/5.0 (NakshatraApp/2.0)"}
 
 # ═══════════════════════════════════════════════════════════════════════════
