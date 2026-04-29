@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, ORJSONResponse
 from fastapi.staticfiles import StaticFiles
 from PIL import Image, ImageDraw, ImageFont
 from pydantic import BaseModel, Field
@@ -54,6 +54,7 @@ app = FastAPI(
     version="2.0.0",
     docs_url="/swagger",   # move default Swagger to /swagger
     redoc_url="/redoc",
+    default_response_class=ORJSONResponse,
     lifespan=lifespan
 )
 
@@ -100,26 +101,45 @@ def parse_to_24h(hour: int, minute: int, ampm: str):
     return h, minute
 
 
-async def resolve_geo(details: BirthDetails) -> dict:
+async def resolve_geo(details_or_place: any, lat: Optional[float] = None, lon: Optional[float] = None, tz: Optional[str] = None) -> dict:
     """
-    If frontend already sent lat/lon (from /api/places dropdown),
-    use them directly. Compute timezone if missing. Otherwise fall back to geocoding.
+    Consolidated geo-resolution to minimize thread context switching.
+    Accepts either a Pydantic model (BirthDetails) or a raw place name + optional coords.
     """
-    if details.latitude is not None and details.longitude is not None:
-        tz = details.timezone
-        if not tz:
-            from geocode import _tf
-            tz = await asyncio.to_thread(_tf.timezone_at, lat=details.latitude, lng=details.longitude)
-            if not tz:
-                tz = "UTC"
+    # 1. Extract values
+    if hasattr(details_or_place, 'place'):
+        place_name = details_or_place.place
+        latitude = details_or_place.latitude if hasattr(details_or_place, 'latitude') else lat
+        longitude = details_or_place.longitude if hasattr(details_or_place, 'longitude') else lon
+        timezone = details_or_place.timezone if hasattr(details_or_place, 'timezone') else tz
+    else:
+        place_name = str(details_or_place)
+        latitude = lat
+        longitude = lon
+        timezone = tz
+
+    # 2. Define the sync worker
+    def sync_worker():
+        nonlocal latitude, longitude, timezone
+        from geocode import _tf, geocode_place
+        
+        # If coords are missing, geocode everything (includes TZ)
+        if latitude is None or longitude is None:
+            return geocode_place(place_name)
+        
+        # If coords exist but TZ is missing, find it
+        if not timezone:
+            timezone = _tf.timezone_at(lat=latitude, lng=longitude) or "UTC"
             
         return {
-            "lat": details.latitude,
-            "lon": details.longitude,
-            "timezone": tz,
-            "display_name": details.place,
+            "lat": latitude,
+            "lon": longitude,
+            "timezone": timezone,
+            "display_name": place_name,
         }
-    return await asyncio.to_thread(geocode_place, details.place)
+
+    # 3. Run in a single thread switch
+    return await asyncio.to_thread(sync_worker)
 
 
 # ── Place search (GeoNames) ─────────────────────────────────────────────────
@@ -206,55 +226,9 @@ class GocharaSouthIndianRequest(BaseModel):
 
 @app.post("/api/gochara/south-indian", tags=["Gochara Chart"])
 async def generate_gochara_south_indian(request: GocharaSouthIndianRequest):
-    """
-    Generate Gochara (Transit) Chart - South Indian Style.
-    
-    **Uses the same calculation logic as /api/nakshatra and /api/horoscope endpoints.**
-    
-    **Features:**
-    - South Indian Rashi chart (Whole Sign Houses)
-    - Current planetary positions for any date/time
-    - Planets sorted in standard order within houses
-    - Uses existing ephemeris.py calculation infrastructure
-    
-    **Example Request:**
-    ```json
-    {
-      "date": "2026-03-21",
-      "time": "11:21:10",
-      "place": "Bhongir, India",
-      "latitude": 17.51083,
-      "longitude": 78.88889,
-      "timezone": "Asia/Kolkata"
-    }
-    ```
-    
-    **Returns:**
-    - `chart`: 12-house South Indian chart with planet placements
-    - `planets_table`: Detailed planetary data with signs, nakshatras, houses
-    - `metadata`: Input parameters and calculation details
-    """
     try:
-        # Check if we need full geocoding (no coordinates)
-        if request.latitude is None or request.longitude is None:
-            geo = await asyncio.to_thread(geocode_place, request.place)
-            latitude = geo["lat"]
-            longitude = geo["lon"]
-            timezone = geo["timezone"]
-        # If we have coordinates but no timezone, calculate timezone locally (very fast)
-        # If we have coordinates but no timezone, calculate timezone locally (very fast, but offload just in case)
-        elif not request.timezone:
-            latitude = request.latitude
-            longitude = request.longitude
-            from geocode import _tf
-            timezone = await asyncio.to_thread(_tf.timezone_at, lat=latitude, lng=longitude)
-            if not timezone:
-                timezone = "UTC"
-        # Everything provided
-        else:
-            latitude = request.latitude
-            longitude = request.longitude
-            timezone = request.timezone
+        geo = await resolve_geo(request)
+        latitude, longitude, timezone = geo["lat"], geo["lon"], geo["timezone"]
         
         # Calculate Gochara chart - Parallelized (Wait, actually calculate_gochara_chart is optimized internally)
         # But we offload the call to a thread.
@@ -285,28 +259,9 @@ async def generate_gochara_south_indian_get(
     longitude: Optional[float] = Query(None, description="Longitude (optional)"),
     timezone: Optional[str] = Query(None, description="Timezone (optional)"),
 ):
-    """
-    Generate Gochara (Transit) Chart - South Indian Style (GET method).
-    
-    **Example:**
-    ```
-    /api/gochara/south-indian?date=2026-03-21&time=11:21:10&place=Bhongir,%20India
-    ```
-    """
     try:
-        # Check if we need full geocoding (no coordinates)
-        if latitude is None or longitude is None:
-            geo = await asyncio.to_thread(geocode_place, place)
-            latitude = geo["lat"]
-            longitude = geo["lon"]
-            timezone = geo["timezone"]
-        # If we have coordinates but no timezone, calculate timezone locally (very fast)
-        # If we have coordinates but no timezone, calculate timezone locally
-        elif not timezone:
-            from geocode import _tf
-            timezone = await asyncio.to_thread(_tf.timezone_at, lat=latitude, lng=longitude)
-            if not timezone:
-                timezone = "UTC"
+        geo = await resolve_geo(place, latitude, longitude, timezone)
+        latitude, longitude, timezone = geo["lat"], geo["lon"], geo["timezone"]
         
         # Calculate Gochara chart - Offload TO THREAD
         chart_data = await asyncio.to_thread(
@@ -363,23 +318,9 @@ def _tz_to_offset(tz_name: str) -> float:
 async def daily_panchang(req: DailyPanchangRequest):
     """Compute full daily Telugu Panchang for a given date and location."""
     try:
-        # Validate date range
-        year = int(req.date.split("-")[0])
-        if not (1800 <= year <= 2100):
-            raise HTTPException(status_code=400, detail="Date must be between 1800 CE and 2100 CE")
-
-        # Resolve coordinates
-        lat, lon, tz_name = req.latitude, req.longitude, req.timezone
-        if lat is None or lon is None:
-            if not req.place:
-                raise HTTPException(status_code=400, detail="Provide latitude/longitude or place name")
-            geo = await asyncio.to_thread(geocode_place, req.place)
-            lat, lon, tz_name = geo["lat"], geo["lon"], geo["timezone"]
-        elif not tz_name:
-            from geocode import _tf
-            tz_name = await asyncio.to_thread(_tf.timezone_at, lat=lat, lng=lon)
-            if not tz_name:
-                tz_name = "UTC"
+        # Resolve coordinates using consolidated logic
+        geo = await resolve_geo(req)
+        lat, lon, tz_name = geo["lat"], geo["lon"], geo["timezone"]
 
         tz_offset = _tz_to_offset(tz_name)
         result = await get_daily_panchang(req.date, lat, lon, tz_offset, req.lang)

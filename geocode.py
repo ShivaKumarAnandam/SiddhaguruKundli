@@ -21,6 +21,8 @@ GEONAMES_USERNAME = os.getenv("GEONAMES_USERNAME", "")
 _tf = TimezoneFinder(in_memory=True)  # Optimization: Use in-memory data for faster lookups
 _HEADERS = {"User-Agent": "Mozilla/5.0 (NakshatraApp/2.0)"}
 
+import threading
+
 # ═══════════════════════════════════════════════════════════════════════════
 #  PERSISTENT SQLITE CACHE (Worker-Safe)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -28,40 +30,45 @@ DB_FILE = "geocoding_cache.db"
 PRUNE_THRESHOLD = 11000  # Max entries to keep
 PRUNE_CHANCE = 0.05    # 5% chance to prune on every write (efficient)
 
-def init_db():
-    with sqlite3.connect(DB_FILE) as conn:
+# Thread-local storage for database connections
+_local = threading.local()
+
+def get_db_conn():
+    """Get or create a thread-local SQLite connection."""
+    if not hasattr(_local, "conn"):
+        _local.conn = sqlite3.connect(DB_FILE)
         # Optimization: Enable WAL mode for better concurrency
-        conn.execute("PRAGMA journal_mode=WAL")
-        conn.execute("PRAGMA synchronous=NORMAL")
-        
-        conn.execute("""
+        _local.conn.execute("PRAGMA journal_mode=WAL")
+        _local.conn.execute("PRAGMA synchronous=NORMAL")
+        _local.conn.execute("""
             CREATE TABLE IF NOT EXISTS cache (
                 key TEXT PRIMARY KEY,
                 value TEXT,
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
             )
         """)
-        # Optimization: Index on timestamp for lightning-fast pruning
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_cache_timestamp ON cache(timestamp)")
+        _local.conn.execute("CREATE INDEX IF NOT EXISTS idx_cache_timestamp ON cache(timestamp)")
+    return _local.conn
 
 def get_cache_count():
     """Get the total number of entries in the cache."""
     try:
-        with sqlite3.connect(DB_FILE) as conn:
-            return conn.execute("SELECT COUNT(*) FROM cache").fetchone()[0]
+        conn = get_db_conn()
+        return conn.execute("SELECT COUNT(*) FROM cache").fetchone()[0]
     except Exception:
         return 0
 
 def get_from_cache(key: str):
     try:
-        with sqlite3.connect(DB_FILE) as conn:
-            cursor = conn.execute("SELECT value FROM cache WHERE key = ?", (key,))
-            row = cursor.fetchone()
-            if row:
-                # Optimization: Update timestamp on read to implement true LRU
-                conn.execute("UPDATE cache SET timestamp = CURRENT_TIMESTAMP WHERE key = ?", (key,))
-                return json.loads(row[0])
-            return None
+        conn = get_db_conn()
+        cursor = conn.execute("SELECT value FROM cache WHERE key = ?", (key,))
+        row = cursor.fetchone()
+        if row:
+            # Optimization: Update timestamp on read to implement true LRU
+            conn.execute("UPDATE cache SET timestamp = CURRENT_TIMESTAMP WHERE key = ?", (key,))
+            conn.commit()
+            return json.loads(row[0])
+        return None
     except Exception as e:
         print(f"⚠️ Cache read error: {e}")
         return None
@@ -69,23 +76,25 @@ def get_from_cache(key: str):
 def prune_cache():
     """Keep only the most recent PRUNE_THRESHOLD entries."""
     try:
-        with sqlite3.connect(DB_FILE) as conn:
-            # Delete older entries if we exceed the threshold
-            conn.execute(f"""
-                DELETE FROM cache WHERE key NOT IN (
-                    SELECT key FROM cache ORDER BY timestamp DESC LIMIT {PRUNE_THRESHOLD}
-                )
-            """)
+        conn = get_db_conn()
+        # Delete older entries if we exceed the threshold
+        conn.execute(f"""
+            DELETE FROM cache WHERE key NOT IN (
+                SELECT key FROM cache ORDER BY timestamp DESC LIMIT {PRUNE_THRESHOLD}
+            )
+        """)
+        conn.commit()
     except Exception as e:
         print(f"⚠️ Cache prune error: {e}")
 
 def save_to_cache(key: str, value: any):
     try:
-        with sqlite3.connect(DB_FILE) as conn:
-            conn.execute(
-                "INSERT OR REPLACE INTO cache (key, value, timestamp) VALUES (?, ?, CURRENT_TIMESTAMP)",
-                (key, json.dumps(value, ensure_ascii=False))
-            )
+        conn = get_db_conn()
+        conn.execute(
+            "INSERT OR REPLACE INTO cache (key, value, timestamp) VALUES (?, ?, CURRENT_TIMESTAMP)",
+            (key, json.dumps(value, ensure_ascii=False))
+        )
+        conn.commit()
         
         # Periodically prune to prevent unbounded growth
         import random
@@ -94,7 +103,20 @@ def save_to_cache(key: str, value: any):
     except Exception as e:
         print(f"⚠️ Cache write error: {e}")
 
-# Initialize the database on startup
+# Initialize the database file
+def init_db():
+    with sqlite3.connect(DB_FILE) as conn:
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA synchronous=NORMAL")
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS cache (
+                key TEXT PRIMARY KEY,
+                value TEXT,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_cache_timestamp ON cache(timestamp)")
+
 init_db()
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -239,6 +261,7 @@ def _geocode_geonames_sync(place_name: str) -> dict:
 #  ASYNC search — used by GET /api/places (autocomplete dropdown)
 # ═══════════════════════════════════════════════════════════════════════════
 
+@lru_cache(maxsize=128)
 async def search_places(query: str, max_rows: int = 10) -> list[dict]:
     """
     Search for populated places. Uses persistent SQLite cache first, then Photon/GeoNames.
