@@ -24,20 +24,20 @@ _HEADERS = {"User-Agent": "Mozilla/5.0 (NakshatraApp/2.0)"}
 import threading
 
 # ═══════════════════════════════════════════════════════════════════════════
-#  PERSISTENT SQLITE CACHE (Worker-Safe)
+#  PERSISTENT SQLITE CACHE (Worker-Safe with Thread-Local Pooling)
 # ═══════════════════════════════════════════════════════════════════════════
 DB_FILE = "geocoding_cache.db"
 PRUNE_THRESHOLD = 11000  # Max entries to keep
 PRUNE_CHANCE = 0.05    # 5% chance to prune on every write (efficient)
 
-# Thread-local storage for database connections
+# Thread-local storage to keep connections open per thread (Ultra Fast)
 _local = threading.local()
 
 def get_db_conn():
-    """Get or create a thread-local SQLite connection."""
+    """Get a persistent connection for the current thread."""
     if not hasattr(_local, "conn"):
-        _local.conn = sqlite3.connect(DB_FILE)
-        # Optimization: Enable WAL mode for better concurrency
+        _local.conn = sqlite3.connect(DB_FILE, check_same_thread=False)
+        # Enable WAL mode once per connection for performance
         _local.conn.execute("PRAGMA journal_mode=WAL")
         _local.conn.execute("PRAGMA synchronous=NORMAL")
         _local.conn.execute("""
@@ -103,21 +103,8 @@ def save_to_cache(key: str, value: any):
     except Exception as e:
         print(f"⚠️ Cache write error: {e}")
 
-# Initialize the database file
-def init_db():
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.execute("PRAGMA journal_mode=WAL")
-        conn.execute("PRAGMA synchronous=NORMAL")
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS cache (
-                key TEXT PRIMARY KEY,
-                value TEXT,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-            )
-        """)
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_cache_timestamp ON cache(timestamp)")
-
-init_db()
+# Initialize the database and WAL mode on first use
+# No need for global init_db call anymore as get_db_conn handles it
 
 # ═══════════════════════════════════════════════════════════════════════════
 
@@ -154,11 +141,10 @@ def get_sync_http_client():
 #  when frontend sends only place string (no lat/lon/timezone)
 # ═══════════════════════════════════════════════════════════════════════════
 
-@lru_cache(maxsize=128)
 def geocode_place(place_name: str) -> dict:
     """
     Resolve a place string to {lat, lon, timezone, display_name}.
-    Uses persistent cache first, then Photon/GeoNames.
+    Uses a 'Racing' pattern: queries multiple engines in parallel and takes the fastest.
     """
     if not place_name or not place_name.strip():
         raise ValueError("Place name cannot be empty")
@@ -168,24 +154,40 @@ def geocode_place(place_name: str) -> dict:
     cached = get_from_cache(cache_key)
     if cached:
         count = get_cache_count()
-        print(f"🌍 Geocoding: '{place_name}' [CACHE HIT] from cache.db ({count}/{PRUNE_THRESHOLD} entries)")
+        print(f"🌍 Geocoding: '{place_name}' [CACHE HIT] ({count}/{PRUNE_THRESHOLD} entries)")
         return cached
 
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    # Parallelize geocoding engines for ultra-low latency on new data
+    engines = [
+        ("Photon", _geocode_photon_sync),
+    ]
+    if GEONAMES_USERNAME:
+        engines.append(("GeoNames", _geocode_geonames_sync))
+
     try:
-        # Priority: Photon (Fast, no limits)
-        result = _geocode_photon_sync(place_name)
-        count = get_cache_count() + 1 # +1 because we are about to save
-        print(f"🌍 Geocoding: '{place_name}' [SEARCHED REAL-TIME] using [Photon] ({count}/{PRUNE_THRESHOLD} entries)")
-        save_to_cache(cache_key, result)
-        return result
+        with ThreadPoolExecutor(max_workers=len(engines)) as executor:
+            # Start all engines at once
+            future_to_engine = {executor.submit(func, place_name): name for name, func in engines}
+            
+            # Return the first one that succeeds
+            for future in as_completed(future_to_engine):
+                engine_name = future_to_engine[future]
+                try:
+                    result = future.result()
+                    if result:
+                        count = get_cache_count() + 1
+                        print(f"🌍 Geocoding: '{place_name}' [FASTEST ENGINE: {engine_name}] ({count}/{PRUNE_THRESHOLD} entries)")
+                        save_to_cache(cache_key, result)
+                        return result
+                except Exception as e:
+                    print(f"⚠️ {engine_name} failed for '{place_name}': {e}")
+                    continue
+        
+        raise ValueError(f"All geocoding engines failed for: '{place_name}'")
     except Exception as e:
-        if GEONAMES_USERNAME:
-            print(f"🌍 Photon failed/no result, falling back to [GeoNames] for '{place_name}'")
-            result = _geocode_geonames_sync(place_name)
-            print(f"🌍 Geocoding: '{place_name}' [SEARCHED REAL-TIME] using [GeoNames Fallback]")
-            save_to_cache(cache_key, result)
-            return result
-        print(f"🌍 Photon failed for '{place_name}' and no GeoNames username configured: {e}")
+        print(f"🌍 Geocoding critical failure for '{place_name}': {e}")
         raise e
 
 

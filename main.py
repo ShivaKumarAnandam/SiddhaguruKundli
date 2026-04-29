@@ -54,7 +54,6 @@ app = FastAPI(
     version="2.0.0",
     docs_url="/swagger",   # move default Swagger to /swagger
     redoc_url="/redoc",
-    default_response_class=ORJSONResponse,
     lifespan=lifespan
 )
 
@@ -101,49 +100,30 @@ def parse_to_24h(hour: int, minute: int, ampm: str):
     return h, minute
 
 
-async def resolve_geo(details_or_place: any, lat: Optional[float] = None, lon: Optional[float] = None, tz: Optional[str] = None) -> dict:
+async def resolve_geo(details: BirthDetails) -> dict:
     """
-    Consolidated geo-resolution to minimize thread context switching.
-    Accepts either a Pydantic model (BirthDetails) or a raw place name + optional coords.
+    If frontend already sent lat/lon (from /api/places dropdown),
+    use them directly. Compute timezone if missing. Otherwise fall back to geocoding.
     """
-    # 1. Extract values
-    if hasattr(details_or_place, 'place'):
-        place_name = details_or_place.place
-        latitude = details_or_place.latitude if hasattr(details_or_place, 'latitude') else lat
-        longitude = details_or_place.longitude if hasattr(details_or_place, 'longitude') else lon
-        timezone = details_or_place.timezone if hasattr(details_or_place, 'timezone') else tz
-    else:
-        place_name = str(details_or_place)
-        latitude = lat
-        longitude = lon
-        timezone = tz
-
-    # 2. Define the sync worker
-    def sync_worker():
-        nonlocal latitude, longitude, timezone
-        from geocode import _tf, geocode_place
-        
-        # If coords are missing, geocode everything (includes TZ)
-        if latitude is None or longitude is None:
-            return geocode_place(place_name)
-        
-        # If coords exist but TZ is missing, find it
-        if not timezone:
-            timezone = _tf.timezone_at(lat=latitude, lng=longitude) or "UTC"
+    if details.latitude is not None and details.longitude is not None:
+        tz = details.timezone
+        if not tz:
+            from geocode import _tf
+            tz = await asyncio.to_thread(_tf.timezone_at, lat=details.latitude, lng=details.longitude)
+            if not tz:
+                tz = "UTC"
             
         return {
-            "lat": latitude,
-            "lon": longitude,
-            "timezone": timezone,
-            "display_name": place_name,
+            "lat": details.latitude,
+            "lon": details.longitude,
+            "timezone": tz,
+            "display_name": details.place,
         }
-
-    # 3. Run in a single thread switch
-    return await asyncio.to_thread(sync_worker)
+    return await asyncio.to_thread(geocode_place, details.place)
 
 
 # ── Place search (GeoNames) ─────────────────────────────────────────────────
-@app.get("/api/places")
+@app.get("/api/places", response_class=ORJSONResponse)
 async def places_search(
     response: Response,
     q: str = Query(..., min_length=2, description="Search query (min 2 chars)"),
@@ -171,7 +151,7 @@ async def health_check(response: Response):
     return {"status": "ok", "timestamp": datetime.now().isoformat()}
 
 # ── API Endpoints ─────────────────────────────────────────────────────────
-@app.post("/api/nakshatra")
+@app.post("/api/nakshatra", response_class=ORJSONResponse)
 async def get_nakshatra(details: BirthDetails):
     try:
         geo = await resolve_geo(details)
@@ -212,8 +192,6 @@ async def get_nakshatra(details: BirthDetails):
 # GOCHARA SOUTH INDIAN CHART (Using Existing Calculation Logic)
 # ══════════════════════════════════════════════════════════════════════════════
 
-from gochara_south_indian import calculate_gochara_chart
-
 class GocharaSouthIndianRequest(BaseModel):
     """Request model for Gochara South Indian chart."""
     date: str = Field(..., description="Date in YYYY-MM-DD format", example="2026-03-21")
@@ -224,24 +202,35 @@ class GocharaSouthIndianRequest(BaseModel):
     timezone: Optional[str] = Field(None, description="Timezone (optional, will calculate if not provided)")
 
 
-@app.post("/api/gochara/south-indian", tags=["Gochara Chart"])
+@app.post("/api/gochara/south-indian", tags=["Gochara Chart"], response_class=ORJSONResponse)
 async def generate_gochara_south_indian(request: GocharaSouthIndianRequest):
+    """
+    Generate Gochara (Transit) Chart - South Indian Style.
+    Consolidated thread-execution for ultra-fast response.
+    """
     try:
-        geo = await resolve_geo(request)
-        latitude, longitude, timezone = geo["lat"], geo["lon"], geo["timezone"]
-        
-        # Calculate Gochara chart - Parallelized (Wait, actually calculate_gochara_chart is optimized internally)
-        # But we offload the call to a thread.
-        chart_data = await asyncio.to_thread(
-            calculate_gochara_chart,
-            date=request.date,
-            time=request.time,
-            place=request.place,
-            latitude=latitude,
-            longitude=longitude,
-            timezone=timezone,
-        )
-        
+        def run_all():
+            # 1. Resolve Geo (In one thread)
+            lat, lon, tz = request.latitude, request.longitude, request.timezone
+            if lat is None or lon is None:
+                geo = geocode_place(request.place)
+                lat, lon, tz = geo["lat"], geo["lon"], geo["timezone"]
+            elif not tz:
+                from geocode import _tf
+                tz = _tf.timezone_at(lat=lat, lng=lon) or "UTC"
+            
+            # 2. Calculate Chart (In same thread)
+            from gochara_south_indian import calculate_gochara_chart
+            return calculate_gochara_chart(
+                date=request.date,
+                time=request.time,
+                place=request.place,
+                latitude=lat,
+                longitude=lon,
+                timezone=tz,
+            )
+
+        chart_data = await asyncio.to_thread(run_all)
         return chart_data
         
     except ValueError as e:
@@ -250,7 +239,7 @@ async def generate_gochara_south_indian(request: GocharaSouthIndianRequest):
         raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
 
 
-@app.get("/api/gochara/south-indian", tags=["Gochara Chart"])
+@app.get("/api/gochara/south-indian", tags=["Gochara Chart"], response_class=ORJSONResponse)
 async def generate_gochara_south_indian_get(
     date: str = Query(..., description="Date in YYYY-MM-DD format", example="2026-03-21"),
     time: str = Query(..., description="Time in HH:MM:SS format", example="11:21:10"),
@@ -259,21 +248,35 @@ async def generate_gochara_south_indian_get(
     longitude: Optional[float] = Query(None, description="Longitude (optional)"),
     timezone: Optional[str] = Query(None, description="Timezone (optional)"),
 ):
+    """
+    Generate Gochara (Transit) Chart - South Indian Style (GET method).
+    
+    **Example:**
+    ```
+    /api/gochara/south-indian?date=2026-03-21&time=11:21:10&place=Bhongir,%20India
+    ```
+    """
     try:
-        geo = await resolve_geo(place, latitude, longitude, timezone)
-        latitude, longitude, timezone = geo["lat"], geo["lon"], geo["timezone"]
-        
-        # Calculate Gochara chart - Offload TO THREAD
-        chart_data = await asyncio.to_thread(
-            calculate_gochara_chart,
-            date=date,
-            time=time,
-            place=place,
-            latitude=latitude,
-            longitude=longitude,
-            timezone=timezone,
-        )
-        
+        def run_all():
+            lat, lon, tz = latitude, longitude, timezone
+            if lat is None or lon is None:
+                geo = geocode_place(place)
+                lat, lon, tz = geo["lat"], geo["lon"], geo["timezone"]
+            elif not tz:
+                from geocode import _tf
+                tz = _tf.timezone_at(lat=lat, lng=lon) or "UTC"
+
+            from gochara_south_indian import calculate_gochara_chart
+            return calculate_gochara_chart(
+                date=date,
+                time=time,
+                place=place,
+                latitude=lat,
+                longitude=lon,
+                timezone=tz,
+            )
+
+        chart_data = await asyncio.to_thread(run_all)
         return chart_data
         
     except ValueError as e:
@@ -314,13 +317,27 @@ def _tz_to_offset(tz_name: str) -> float:
         return 5.5  # default IST
 
 
-@app.post("/api/panchang/daily", tags=["Panchang"])
+@app.post("/api/panchang/daily", tags=["Panchang"], response_class=ORJSONResponse)
 async def daily_panchang(req: DailyPanchangRequest):
     """Compute full daily Telugu Panchang for a given date and location."""
     try:
-        # Resolve coordinates using consolidated logic
-        geo = await resolve_geo(req)
-        lat, lon, tz_name = geo["lat"], geo["lon"], geo["timezone"]
+        # Validate date range
+        year = int(req.date.split("-")[0])
+        if not (1800 <= year <= 2100):
+            raise HTTPException(status_code=400, detail="Date must be between 1800 CE and 2100 CE")
+
+        # Resolve coordinates
+        lat, lon, tz_name = req.latitude, req.longitude, req.timezone
+        if lat is None or lon is None:
+            if not req.place:
+                raise HTTPException(status_code=400, detail="Provide latitude/longitude or place name")
+            geo = await asyncio.to_thread(geocode_place, req.place)
+            lat, lon, tz_name = geo["lat"], geo["lon"], geo["timezone"]
+        elif not tz_name:
+            from geocode import _tf
+            tz_name = await asyncio.to_thread(_tf.timezone_at, lat=lat, lng=lon)
+            if not tz_name:
+                tz_name = "UTC"
 
         tz_offset = _tz_to_offset(tz_name)
         result = await get_daily_panchang(req.date, lat, lon, tz_offset, req.lang)
@@ -334,7 +351,7 @@ async def daily_panchang(req: DailyPanchangRequest):
         raise HTTPException(status_code=500, detail=f"Calculation error: {e}")
 
 
-@app.post("/api/panchang/monthly", tags=["Panchang"])
+@app.post("/api/panchang/monthly", tags=["Panchang"], response_class=ORJSONResponse)
 async def monthly_panchang(req: MonthlyPanchangRequest):
     """Compute monthly Telugu Panchang summaries for every day in a month."""
     try:
